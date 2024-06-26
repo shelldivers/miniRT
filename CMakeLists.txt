@@ -36,6 +36,6 @@ target_link_libraries(${NAME} libft)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # add minirt_test
-file(GLOB_RECURSE TEST_FILES "test/*.cpp")
-add_executable(${TEST_NAME} ${TEST_FILES})
+file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
+add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 target_link_libraries(${TEST_NAME} ${NAME} libft gtest_main)

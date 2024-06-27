@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 17:46:14 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:21:09 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/06/26 18:46:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "ft_printf.h"
+#ifndef COLOR_H
+# define COLOR_H
 
-int	rt_main(void)
-{
-	ft_printf("Hello, miniRT!\n");
-	return (0);
-}
+# ifdef __cplusplus
+extern "C" {
+#endif
 
-/*
-int	main(void)
+# include "vec3.h"
+
+typedef struct s_color
 {
-	ft_printf("Hello, miniRT!\n");
-	return (0);
+	double	r;
+	double	g;
+	double	b;
+}	t_color;
+
+t_color	color(double r, double g, double b);
+
+# ifdef __cplusplus
 }
-*/
+# endif
+
+#endif

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 17:46:14 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/06/26 18:31:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "ft_printf.h"
+#include "vec3.h"
 
-int	rt_main(void)
+t_vec3	vec3(double x, double y, double z)
 {
-	ft_printf("Hello, miniRT!\n");
-	return (0);
-}
+	t_vec3	vec;
 
-/*
-int	main(void)
-{
-	ft_printf("Hello, miniRT!\n");
-	return (0);
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
 }
-*/

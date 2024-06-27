@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 17:46:14 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/06/26 19:14:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "ft_printf.h"
+#include "ray.h"
+#include "vec3.h"
 
-int	rt_main(void)
+t_ray	ray(t_point3 orig, t_vec3 dir)
 {
-	ft_printf("Hello, miniRT!\n");
-	return (0);
+	t_ray	ray;
+
+	ray.orig = point3(orig.pos.x, orig.pos.y, orig.pos.z);
+	ray.dir = vec3(dir.x, dir.y, dir.z);
+	return (ray);
 }
 
-/*
-int	main(void)
+t_point3	point_at(t_ray *ray, double t)
 {
-	ft_printf("Hello, miniRT!\n");
-	return (0);
+	t_point3	point;
+	t_vec3		tmp;
+
+	tmp = vec3_add(ray->orig.pos, vec3_mul(ray->dir, t));
+	point = point3(tmp.x, tmp.y, tmp.z);
+	return (point);
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 16:54:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:49:20 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 extern "C" {
 # endif
 
-#include "point3.h"
 #include "vec3.h"
+#include "point3.h"
+#include "color.h"
 
 typedef struct  s_sphere
 {
     t_point3    center;
-    float      radius;
+    float       radius;
+    t_color     color
 }	t_sphere;
 
 

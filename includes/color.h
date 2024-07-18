@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:21:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 18:46:18 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:54:06 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ extern "C" {
 
 typedef struct s_color
 {
-	double	r;
-	double	g;
-	double	b;
+	float	r;
+	float	g;
+	float	b;
 }	t_color;
 
-t_color	color(double r, double g, double b);
+t_color	color(float r, float g, float b);
 
 # ifdef __cplusplus
 }

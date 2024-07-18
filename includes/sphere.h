@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:28:33 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/18 16:54:42 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#ifndef SPHERE_H
+# define SPHERE_H
+
+# ifdef __cplusplus
+extern "C" {
+# endif
+
+#include "point3.h"
 #include "vec3.h"
 
-t_point3	point_at(t_ray *ray, float t)
+typedef struct  s_sphere
 {
-	t_point3	point;
-	t_vec3		tmp;
+    t_point3    center;
+    float      radius;
+}	t_sphere;
 
-	tmp = vec3_add(point3_to_vec3(ray->origin), vec3_mul(ray->direction, t));
-	point = point3(tmp.x, tmp.y, tmp.z);
-	return (point);
+
+# ifdef __cplusplus
 }
+# endif
+
+#endif

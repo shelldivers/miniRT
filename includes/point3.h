@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:25:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 19:09:38 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:04:46 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 extern "C" {
 # endif
 
-# include "vec3.h"
-
 typedef struct s_point3
 {
-	t_vec3	pos;
+	float	x;
+	float	y;
+	float	z;
 }	t_point3;
 
-t_point3	point3(double x, double y, double z);
+t_point3	point3(float x, float y, float z);
 
 # ifdef __cplusplus
 }

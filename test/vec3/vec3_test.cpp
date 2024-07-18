@@ -36,7 +36,7 @@ TEST(Vec3Test, Vec3Test_vec3_dot)
 {
 	t_vec3	vec1 = vec3(1, 2, 3);
 	t_vec3	vec2 = vec3(4, 5, 6);
-	double	dot = vec3_dot(vec1, vec2);
+	float	dot = vec3_dot(vec1, vec2);
 
 	EXPECT_EQ(dot, 32);
 }
@@ -44,7 +44,7 @@ TEST(Vec3Test, Vec3Test_vec3_dot)
 TEST(Vec3Test, Vec3Test_vec3_mul)
 {
 	t_vec3	vec1 = vec3(1, 2, 3);
-	double	t = 2;
+	float	t = 2;
 	t_vec3	vec = vec3_mul(vec1, t);
 
 	EXPECT_EQ(vec.x, 2);
@@ -55,7 +55,7 @@ TEST(Vec3Test, Vec3Test_vec3_mul)
 TEST(Vec3Test, Vec3Test_vec_length)
 {
 	t_vec3	vec = vec3(1, 2, 3);
-	double	length = vec_length(vec);
+	float	length = vec_length(vec);
 
-	EXPECT_EQ(length, 3.7416573867739413);
+	EXPECT_FLOAT_EQ(length, 3.7416573867739413);
 }

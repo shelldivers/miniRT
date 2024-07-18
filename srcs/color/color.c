@@ -6,13 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:26:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 18:46:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:11:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "color.h"
 
-t_color	color(double r, double g, double b)
+t_color	color(float r, float g, float b)
 {
 	t_color	color;
 

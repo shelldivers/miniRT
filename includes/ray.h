@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 19:12:37 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:28:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ extern "C" {
 
 typedef struct s_ray
 {
-	t_point3	orig;
-	t_vec3		dir;
+	t_point3	origin;
+	t_vec3		direction;
 }	t_ray;
 
-t_ray		ray(t_point3 orig, t_vec3 dir);
-t_point3	point_at(t_ray *ray, double t);
+t_point3	point_at(t_ray *ray, float t);
+
+t_vec3		point3_to_vec3(t_point3 p);
+t_point3	vec3_to_point3(t_vec3 v);
 
 # ifdef __cplusplus
 }

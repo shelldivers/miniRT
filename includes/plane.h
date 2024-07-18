@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:28:33 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/18 16:46:46 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/18 16:49:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
+#ifndef PLANE_H
+# define PLANE_H
+
+# ifdef __cplusplus
+extern "C" {
+# endif
+
+#include "point3.h"
 #include "vec3.h"
 
-t_point3	point_at(t_ray *ray, float t)
+typedef struct  s_plane
 {
-	t_point3	point;
-	t_vec3		tmp;
+    t_point3    origin;
+    t_vec3      normal;
+}	t_plane;
 
-	tmp = vec3_add(point3_to_vec3(ray->origin), vec3_mul(ray->direction, t));
-	point = point3(tmp.x, tmp.y, tmp.z);
-	return (point);
+# ifdef __cplusplus
 }
+# endif
+
+#endif

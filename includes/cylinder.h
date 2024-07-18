@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:49:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:41:27 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:44:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct  s_cylinder
 {
     t_point3    origin;
     t_vec3      normal;
-    double      radius;
-    double      height;
+    float      radius;
+    float      height;
 }	t_cylinder;
 
 # ifdef __cplusplus

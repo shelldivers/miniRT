@@ -6,27 +6,27 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:13:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:13:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:34:47 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "vec3.h"
 
-t_vec3		point3_to_vec3(t_point3 p) {
-    t_vec3 vec;
+t_vec3		point3_to_vec3(t_point3 point) {
+    t_vec3  vec;
 
-    vec.x = p.x;
-    vec.y = p.y;
-    vec.z = p.z;
+    vec.x = point.x;
+    vec.y = point.y;
+    vec.z = point.z;
     return (vec);
 }
 
-t_point3	vec3_to_point3(t_vec3 v) {
-    t_point3 point;
+t_point3	vec3_to_point3(t_vec3 vec) {
+    t_point3    point;
 
-    point.x = v.x;
-    point.y = v.y;
-    point.z = v.z;
+    point.x = vec.x;
+    point.y = vec.y;
+    point.z = vec.z;
     return (point);
 }

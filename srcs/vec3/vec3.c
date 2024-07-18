@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:19:02 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:34:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_vec3	vec3(float x, float y, float z)
 	return (vec);
 }
 
-float	vec_length(t_vec3 v)
+float	vec_length(t_vec3 vec)
 {
-	return ((float) sqrt(v.x * v.x + v.y * v.y + v.z * v.z));	// TODO : float casting
+	return ((float) sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
 }

@@ -55,7 +55,7 @@ TEST(Vec3Test, Vec3Test_vec3_mul)
 TEST(Vec3Test, Vec3Test_vec_length)
 {
 	t_vec3	vec = vec3(1, 2, 3);
-	float	length = vec_length(vec);
+	float	length = vec3_length(vec);
 
 	EXPECT_FLOAT_EQ(length, 3.7416573867739413);
 }

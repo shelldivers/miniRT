@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:49:20 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:32:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct  s_sphere
 {
     t_point3    center;
     float       radius;
-    t_color     color
+    t_color     color;
 }	t_sphere;
 
 

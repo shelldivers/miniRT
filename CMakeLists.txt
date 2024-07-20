@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.25)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
+add_compile_options(-Wall -Wextra -Werror)
 
 set(NAME minirt)
+set(LIB_NAME libminirt)
 set(TEST_NAME minirt_test)
 
 project(${NAME} C CXX)
@@ -12,7 +14,6 @@ enable_testing()
 
 include(FetchContent)
 
-# add_subdirectory(googletest)
 FetchContent_Declare(
 	googletest
 	GIT_REPOSITORY https://github.com/google/googletest.git
@@ -20,7 +21,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# add_subdirectory(libft)
 FetchContent_Declare(
 	libft
 	GIT_REPOSITORY https://github.com/shelldivers/libft.git
@@ -29,13 +29,17 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(libft)
 set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
 
-# add minirt
+# build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
-add_library(${NAME} STATIC ${SRC_FILES})
-target_link_libraries(${NAME} libft)
+add_library(${LIB_NAME} STATIC ${SRC_FILES})
+target_link_libraries(${LIB_NAME} libft)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
-# add minirt_test
+# build minirt executable
+add_executable(${NAME} "minirt.c")
+target_link_libraries(${NAME} ${LIB_NAME} libft)
+
+# build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
-target_link_libraries(${TEST_NAME} ${NAME} libft gtest_main)
+target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest_main)

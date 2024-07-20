@@ -55,11 +55,11 @@ add_test(
 
 # add coverage
 add_custom_target(coverage
-	COMMAND find ${CMAKE_SOURCE_DIR}/build -name "*.gcda" -print0 | xargs -0 rm
-	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_SOURCE_DIR}/build --target minirt_test
-	COMMAND ${CMAKE_SOURCE_DIR}/build/minirt_test
+	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
+	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${TEST_NAME}
+	COMMAND ${CMAKE_BINARY_DIR}/${TEST_NAME}
 	COMMAND gcovr -r ${CMAKE_SOURCE_DIR}
-				-e '${CMAKE_SOURCE_DIR}/build/_deps/googletest-src/*'
-				-e '${CMAKE_SOURCE_DIR}/build/_deps/libft-src/*'
-				-o '${CMAKE_SOURCE_DIR}/build/test-coverage.xml'
+				-e '${CMAKE_BINARY_DIR}/_deps/googletest-src/*'
+				-e '${CMAKE_BINARY_DIR}/_deps/libft-src/*'
+				-o '${CMAKE_BINARY_DIR}/test-coverage.xml'
 )

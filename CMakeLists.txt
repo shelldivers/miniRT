@@ -7,6 +7,9 @@ set(NAME minirt)
 set(LIB_NAME libminirt)
 set(TEST_NAME minirt_test)
 
+add_compile_options(--coverage)
+link_libraries(--coverage)
+
 project(${NAME} C CXX)
 
 # CTest
@@ -43,3 +46,12 @@ target_link_libraries(${NAME} ${LIB_NAME} libft)
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest_main)
+
+add_test(
+	NAME ${TEST_NAME}
+	COMMAND ${TEST_NAME}
+)
+
+add_custom_target(coverage
+  COMMAND gcovr --root ${CMAKE_SOURCE_DIR} --exclude '${CMAKE_SOURCE_DIR}/build/_deps/googletest-src/*' --exclude '${CMAKE_SOURCE_DIR}/build/_deps/libft-src/*'
+)

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:30:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:33:32 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/21 00:24:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ t_vec3	vec3_mul(t_vec3 a, float t)
 	vec.x = a.x * t;
 	vec.y = a.y * t;
 	vec.z = a.z * t;
+	return (vec);
+}
+
+t_vec3	vec3_div(t_vec3 a, float t)
+{
+	t_vec3	vec;
+
+	vec.x = a.x / t;
+	vec.y = a.y / t;
+	vec.z = a.z / t;
 	return (vec);
 }
 

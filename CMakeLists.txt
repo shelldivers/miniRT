@@ -47,11 +47,15 @@ file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest_main)
 
+# add tests
 add_test(
 	NAME ${TEST_NAME}
 	COMMAND ${TEST_NAME}
 )
 
+# add coverage
 add_custom_target(coverage
-  COMMAND gcovr --root ${CMAKE_SOURCE_DIR} --exclude '${CMAKE_SOURCE_DIR}/build/_deps/googletest-src/*' --exclude '${CMAKE_SOURCE_DIR}/build/_deps/libft-src/*'
+	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_SOURCE_DIR}/build --target minirt_test
+	COMMAND ${CMAKE_SOURCE_DIR}/build/minirt_test
+	COMMAND gcovr -r ${CMAKE_SOURCE_DIR} -e '${CMAKE_SOURCE_DIR}/build/_deps/googletest-src/*' -e '${CMAKE_SOURCE_DIR}/build/_deps/libft-src/*' -o '${CMAKE_SOURCE_DIR}/build/test-coverage.xml'
 )

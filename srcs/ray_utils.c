@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:13:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 00:56:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:00:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 t_vec3		point3_to_vec3(t_point3 point)
 {
-    t_vec3  vec;
+	t_vec3	vec;
 
-    vec.x = point.x;
-    vec.y = point.y;
-    vec.z = point.z;
-    return (vec);
+	vec.x = point.x;
+	vec.y = point.y;
+	vec.z = point.z;
+	return (vec);
 }
 
 t_point3	vec3_to_point3(t_vec3 vec)
 {
-    t_point3    point;
+	t_point3	point;
 
-    point.x = vec.x;
-    point.y = vec.y;
-    point.z = vec.z;
-    return (point);
+	point.x = vec.x;
+	point.y = vec.y;
+	point.z = vec.z;
+	return (point);
 }

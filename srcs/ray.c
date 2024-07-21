@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:02:03 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:03:49 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ t_color	ray_color(t_ray const *ray)
 	a = 0.5 * (unit_direction.y + 1.0);
 	color1 = vec3_mul(color_to_vec3(color(1.0, 1.0, 1.0)), 1.0 - a);
 	color2 = vec3_mul(color_to_vec3(color(0.5, 0.7, 1.0)), a);
-	return vec3_to_color(vec3_add(color1, color2));
+	return (vec3_to_color(vec3_add(color1, color2)));
 }

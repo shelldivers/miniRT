@@ -27,7 +27,7 @@ jobs:
         run: |
           gcovr -r . -e 'build/_deps/googletest-src/*' -e 'build/_deps/libft-src/*' -o './build/test-coverage.xml'
 
-      - name: 📧 Upload integrationTest coverage to Codecov
+      - name: 📪 Upload Test Coverage to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

@@ -19,8 +19,8 @@ jobs:
       
       - name: 🛠️ Configure and build
         run: |
-        cmake -B./build -DENABLE_COVERAGE=ON .
-        cmake --build ./build --target minirt_test
+          cmake -B./build -DENABLE_COVERAGE=ON .
+          cmake --build ./build --target minirt_test
         
       - name: ✅ Run tests
         run: ./build/minirt_test

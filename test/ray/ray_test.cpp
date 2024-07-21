@@ -63,16 +63,16 @@ TEST(RayTest, RayTest_hit_sphere)
     EXPECT_EQ(hit, false);
 }
 
-// TEST(RayTest, RayTest_ray_color)
-// {
-//     t_ray ray;
+TEST(RayTest, RayTest_ray_color)
+{
+    t_ray ray;
     
-//     ray.origin = point3(1, 2, 3);
-//     ray.direction = vec3(4, 5, 6);
+    ray.origin = point3(1, 2, 3);
+    ray.direction = vec3(4, 5, 6);
 
-//     t_color color = ray_color(&ray);
+    t_color color = ray_color(&ray);
 
-//     EXPECT_EQ(color.r, 0.5);
-//     EXPECT_EQ(color.g, 0.7);
-//     EXPECT_EQ(color.b, 1);
-// }
+    EXPECT_FLOAT_EQ(color.r, 0.60754931);
+    EXPECT_FLOAT_EQ(color.g, 0.76452958);
+    EXPECT_FLOAT_EQ(color.b, 1);
+}

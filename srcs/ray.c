@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/21 00:30:34 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:20:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_point3	point_at(t_ray *ray, float t)
 	return (point);
 }
 
-int	hit_sphere(t_point3 center, float radius, t_ray const *ray) {
+bool	hit_sphere(t_point3 center, float radius, t_ray const *ray) {
 	t_vec3 oc = vec3_sub(point3_to_vec3(center), point3_to_vec3(ray->origin));
     float a = vec3_dot(ray->direction, ray->direction);
     float b = vec3_dot(ray->direction, oc) * -2.0;

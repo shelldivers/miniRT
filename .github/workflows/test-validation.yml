@@ -25,6 +25,10 @@ jobs:
       - name: ✅ Run tests
         run: ./build/minirt_test
 
+      - name: 📊 Generate coverage report
+        run: |
+          gcovr -r . -e './build/_deps/googletest-src/*' -e './build/_deps/libft-src/*' -o './build/test-coverage.xml'
+
       - name: 📧 Upload integrationTest coverage to Codecov
         uses: codecov/codecov-action@v4
         with:

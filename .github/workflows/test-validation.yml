@@ -17,17 +17,15 @@ jobs:
       - name: 🛒 Install gcc and make
         run: sudo apt-get install -y gcc cmake make gcovr
       
-      - name: 🛠️ Configure and build
+      - name: 🛠️ Build and Run Tests
         run: |
           cmake -B./build -DENABLE_COVERAGE=ON .
           cmake --build ./build --target minirt_test
-        
-      - name: ✅ Run tests
-        run: ./build/minirt_test
+          ./build/minirt_test
 
       - name: 📊 Generate coverage report
         run: |
-          gcovr -r . -e './build/_deps/googletest-src/*' -e './build/_deps/libft-src/*' -o './build/test-coverage.xml'
+          gcovr -r . -e 'build/_deps/googletest-src/*' -e 'build/_deps/libft-src/*' -o './build/test-coverage.xml'
 
       - name: 📧 Upload integrationTest coverage to Codecov
         uses: codecov/codecov-action@v4

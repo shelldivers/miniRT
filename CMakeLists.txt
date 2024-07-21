@@ -67,4 +67,5 @@ add_custom_target(coverage
 				-e '${CMAKE_BINARY_DIR}/_deps/googletest-src/*'
 				-e '${CMAKE_BINARY_DIR}/_deps/libft-src/*'
 				-o '${CMAKE_BINARY_DIR}/test-coverage.xml'
+	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
 )

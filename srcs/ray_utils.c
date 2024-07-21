@@ -6,14 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:13:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:00:08 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:02:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 #include "vec3.h"
 
-t_vec3		point3_to_vec3(t_point3 point)
+t_vec3	point3_to_vec3(t_point3 point)
 {
 	t_vec3	vec;
 

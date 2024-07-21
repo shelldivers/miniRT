@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:00:20 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:02:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	hit_sphere(t_point3 center, float radius, t_ray const *ray)
 	a = vec3_dot(ray->direction, ray->direction);
 	b = vec3_dot(ray->direction, oc) * -2.0;
 	c = vec3_dot(oc, oc) - radius * radius;
-    return (b * b - 4 * a * c >= 0);
+	return (b * b - 4 * a * c >= 0);
 }
 
 t_color	ray_color(t_ray const *ray)
@@ -47,7 +47,7 @@ t_color	ray_color(t_ray const *ray)
 
 	if (hit_sphere(point3(0, 0, -1), 0.5, ray))
 	{
-		return color(1, 0, 0);
+		return (color(1, 0, 0));
 	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);

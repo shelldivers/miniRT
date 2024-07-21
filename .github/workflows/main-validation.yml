@@ -34,7 +34,7 @@ jobs:
       - name: 🛒 Install build-essentials
         run: sudo apt-get install -y gcc cmake make
       
-      - name: 👮 Run make
+      - name: 🚩 Compile with options -Wall -Wextra -Werror
         run: |
           mkdir build
           cd build

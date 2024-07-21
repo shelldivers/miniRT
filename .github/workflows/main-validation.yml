@@ -21,7 +21,7 @@ jobs:
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install --upgrade norminette
 
-      - name: 👮 Run norminette for .c
+      - name: 👮 Run norminette for .c .h
         run: norminette **/*.[ch]
 
   check-compile-flags:

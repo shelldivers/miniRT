@@ -1,0 +1,33 @@
+name: ✅ run tests
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛒 Install gcc and make
+        run: sudo apt-get install -y gcc cmake make
+      
+      - name: 🛠️ Configure and build
+        run: |
+        cmake -B./build -DENABLE_COVERAGE=ON .
+        cmake --build ./build --target minirt_test
+        
+      - name: ✅ Run tests
+        run: ./build/minirt_test
+
+      - name: 📧 Upload integrationTest coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./build/test-coverage.xml
+          fail_ci_if_error: true
+

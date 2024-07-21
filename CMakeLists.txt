@@ -3,12 +3,16 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 add_compile_options(-Wall -Wextra -Werror)
 
-set(NAME minirt)
-set(LIB_NAME libminirt)
+set(NAME minirt_exec)
+set(LIB_NAME minirt)
 set(TEST_NAME minirt_test)
 
-add_compile_options(--coverage)
-link_libraries(--coverage)
+option(ENABLE_COVERAGE "Enable GCC Coverage" OFF)
+
+if(ENABLE_COVERAGE)
+	add_compile_options(--coverage)
+	link_libraries(--coverage)
+endif()
 
 project(${NAME} C CXX)
 
@@ -56,6 +60,7 @@ add_test(
 # add coverage
 add_custom_target(coverage
 	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
+	COMMAND ${CMAKE_COMMAND} -B${CMAKE_BINARY_DIR} -DENABLE_COVERAGE=ON ${CMAKE_SOURCE_DIR}
 	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${TEST_NAME}
 	COMMAND ${CMAKE_BINARY_DIR}/${TEST_NAME}
 	COMMAND gcovr -r ${CMAKE_SOURCE_DIR}

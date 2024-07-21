@@ -1,0 +1,42 @@
+name: 👮 check norminette and compile flags
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-norminette:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛒 Install 42-norminette
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip
+          python3 -m pip install --upgrade pip setuptools
+          python3 -m pip install --upgrade norminette
+
+      - name: 👮 Run norminette for .c
+        run: norminette **/*.[ch]
+
+  check-compile-flags:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛒 Install build-essentials
+        run: sudo apt-get install -y gcc cmake make
+      
+      - name: 👮 Run make
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make

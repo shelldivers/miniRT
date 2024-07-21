@@ -3,16 +3,11 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 add_compile_options(-Wall -Wextra -Werror)
 
-set(NAME minirt_exec)
-set(LIB_NAME minirt)
+set(NAME minirt)
+set(LIB_NAME ${NAME})
+set(EXEC_NAME minirt_exec)
 set(TEST_NAME minirt_test)
-
-option(ENABLE_COVERAGE "Enable GCC Coverage" OFF)
-
-if(ENABLE_COVERAGE)
-	add_compile_options(--coverage)
-	link_libraries(--coverage)
-endif()
+set(COVR_NAME minirt_covr)
 
 project(${NAME} C CXX)
 
@@ -43,13 +38,18 @@ target_link_libraries(${LIB_NAME} libft)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # build minirt executable
-add_executable(${NAME} "minirt.c")
-target_link_libraries(${NAME} ${LIB_NAME} libft)
+add_executable(${EXEC_NAME} "minirt.c")
+target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft)
 
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest_main)
+
+# build minirt test executable for gcovr
+add_executable(${COVR_NAME} ${TEST_SRC_FILES})
+target_compile_options(${COVR_NAME} PRIVATE --coverage)
+target_link_libraries(${COVR_NAME} ${LIB_NAME} libft gtest_main --coverage)
 
 # add tests
 add_test(
@@ -57,12 +57,12 @@ add_test(
 	COMMAND ${TEST_NAME}
 )
 
-# add coverage
+# build coverage
 add_custom_target(coverage
 	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
 	COMMAND ${CMAKE_COMMAND} -B${CMAKE_BINARY_DIR} -DENABLE_COVERAGE=ON ${CMAKE_SOURCE_DIR}
-	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${TEST_NAME}
-	COMMAND ${CMAKE_BINARY_DIR}/${TEST_NAME}
+	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${COVR_NAME}
+	COMMAND ${CMAKE_BINARY_DIR}/${COVR_NAME}
 	COMMAND gcovr -r ${CMAKE_SOURCE_DIR}
 				-e '${CMAKE_BINARY_DIR}/_deps/googletest-src/*'
 				-e '${CMAKE_BINARY_DIR}/_deps/libft-src/*'

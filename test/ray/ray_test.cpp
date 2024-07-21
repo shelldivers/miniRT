@@ -50,7 +50,7 @@ TEST(RayTest, RayTest_vec3_to_point3)
     EXPECT_EQ(point.z, 3);
 }
 
-TEST(RayTest, RayTest_hit_sphere)
+TEST(RayTest, RayTest_hit_sphere_false)
 {
     t_point3 center = point3(0, 0, -1);
     t_ray ray;
@@ -61,6 +61,19 @@ TEST(RayTest, RayTest_hit_sphere)
     bool hit = hit_sphere(center, 0.5, &ray);
 
     EXPECT_EQ(hit, false);
+}
+
+TEST(RayTest, RayTest_hit_sphere_true)
+{
+    t_point3 center = point3(0, 0, -1);
+    t_ray ray;
+    
+    ray.origin = point3(1, 2, 3);
+    ray.direction = vec3(4, 5, -6);
+
+    bool hit = hit_sphere(center, 0.5, &ray);
+
+    EXPECT_EQ(hit, true);
 }
 
 TEST(RayTest, RayTest_ray_color)

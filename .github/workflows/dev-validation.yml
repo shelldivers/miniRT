@@ -1,4 +1,4 @@
-name: 👮 check norminette and compile flags
+name: 👮 dev-validation
 
 on:
   push:

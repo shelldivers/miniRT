@@ -1,4 +1,4 @@
-name: 👮 check norminette and compile flags
+name: 👮 main-validation
 
 on:
   push:

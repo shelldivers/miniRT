@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:46:46 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:06:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:07:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "point3.h"
 # include "color.h"
 
-typedef struct	s_plane
+typedef struct s_plane
 {
 	t_point3	origin;
 	t_vec3		normal;

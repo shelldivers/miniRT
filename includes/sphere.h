@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:06:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:07:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "point3.h"
 # include "color.h"
 
-typedef struct	s_sphere
+typedef struct s_sphere
 {
 	t_point3	center;
 	float		radius;

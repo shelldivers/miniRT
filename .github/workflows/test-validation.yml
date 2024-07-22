@@ -25,7 +25,7 @@ jobs:
 
       - name: 📊 Generate coverage report
         run: |
-          gcovr -r . -e 'build/_deps/googletest-src/*' -e 'build/_deps/libft-src/*' -o './build/test-coverage.xml'
+          gcovr -r . -e 'build/_deps/*' -e 'build/test/*' -o './build/reports/test-coverage.xml'
 
       - name: 📪 Upload Test Coverage to Codecov
         uses: codecov/codecov-action@v4.0.1

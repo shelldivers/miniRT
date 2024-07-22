@@ -1,0 +1,15 @@
+codecov:
+  require_ci_to_pass: yes
+
+coverage:
+  status:
+    project:
+      unit:
+        target: 80% # 전체 프로젝트에 대한 커버리지 목표 설정
+        flags: 
+          - unit_test
+    patch:
+      default:
+        target: 80% # PR에 대한 커버리지 목표 설정
+        flags: 
+          - unit_test

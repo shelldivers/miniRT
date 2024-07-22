@@ -16,8 +16,7 @@ jobs:
 
       - name: 🛒 Install 42-norminette
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip
+          brew install python3 python3-pip
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install --upgrade norminette
 
@@ -32,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🛒 Install build-essentials
-        run: sudo apt-get install -y gcc cmake make
+        run: brew install gcc cmake make
       
       - name: 🚩 Compile with options -Wall -Wextra -Werror
         run: |

@@ -16,6 +16,8 @@ jobs:
 
       - name: 🛒 Install 42-norminette
         run: |
+          python3 -m venv norminette_venv
+          source norminette_venv/bin/activate
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install --upgrade norminette
 

@@ -63,10 +63,12 @@ add_custom_target(coverage
 	COMMAND ${CMAKE_COMMAND} -B${CMAKE_BINARY_DIR} -DENABLE_COVERAGE=ON ${CMAKE_SOURCE_DIR}
 	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${TEST_NAME}
 	COMMAND ${CMAKE_BINARY_DIR}/${TEST_NAME}
+	COMMAND mkdir -p ${CMAKE_BINARY_DIR}/reports
 	COMMAND gcovr -r ${CMAKE_SOURCE_DIR}
-				-e '${CMAKE_BINARY_DIR}/_deps/googletest-src/*'
-				-e '${CMAKE_BINARY_DIR}/_deps/libft-src/*'
-				-o '${CMAKE_BINARY_DIR}/test-coverage.xml'
+				-e '${CMAKE_BINARY_DIR}/_deps/*'
+				-e '${CMAKE_SOURCE_DIR}/test/*'
+				--html --html-details
+				-o '${CMAKE_BINARY_DIR}/reports/test-coverage.html'
 	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
 	COMMAND rm -f ${CMAKE_BINARY_DIR}/${TEST_NAME} ${CMAKE_BINARY_DIR}/${EXEC_NAME} 
 )

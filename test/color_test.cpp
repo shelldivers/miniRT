@@ -7,41 +7,11 @@ TEST(ColorTest, ColorTest_color)
 {
     t_color color;
 
-    color.r = 1;
-    color.g = 2;
-    color.b = 3;
+    color.x = 1;
+    color.y = 2;
+    color.z = 3;
 
-    EXPECT_EQ(color.r, 1);
-    EXPECT_EQ(color.g, 2);
-    EXPECT_EQ(color.b, 3);
-}
-
-TEST(ColorTest, ColorTest_color_to_vec3)
-{
-    t_color color;
-
-    color.r = 1;
-    color.g = 2;
-    color.b = 3;
-
-    t_vec3 vec = color_to_vec3(color);
-
-    EXPECT_EQ(vec.x, 1);
-    EXPECT_EQ(vec.y, 2);
-    EXPECT_EQ(vec.z, 3);
-}
-
-TEST(ColorTest, ColorTest_vec3_to_color)
-{
-    t_vec3 vec;
-
-    vec.x = 1;
-    vec.y = 2;
-    vec.z = 3;
-
-    t_color color = vec3_to_color(vec);
-
-    EXPECT_EQ(color.r, 1);
-    EXPECT_EQ(color.g, 2);
-    EXPECT_EQ(color.b, 3);
+    EXPECT_EQ(color.x, 1);
+    EXPECT_EQ(color.y, 2);
+    EXPECT_EQ(color.z, 3);
 }

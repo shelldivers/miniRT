@@ -35,7 +35,7 @@ TEST(RayTest, RayTest_point_at)
 TEST(RayTest, RayTest_point3_to_vec3)
 {
     t_point3 point = point3(1, 2, 3);
-    t_vec3 vec = point3_to_vec3(point);
+    t_vec3 vec = point;
 
     EXPECT_EQ(vec.x, 1);
     EXPECT_EQ(vec.y, 2);
@@ -45,7 +45,7 @@ TEST(RayTest, RayTest_point3_to_vec3)
 TEST(RayTest, RayTest_vec3_to_point3)
 {
     t_vec3 vec = vec3(1, 2, 3);
-    t_point3 point = vec3_to_point3(vec);
+    t_point3 point = vec;
 
     EXPECT_EQ(point.x, 1);
     EXPECT_EQ(point.y, 2);
@@ -87,9 +87,9 @@ TEST(RayTest, RayTest_ray_color_background)
 
     t_color color = ray_color(&ray);
 
-    EXPECT_FLOAT_EQ(color.r, 0.60754931);
-    EXPECT_FLOAT_EQ(color.g, 0.76452958);
-    EXPECT_FLOAT_EQ(color.b, 1);
+    EXPECT_FLOAT_EQ(color.x, 0.60754931);
+    EXPECT_FLOAT_EQ(color.y, 0.76452958);
+    EXPECT_FLOAT_EQ(color.z, 1);
 }
 
 TEST(RayTest, RayTest_ray_color_shpere)
@@ -101,7 +101,7 @@ TEST(RayTest, RayTest_ray_color_shpere)
 
     t_color color = ray_color(&ray);
 
-    EXPECT_FLOAT_EQ(color.r, 1);
-    EXPECT_FLOAT_EQ(color.g, 0);
-    EXPECT_FLOAT_EQ(color.b, 0);
+    EXPECT_FLOAT_EQ(color.x, 1);
+    EXPECT_FLOAT_EQ(color.y, 0);
+    EXPECT_FLOAT_EQ(color.z, 0);
 }

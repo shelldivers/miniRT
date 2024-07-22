@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:03:49 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:39:56 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_point3	point_at(t_ray *ray, float t)
 	t_point3	point;
 	t_vec3		tmp;
 
-	tmp = vec3_add(point3_to_vec3(ray->origin), vec3_mul(ray->direction, t));
+	tmp = vec3_add(ray->origin, vec3_mul(ray->direction, t));
 	point = point3(tmp.x, tmp.y, tmp.z);
 	return (point);
 }
@@ -31,7 +31,7 @@ bool	hit_sphere(t_point3 center, float radius, t_ray const *ray)
 	float	b;
 	float	c;
 
-	oc = vec3_sub(point3_to_vec3(center), point3_to_vec3(ray->origin));
+	oc = vec3_sub(center, ray->origin);
 	a = vec3_dot(ray->direction, ray->direction);
 	b = vec3_dot(ray->direction, oc) * -2.0;
 	c = vec3_dot(oc, oc) - radius * radius;
@@ -51,7 +51,7 @@ t_color	ray_color(t_ray const *ray)
 	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);
-	color1 = vec3_mul(color_to_vec3(color(1.0, 1.0, 1.0)), 1.0 - a);
-	color2 = vec3_mul(color_to_vec3(color(0.5, 0.7, 1.0)), a);
-	return (vec3_to_color(vec3_add(color1, color2)));
+	color1 = vec3_mul(color(1.0, 1.0, 1.0), 1.0 - a);
+	color2 = vec3_mul(color(0.5, 0.7, 1.0), a);
+	return (vec3_add(color1, color2));
 }

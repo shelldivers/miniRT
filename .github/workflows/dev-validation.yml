@@ -16,7 +16,6 @@ jobs:
 
       - name: 🛒 Install 42-norminette
         run: |
-          brew install python3
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install --upgrade norminette
 

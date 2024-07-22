@@ -36,6 +36,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(libft)
 set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
 
+FetchContent_Declare(
+    minilibx
+    GIT_REPOSITORY git@github.com:shelldivers/minilibx.git
+    GIT_TAG v1.0.1
+)
+FetchContent_MakeAvailable(minilibx)
+
 # build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
 add_library(${LIB_NAME} STATIC ${SRC_FILES})
@@ -44,7 +51,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/
 
 # build minirt executable
 add_executable(${EXEC_NAME} "minirt.c")
-target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft)
+target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
+include_directories(${minilibx_SOURCE_DIR})
 
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")

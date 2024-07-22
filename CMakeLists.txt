@@ -38,7 +38,7 @@ set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
 
 FetchContent_Declare(
     minilibx
-    GIT_REPOSITORY git@github.com:shelldivers/minilibx.git
+    GIT_REPOSITORY https://github.com/shelldivers/minilibx.git
     GIT_TAG v1.0.0
 )
 FetchContent_MakeAvailable(minilibx)

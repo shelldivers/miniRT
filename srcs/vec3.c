@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:26:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 22:54:48 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/22 01:02:23 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.h"
+#include "vec3.h"
+#include <math.h>
 
-t_color	color(double r, double g, double b)
+t_vec3	vec3(float x, float y, float z)
 {
-	t_color	color;
+	t_vec3	vec;
 
-	color.r = r;
-	color.g = g;
-	color.b = b;
-	return (color);
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
+}
+
+t_vec3	vec3_unit(t_vec3 vec)
+{
+	return (vec3_div(vec, vec3_length(vec)));
+}
+
+float	vec3_length(t_vec3 vec)
+{
+	return ((float) sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
 }

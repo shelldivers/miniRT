@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 22:55:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:00:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,20 @@
 
 # include "vec3.h"
 # include "point3.h"
+# include "color.h"
+# include <stdbool.h>
 
 typedef struct s_ray
 {
-	t_point3	orig;
-	t_vec3		dir;
+	t_point3	origin;
+	t_vec3		direction;
 }	t_ray;
 
-t_ray		ray(t_point3 orig, t_vec3 dir);
-t_point3	point_at(t_ray *ray, double t);
+t_point3	point_at(t_ray *ray, float t);
+bool		hit_sphere(t_point3 center, float radius, t_ray const *ray);
+t_color		ray_color(t_ray const *ray);
+
+t_vec3		point3_to_vec3(t_point3 p);
+t_point3	vec3_to_point3(t_vec3 v);
 
 #endif

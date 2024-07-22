@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:21:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:01:10 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/18 17:13:09 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/22 01:02:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "ray.h"
+#include "vec3.h"
 
-# include "vec3.h"
-
-typedef struct s_color
+t_vec3	point3_to_vec3(t_point3 point)
 {
-	float	r;
-	float	g;
-	float	b;
-}	t_color;
+	t_vec3	vec;
 
-t_color	color(float r, float g, float b);
-t_vec3	color_to_vec3(t_color color);
-t_color	vec3_to_color(t_vec3 vec);
+	vec.x = point.x;
+	vec.y = point.y;
+	vec.z = point.z;
+	return (vec);
+}
 
-#endif
+t_point3	vec3_to_point3(t_vec3 vec)
+{
+	t_point3	point;
+
+	point.x = vec.x;
+	point.y = vec.y;
+	point.z = vec.z;
+	return (point);
+}

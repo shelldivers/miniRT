@@ -6,7 +6,10 @@ coverage:
     project:
       unit:
         target: 80% # 전체 프로젝트에 대한 커버리지 목표 설정
-        flags: unit_test
+        flags: 
+          - unit_test
     patch:
       default:
-        target: 80% # 각각의 patch(pull request 또는 commit)에 대한 커버리지 목표 설정
+        target: 80% # PR에 대한 커버리지 목표 설정
+        flags: 
+          - unit_test

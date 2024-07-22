@@ -6,21 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:43:00 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:00:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# ifdef __cplusplus
-extern "C" {
-# endif
-
 int	rt_main(void);
-
-# ifdef __cplusplus
-}
-# endif
 
 #endif

@@ -1,5 +1,7 @@
-#include "gtest/gtest.h"
+extern "C" {
 #include "color.h"
+}
+#include "gtest/gtest.h"
 
 TEST(ColorTest, ColorTest_color)
 {

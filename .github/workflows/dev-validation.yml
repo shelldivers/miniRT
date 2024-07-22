@@ -21,8 +21,8 @@ jobs:
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install --upgrade norminette
 
-      - name: 👮 Run norminette for .c
-        run: norminette **/*.c
+      - name: 👮 Run norminette
+        run: norminette **/*.[ch]
 
   check-compile-flags:
     runs-on: ubuntu-latest

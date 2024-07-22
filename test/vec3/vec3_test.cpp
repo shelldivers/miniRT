@@ -1,5 +1,8 @@
-#include "gtest/gtest.h"
+extern "C" {
 #include "vec3.h"
+}
+#include "gtest/gtest.h"
+
 
 TEST(Vec3Test, Vec3Test_vec3)
 {

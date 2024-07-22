@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 00:28:19 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:43:33 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 int	main(void)
 {
-	ft_printf("Hello, miniRT!\n");
+	ft_printf("Hello, world!\n");
 	return (0);
 }

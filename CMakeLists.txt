@@ -39,9 +39,13 @@ set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
 FetchContent_Declare(
     minilibx
     GIT_REPOSITORY git@github.com:shelldivers/minilibx.git
-    GIT_TAG v1.0.1
+    GIT_TAG v1.0.0
 )
 FetchContent_MakeAvailable(minilibx)
+add_custom_target(build_minilibx ALL
+	COMMAND make -C ${minilibx_SOURCE_DIR} -j1
+)
+set(MINILIBX_LIBRARY ${minilibx_SOURCE_DIR}/libmlx.dylib)
 
 # build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
@@ -51,8 +55,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/
 
 # build minirt executable
 add_executable(${EXEC_NAME} "minirt.c")
+add_dependencies(${EXEC_NAME} build_minilibx)
 target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
-include_directories(${minilibx_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes ${minilibx_SOURCE_DIR})
 
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")

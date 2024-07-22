@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:21:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 23:40:49 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:43:26 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "vec3.h"
 
-typedef t_vec3 t_color;
+typedef t_vec3	t_color;
 
 t_color	color(float r, float g, float b);
 

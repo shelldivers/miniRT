@@ -32,4 +32,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./build/reports/test-coverage.html
+          flags: unit_test
           fail_ci_if_error: true
+          verbose: true

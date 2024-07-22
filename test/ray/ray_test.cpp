@@ -1,5 +1,7 @@
 #include "gtest/gtest.h"
+extern "C" {
 #include "ray.h"
+}
 
 TEST(RayTest, RayTest_ray)
 {

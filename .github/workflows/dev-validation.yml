@@ -22,7 +22,9 @@ jobs:
           python3 -m pip install --upgrade norminette
 
       - name: 👮 Run norminette
-        run: norminette **/*.[ch]
+        run: |
+          source norminette_venv/bin/activate
+          norminette **/*.[ch]
 
   check-compile-flags:
     runs-on: macos-latest

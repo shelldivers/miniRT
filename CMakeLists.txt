@@ -31,7 +31,7 @@ FetchContent_MakeAvailable(googletest)
 FetchContent_Declare(
 	libft
 	GIT_REPOSITORY https://github.com/shelldivers/libft.git
-	GIT_TAG v1.0.1
+	GIT_TAG v1.0.0
 )
 FetchContent_MakeAvailable(libft)
 set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
@@ -39,7 +39,7 @@ set(CMAKE_LIBFT_SRC_DIR ${CMAKE_BINARY_DIR}/_deps/libft-src)
 FetchContent_Declare(
     minilibx
     GIT_REPOSITORY https://github.com/shelldivers/minilibx.git
-    GIT_TAG v1.0.0
+    GIT_TAG v1.0.1
 )
 FetchContent_MakeAvailable(minilibx)
 add_custom_target(build_minilibx ALL

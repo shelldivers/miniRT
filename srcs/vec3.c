@@ -6,22 +6,12 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:02:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:20:05 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
 #include <math.h>
-
-t_vec3	vec3(float x, float y, float z)
-{
-	t_vec3	vec;
-
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return (vec);
-}
 
 t_vec3	vec3_unit(t_vec3 vec)
 {

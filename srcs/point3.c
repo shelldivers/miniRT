@@ -6,18 +6,8 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:26:35 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 23:37:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:16:50 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "point3.h"
-
-t_point3	point3(float x, float y, float z)
-{
-	t_point3	point;
-
-	point.x = x;
-	point.y = y;
-	point.z = z;
-	return (point);
-}

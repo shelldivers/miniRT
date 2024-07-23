@@ -16,6 +16,7 @@
 # include "vec3.h"
 # include "point3.h"
 # include "color.h"
+# include "camera.h"
 # include <stdbool.h>
 
 typedef struct s_ray
@@ -27,5 +28,6 @@ typedef struct s_ray
 t_color		ray_color(t_ray const *ray);
 t_point3	point_at(t_ray *ray, float t);
 bool		hit_sphere(t_point3 center, float radius, t_ray const *ray);
+t_ray		*get_ray_malloc(t_camera *camera, t_viewport *viewport, int x, int y);
 
 #endif

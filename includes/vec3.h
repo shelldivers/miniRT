@@ -21,7 +21,6 @@ typedef struct s_vec3
 }	t_vec3;
 
 // vec3.c
-t_vec3	vec3(float x, float y, float z);
 t_vec3	vec3_unit(t_vec3 vec);
 float	vec3_length(t_vec3 vec);
 

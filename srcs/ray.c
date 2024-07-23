@@ -6,14 +6,17 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:26:24 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:44:36 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "ray.h"
 #include "point3.h"
 #include "vec3.h"
 #include "color.h"
+#include "camera.h"
+#include <stdlib.h>
 
 t_color	ray_color(t_ray const *ray)
 {
@@ -50,4 +53,19 @@ bool	hit_sphere(t_point3 center, float radius, t_ray const *ray)
 	b = vec3_dot(ray->direction, oc) * -2.0;
 	c = vec3_dot(oc, oc) - radius * radius;
 	return (b * b - 4 * a * c >= 0);
+}
+
+t_ray	*get_ray_malloc(t_camera *camera, t_viewport *viewport, int x, int y)
+{
+	t_ray		*ray;
+	t_vec3		tmp;
+
+	ray = (t_ray *)malloc(sizeof(t_ray));
+	if (!ray)
+		return (NULL);
+	tmp = (t_vec3){x, y, 0};
+	tmp = vec3_sub(tmp, viewport->lower_left_corner);
+	ray->origin = camera->view_point;
+	ray->direction = vec3_sub(tmp, camera->view_point);
+	return (ray);
 }

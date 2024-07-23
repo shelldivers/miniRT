@@ -25,8 +25,8 @@ t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width)
 	viewport->horizontal = width;
 	viewport->vertical = height;
 	viewport->focal_length = 1;
-	tmp = vec3(viewport->horizontal / 2, viewport->vertical / 2, \
-		viewport->focal_length);
+	tmp = (t_vec3){(float)viewport->horizontal / 2, \
+	(float)viewport->vertical / 2, (float)viewport->focal_length};
 	viewport->lower_left_corner = vec3_sub(viewport->origin, tmp);
 	return (viewport);
 }

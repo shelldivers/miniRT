@@ -13,8 +13,8 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define SIZE_X 1024
-# define SIZE_Y 768
+# define SIZE_X 1920
+# define SIZE_Y 1080
 # define WIDTH SIZE_X
 # define HEIGHT SIZE_Y
 

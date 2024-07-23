@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:24:28 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:44:36 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,25 @@ int	main(void)
 	void	*win;
 	t_img	img;
 	t_color	c;
+	t_camera	camera;
+	t_viewport	*viewport;
+	t_ray	*ray;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, WIDTH, HEIGHT, "miniRT");
 	img.ptr = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.ptr, &img.data.bits_per_pixel, \
 		&img.data.size_line, &img.data.endian);
+	camera = (t_camera){(t_point3){-50, 0, 20}, (t_vec3){0, 0, 0}, 70};
+	viewport = get_viewport_malloc(&camera, WIDTH, HEIGHT);
+	if (!viewport)
+		return (EXIT_FAILURE);
 	for (int x = 0 ; x < WIDTH ; x++)
 	{
 		for (int y = 0 ; y < HEIGHT ; y++)
 		{
-			int r = x % 256;
-			int g = y % 256;
-			int b = (x + y) % 256;
-			c = (t_color){r, g, b};
+			ray = get_ray_malloc(&camera, viewport, x, y);
+			c = ray_color(ray);
 			put_color(img, x, y, color_to_int(c));
 		}	
 	}

@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   minirt_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 18:51:30 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/23 18:51:49 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
 
-# define SIZE_X 1024
-# define SIZE_Y 768
-# define WIDTH SIZE_X
-# define HEIGHT SIZE_Y
-
-typedef struct s_data
+void	put_color(t_img img, int x, int y, unsigned int color)
 {
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}	t_data;
+	const int	bytes_per_pixel = img.data.bits_per_pixel / 8;
+	int			pos;
 
-typedef struct s_img
-{
-	void	*ptr;
-	char	*addr;
-	t_data	data;
-}	t_img;
-
-void	put_color(t_img img, int x, int y, unsigned int color);
-
-#endif
+	pos = y * img.data.size_line + x * bytes_per_pixel;
+	*(unsigned int *)(img.addr + pos) = color;
+}

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 23:37:37 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:46:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_ray
 	t_vec3		direction;
 }	t_ray;
 
+t_color		get_color(t_ray const *ray);
 t_point3	point_at(t_ray *ray, float t);
 bool		hit_sphere(t_point3 center, float radius, t_ray const *ray);
-t_color		ray_color(t_ray const *ray);
 
 #endif

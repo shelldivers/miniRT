@@ -86,7 +86,7 @@ TEST(RayTest, RayTest_ray_color_background)
     ray.direction = (t_vec3){4, 5, 6};
 
 
-    t_color color = get_color(&ray);
+    t_color color = ray_color(&ray);
 
     EXPECT_FLOAT_EQ(color.x, 0.60754931);
     EXPECT_FLOAT_EQ(color.y, 0.76452958);
@@ -100,7 +100,7 @@ TEST(RayTest, RayTest_ray_color_shpere)
 	ray.origin = (t_point3){0, 0, -1};
 	ray.direction = (t_vec3){4, 5, 6};
 
-    t_color color = get_color(&ray);
+    t_color color = ray_color(&ray);
 
     EXPECT_FLOAT_EQ(color.x, 1);
     EXPECT_FLOAT_EQ(color.y, 0);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:23:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:26:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "vec3.h"
 #include "color.h"
 
-t_color	get_color(t_ray const *ray)
+t_color	ray_color(t_ray const *ray)
 {
 	t_vec3	unit_direction;
 	float	a;

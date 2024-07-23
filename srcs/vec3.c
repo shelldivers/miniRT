@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 19:14:53 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/22 01:02:23 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ray.h"
 #include "vec3.h"
+#include <math.h>
 
-t_ray	ray(t_point3 orig, t_vec3 dir)
+t_vec3	vec3(float x, float y, float z)
 {
-	t_ray	ray;
+	t_vec3	vec;
 
-	ray.orig = point3(orig.pos.x, orig.pos.y, orig.pos.z);
-	ray.dir = vec3(dir.x, dir.y, dir.z);
-	return (ray);
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
 }
 
-t_point3	point_at(t_ray *ray, double t)
+t_vec3	vec3_unit(t_vec3 vec)
 {
-	t_point3	point;
-	t_vec3		tmp;
+	return (vec3_div(vec, vec3_length(vec)));
+}
 
-	tmp = vec3_add(ray->orig.pos, vec3_mul(ray->dir, t));
-	point = point3(tmp.x, tmp.y, tmp.z);
-	return (point);
+float	vec3_length(t_vec3 vec)
+{
+	return ((float) sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
 }

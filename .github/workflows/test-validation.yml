@@ -1,0 +1,38 @@
+name: ✅ run tests
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  run-tests:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛒 Install build-essentials
+        run: brew install gcc cmake make gcovr
+      
+      - name: 🛠️ Build and Run Tests
+        run: |
+          cmake -B./build -DENABLE_COVERAGE=ON .
+          cmake --build ./build --target minirt_test
+          ./build/minirt_test
+
+      - name: 📊 Generate coverage report
+        run: |
+          mkdir ./build/reports
+          gcovr -r . -e 'build/_deps/*' -e 'build/test/*' -o './build/reports/test-coverage.xml'
+
+      - name: 📪 Upload Test Coverage to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./build/reports/test-coverage.html
+          flags: unit_test
+          fail_ci_if_error: true
+          verbose: true

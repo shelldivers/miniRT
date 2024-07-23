@@ -1,10 +1,10 @@
-name: 👮 main-validation
+name: 👮 dev-validation
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
   pull_request:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   check-norminette:
@@ -34,7 +34,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🛒 Install build-essentials
-        run: brew install gcc make
+        run: brew install gcc cmake make
       
       - name: 🚩 Compile with options -Wall -Wextra -Werror
-        run: make
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make

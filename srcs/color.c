@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.c                                             :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 18:31:37 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 18:26:25 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/22 23:38:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
+#include "color.h"
 
-t_vec3	vec3(double x, double y, double z)
+t_color	color(float r, float g, float b)
 {
-	t_vec3	vec;
+	t_color	color;
 
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return (vec);
+	color.x = r;
+	color.y = g;
+	color.z = b;
+	return (color);
 }

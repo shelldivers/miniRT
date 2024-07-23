@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point3.c                                           :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:26:35 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/06/26 19:09:35 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/22 09:07:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "point3.h"
+#ifndef SPHERE_H
+# define SPHERE_H
 
-t_point3	point3(double x, double y, double z)
+# include "vec3.h"
+# include "point3.h"
+# include "color.h"
+
+typedef struct s_sphere
 {
-	t_point3	point;
+	t_point3	center;
+	float		radius;
+	t_color		color;
+}	t_sphere;
 
-	point.pos = vec3(x, y, z);
-	return (point);
-}
+#endif

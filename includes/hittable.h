@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 23:30:48 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:25:49 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:46:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_hittable
 {
 	enum e_shape	shape;
 	t_bool			(*hit)(struct s_hittable *obj, t_ray const *ray, \
-		float ray_tmin, double ray_tmax, t_hit_record *hit_record);
+		float ray_tmin, float ray_tmax, t_hit_record *hit_record);
 }	t_hittable;
 
 void    set_face_normal(t_hit_record *rec, t_ray const *r, t_vec3 outward_normal);

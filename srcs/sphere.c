@@ -6,13 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:40:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:19:43 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:46:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hittable.h"
 #include "sphere.h"
 #include "ft_bool.h"
+#include "vec3.h"
+#include <math.h>
 #include <stdlib.h>
 
 t_sphere    *init_sphere(t_point3 center, float radius, t_color color)

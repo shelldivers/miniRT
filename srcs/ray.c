@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:15:02 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:46:46 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_color	ray_color(t_ray const *ray)
 	float	t;
 	t_vec3	n;
 
-	t = hit_sphere((t_point3){0, 0, -1}, 0.5, ray);
+	t = ray_hit_sphere((t_point3){0, 0, -1}, 0.5, ray);
 	if (t > 0.0)
 	{
 		n = vec3_unit(vec3_sub(point_at(ray, t), (t_vec3){0, 0, -1}));
@@ -43,7 +43,7 @@ t_point3	point_at(t_ray const *ray, float t)
 	return (vec3_add(ray->origin, vec3_mul(ray->direction, t)));
 }
 
-float	hit_sphere(t_point3 center, float radius, t_ray const *ray)
+float	ray_hit_sphere(t_point3 center, float radius, t_ray const *ray)
 {
 	t_vec3	oc;
 	float	a;

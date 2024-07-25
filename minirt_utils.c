@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 22:49:24 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:50:32 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	init_image(t_img *img, void *mlx)
 		error_exit("mlx_new_image() failed");
 	img->addr = mlx_get_data_addr(img->ptr, &(img->data.bits_per_pixel), \
 		&(img->data.size_line), &(img->data.endian));
+	if (!img->addr)
+		error_exit("mlx_get_data_addr() failed");
 }
 
 void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport)

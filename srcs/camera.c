@@ -16,17 +16,19 @@
 t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width)
 {
 	t_viewport	*viewport;
-	t_vec3		tmp;
 
 	viewport = (t_viewport *)malloc(sizeof(t_viewport));
 	if (!viewport)
 		return (NULL);
 	viewport->origin = camera->view_point;
-	viewport->horizontal = width;
-	viewport->vertical = height;
+	viewport->horizontal = (t_vec3){width, 0, 0};
+	viewport->vertical = (t_vec3){0, -height, 0};
 	viewport->focal_length = 1;
-	tmp = (t_vec3){(float)viewport->horizontal / 2, \
-	(float)viewport->vertical / 2, (float)viewport->focal_length};
-	viewport->lower_left_corner = vec3_sub(viewport->origin, tmp);
+	viewport->upper_left_corner = vec3_sub(camera->view_point, \
+		(t_vec3){0, 0, viewport->focal_length});
+	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
+		vec3_div(viewport->horizontal, 2));
+	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
+		vec3_div(viewport->vertical, 2));
 	return (viewport);
 }

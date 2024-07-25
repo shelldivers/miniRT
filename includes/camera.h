@@ -14,6 +14,7 @@
 # define CAMERA_H
 
 # include "vec3.h"
+# include "point3.h"
 
 typedef struct s_camera
 {
@@ -24,11 +25,14 @@ typedef struct s_camera
 
 typedef struct s_viewport
 {
-	t_vec3	origin;
-	int		horizontal;
-	int		vertical;
-	float	focal_length;
-	t_vec3	lower_left_corner;
+	t_vec3		origin;
+	t_vec3		horizontal;
+	t_vec3		vertical;
+	float		focal_length;
+	t_vec3		upper_left_corner;
+	t_point3	pixel00_loc;
+	t_vec3		pixel_delta_u;
+	t_vec3		pixel_delta_v;
 }	t_viewport;
 
 t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width);

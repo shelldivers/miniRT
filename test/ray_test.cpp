@@ -1,7 +1,10 @@
 extern "C" {
 #include "ray.h"
 }
+#include <iostream>
 #include "gtest/gtest.h"
+
+using namespace std;
 
 TEST(RayTest, RayTest_ray)
 {

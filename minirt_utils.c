@@ -12,11 +12,11 @@
 
 #include "minirt.h"
 
-void	put_color(t_img img, int x, int y, unsigned int color)
+void	put_color(t_img *img, int x, int y, unsigned int color)
 {
-	const int	bytes_per_pixel = img.data.bits_per_pixel / 8;
+	const int	bytes_per_pixel = img->data.bits_per_pixel / 8;
 	int			pos;
 
-	pos = y * img.data.size_line + x * bytes_per_pixel;
-	*(unsigned int *)(img.addr + pos) = color;
+	pos = y * (img->data.size_line) + x * bytes_per_pixel;
+	*(unsigned int *)(img->addr + pos) = color;
 }

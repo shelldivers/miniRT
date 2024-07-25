@@ -13,11 +13,6 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define SIZE_X 1920
-# define SIZE_Y 1080
-# define WIDTH SIZE_X
-# define HEIGHT SIZE_Y
-
 typedef struct s_data
 {
 	int		bits_per_pixel;
@@ -30,8 +25,10 @@ typedef struct s_img
 	void	*ptr;
 	char	*addr;
 	t_data	data;
+	int		width;
+	int		height;
 }	t_img;
 
-void	put_color(t_img img, int x, int y, unsigned int color);
+void	put_color(t_img *img, int x, int y, unsigned int color);
 
 #endif

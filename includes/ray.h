@@ -28,6 +28,6 @@ typedef struct s_ray
 t_color		ray_color(t_ray const *ray);
 t_point3	point_at(t_ray *ray, float t);
 bool		hit_sphere(t_point3 center, float radius, t_ray const *ray);
-t_ray		*get_ray_malloc(t_camera *camera, t_viewport *viewport, int x, int y);
+t_vec3		get_direction(t_camera *camera, t_viewport *viewport, int i, int j);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 22:50:32 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:07:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_image(t_img *img, void *mlx)
 	double	aspect_ratio;
 
 	aspect_ratio = 16.0 / 9.0;
-	img->width = 1024;
+	img->width = 1440;
 	img->height = (int)((double)img->width / aspect_ratio);
 	if (img->height < 1)
 		img->height = 1;

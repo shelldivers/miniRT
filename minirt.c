@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:48:38 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 03:04:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ t_hittable_list *init_world(t_hittable_list *world, t_camera *camera, char *file
 		error_exit("init_hittable_list() failed");
 	// TODO: Parse the scene file and add objects to the world
 	shape = (t_hittable *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){0, 1, -1}, 0.5, (t_color){0, 1, 0});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){1, 0, -1}, 0.5, (t_color){0, 0, 1});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){1, 1, -1}, 0.5, (t_color){0, 1, 0});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){0, -1, -1}, 0.5, (t_color){1, 1, 0});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){-1, 0, -1}, 0.5, (t_color){0, 1, 1});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){-1, -1, -1}, 0.5, (t_color){1, 1, 1});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){-1, 1, -1}, 0.5, (t_color){1, 0, 1});
+	add_hittable_list(world, shape);
+	shape = (t_hittable *)init_sphere((t_vec3){1, -1, -1}, 0.5, (t_color){0, 1, 0});
 	add_hittable_list(world, shape);
 	return (world);
 }

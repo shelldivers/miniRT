@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 00:25:42 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:42:22 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:54:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ t_hittable_list	*init_hittable_list(int capacity)
 {
 	t_hittable_list	*list;
 
+	list = (t_hittable_list *)malloc(sizeof(t_hittable_list));
+	if (!list)
+		error_exit("Failed to allocate memory for hittable list");
+	ft_memset(list->objects, 0, sizeof(t_hittable *) * capacity);
 	list->objects = (t_hittable **)malloc(sizeof(t_hittable *) * capacity);
 	if (!list->objects)
-		exit_error("Failed to allocate memory for hittable list");
-	ft_memset(list->objects, 0, sizeof(t_hittable *) * capacity);
+		error_exit("Failed to allocate memory for hittable list");
 	list->capacity = capacity;
 	return (list);
 }
@@ -33,9 +36,10 @@ void	add_hittable_list(t_hittable_list *list, t_hittable *object)
 	if (list->size >= list->capacity)
 	{
 		list->capacity *= 2;
-		list->objects = (t_hittable **)ft_realloc(list->objects, sizeof(t_hittable *) * list->capacity);
+		list->objects = (t_hittable **)ft_realloc(list->objects, \
+			sizeof(t_hittable *) * list->capacity);
 		if (!list->objects)
-			exit_error("Failed to reallocate memory for hittable list");
+			error_exit("Failed to reallocate memory for hittable list");
 	}
 	list->objects[list->size++] = object;
 }

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:20:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:13:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,10 @@ t_vec3	vec3_unit(t_vec3 vec)
 
 float	vec3_length(t_vec3 vec)
 {
-	return ((float) sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
+	return (sqrtf(vec3_length_squred(vec)));
+}
+
+float	vec3_length_squred(t_vec3 vec)
+{
+	return ((float) vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }

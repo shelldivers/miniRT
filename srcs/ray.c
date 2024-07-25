@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:17:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 03:06:28 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@
 t_point3	point_at(t_ray const *ray, float t)
 {
 	return (vec3_add(ray->origin, vec3_mul(ray->direction, t)));
-}
-
-float	ray_hit_sphere(t_point3 center, float radius, t_ray const *ray)
-{
-	t_vec3	oc;
-	float	a;
-	float	h;
-	float	c;
-	float	discriminant;
-
-	oc = vec3_sub(center, ray->origin);
-	a = vec3_length_squred(ray->direction);
-	h = vec3_dot(ray->direction, oc);
-	c = vec3_length_squred(oc) - radius * radius;
-	discriminant = h * h - a * c;
-	if (discriminant < 0)
-        return (-1.0);
-    return ((h - sqrt(discriminant)) / a);
 }
 
 t_vec3	get_direction(t_camera *camera, t_viewport *viewport, int i, int j)

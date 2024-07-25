@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 00:25:42 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:07:41 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:48:22 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_hittable_list	*init_hittable_list(int capacity)
 	list = (t_hittable_list *)malloc(sizeof(t_hittable_list));
 	if (!list)
 		error_exit("Failed to allocate memory for hittable list");
-	ft_memset(list->objects, 0, sizeof(t_hittable *) * capacity);
+	ft_memset(list, 0, sizeof(t_hittable *) * capacity);
 	list->objects = (t_hittable **)malloc(sizeof(t_hittable *) * capacity);
 	if (!list->objects)
 		error_exit("Failed to allocate memory for hittable list");
@@ -36,6 +36,7 @@ void	add_hittable_list(t_hittable_list *list, t_hittable *object)
 	{
 		list->capacity *= 2;
 		list->objects = (t_hittable **)ft_realloc(list->objects, \
+			sizeof(t_hittable *) * list->size, \
 			sizeof(t_hittable *) * list->capacity);
 		if (!list->objects)
 			error_exit("Failed to reallocate memory for hittable list");

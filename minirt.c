@@ -6,19 +6,17 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 22:45:37 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:49:36 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "camera.h"
+#include "color.h"
+#include "error.h"
 #include "minirt.h"
 #include "mlx.h"
-#include "sphere.h"
-#include "camera.h"
 #include "ray.h"
-#include "color.h"
-#include "libft.h"
 #include "vec3.h"
-#include "error.h"
 #include <stdio.h>
 #include <stdlib.h>
 

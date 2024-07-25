@@ -6,15 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 22:44:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:49:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "vec3.h"
-#include "error.h"
 #include "camera.h"
+#include "error.h"
+#include "minirt.h"
 #include "mlx.h"
+#include "vec3.h"
 
 void	init_image(t_img *img, void *mlx)
 {

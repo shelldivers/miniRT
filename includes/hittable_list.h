@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   hittable_list.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 16:48:15 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:19:06 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/07/26 00:25:12 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/26 00:35:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#ifndef HITTABLE_LIST_H
+# define HITTABLE_LIST_H
 
-# include "vec3.h"
-# include "point3.h"
-# include "color.h"
-# include "ft_bool.h"
 # include "hittable.h"
 
-typedef struct s_sphere
+typedef struct s_hittable_list
 {
-	t_hittable		parent;
-	t_point3		center;
-	float			radius;
-	t_color			color;
-}	t_sphere;
+	t_hittable		**objects;
+	int				size;
+	int				capacity;
+}	t_hittable_list;
 
-t_sphere	*init_sphere(t_point3 center, float radius, t_color color);
-t_bool		hit_sphere(t_hittable *obj, t_ray const *ray, float ray_tmin, float ray_tmax, t_hit_record *rec);
+t_hittable_list	*init_hittable_list(int capacity);
+void			add_hittable_list(t_hittable_list *list, t_hittable *object);
+void			clear_hittable_list(t_hittable_list *list);
 
 #endif

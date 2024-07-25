@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:04:37 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:09:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "point3.h"
 # include "color.h"
 # include "camera.h"
-# include <stdbool.h>
 
 typedef struct s_ray
 {

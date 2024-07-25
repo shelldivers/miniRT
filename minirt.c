@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:44:36 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:33:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	init_image(t_img *img, void *mlx)
 	double	aspect_ratio;
 
 	aspect_ratio = 16.0 / 9.0;
-	img->width = 1920;
+	img->width = 1024;
 	img->height = (int)((double)img->width / aspect_ratio);
 	if (img->height < 1)
 		img->height = 1;
@@ -72,6 +72,7 @@ void	ray_loop(t_img *img, t_camera *camera, t_viewport *viewport)
 	ray.origin = camera->view_point;
 	while (j < img->height)
 	{
+		i = 0;
 		while (i < img->width)
 		{
 			ray.direction = get_direction(camera, viewport, i, j);

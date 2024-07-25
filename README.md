@@ -186,7 +186,7 @@ You must implement Ambient and diffuse lighting.
 `만약 파일에서 어떤 종류의 잘못된 구성이라도 발견되면 프로그램은 적절하게 종료되고 "Error\n" 과 함께 선택한 명시적인 오류 메시지를 반환해야한다`      
 
 • For the defense, it would be ideal for you to have a whole set of scenes with the focus on what is functional, to facilitate the control of the elements to create.   
-`방어를 위해서는 기능에 중점을 둔 전체 장면 세트를 준비하여 요소들응 생성하는 컨트롤을 용이하게 할 수 있도록 하는것이 이상적이다`      
+`방어를 위해서는 기능에 중점을 둔 전체 장면 세트를 준비하여 요소들을 생성하는 컨트롤을 용이하게 할 수 있도록 하는것이 이상적이다`      
 
 ## BONUS
 

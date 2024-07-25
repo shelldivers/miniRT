@@ -6,14 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:40:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:46:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:06:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hittable.h"
 #include "sphere.h"
 #include "ft_bool.h"
 #include "vec3.h"
+#include "hittable.h"
 #include <math.h>
 #include <stdlib.h>
 

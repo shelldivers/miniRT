@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:25:20 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:17:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # define X_EVENT_DESTROY 17
 # define KEY_ESC 53
 
-#include "camera.h"
+# include "camera.h"
+# include "hittable.h"
 
 typedef struct s_minirt
 {
-	void		*mlx;
-	void		*win;
+	void			*mlx;
+	void			*win;
+	t_hittable_list	*world;
 }	t_minirt;
 
 typedef struct s_data
@@ -45,5 +47,6 @@ typedef struct s_img
 void	init_image(void *mlx, t_img *img);
 void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport);
 void	put_color(t_img *img, int x, int y, unsigned int color);
+t_color	ray_color(t_ray const *ray, t_hittable_list *world);;
 
 #endif

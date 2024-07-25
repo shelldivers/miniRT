@@ -54,32 +54,3 @@ TEST(RayTest, RayTest_vec3_to_point3)
     EXPECT_EQ(point.y, 2);
     EXPECT_EQ(point.z, 3);
 }
-
-TEST(RayTest, RayTest_ray_color_background)
-{
-    t_ray ray;
-    
-	ray.origin = (t_point3){1, 2, 3};
-    ray.direction = (t_vec3){4, 5, 6};
-
-
-    t_color color = ray_color(&ray);
-
-    EXPECT_FLOAT_EQ(color.x, 0.60754931);
-    EXPECT_FLOAT_EQ(color.y, 0.76452958);
-    EXPECT_FLOAT_EQ(color.z, 1);
-}
-
-TEST(RayTest, RayTest_ray_color_shpere)
-{
-    t_ray ray;
-    
-	ray.origin = (t_point3){0, 0, -1};
-	ray.direction = (t_vec3){4, 5, 6};
-
-    t_color color = ray_color(&ray);
-
-    EXPECT_FLOAT_EQ(color.x, 1);
-    EXPECT_FLOAT_EQ(color.y, 0);
-    EXPECT_FLOAT_EQ(color.z, 0);
-}

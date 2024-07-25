@@ -6,12 +6,11 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 00:25:42 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:54:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:07:41 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hittable.h"
-#include "hittable_list.h"
 #include "libft.h"
 #include "error.h"
 #include <stdlib.h>

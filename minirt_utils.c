@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:25:01 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:17:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "minirt.h"
 #include "mlx.h"
 #include "vec3.h"
+#include <math.h>
 
 void	init_image(void *mlx, t_img *img)
 {
@@ -67,4 +68,18 @@ void	put_color(t_img *img, int x, int y, unsigned int color)
 
 	pos = y * (img->data.size_line) + x * bytes_per_pixel;
 	*(unsigned int *)(img->addr + pos) = color;
+}
+
+t_color	ray_color(t_ray const *ray, t_hittable_list *world)
+{
+	t_vec3			unit_direction;
+	float			a;
+	t_hit_record	rec;
+
+	if (hit_shapes(world, ray, 0.0, INFINITY, &rec))
+		return vec3_mul(vec3_add(rec.normal, (t_color){1.0, 1.0, 1.0}), 0.5);
+	unit_direction = vec3_unit(ray->direction);
+	a = 0.5 * (unit_direction.y + 1.0);
+	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \
+		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
 }

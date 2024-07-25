@@ -6,37 +6,19 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 00:46:46 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 02:17:10 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math.h"
 #include "minirt.h"
 #include "ray.h"
 #include "point3.h"
 #include "vec3.h"
 #include "color.h"
 #include "camera.h"
+#include "hittable.h"
 #include <stdlib.h>
-
-t_color	ray_color(t_ray const *ray)
-{
-	t_vec3	unit_direction;
-	float	a;
-	float	t;
-	t_vec3	n;
-
-	t = ray_hit_sphere((t_point3){0, 0, -1}, 0.5, ray);
-	if (t > 0.0)
-	{
-		n = vec3_unit(vec3_sub(point_at(ray, t), (t_vec3){0, 0, -1}));
-		return vec3_mul((t_color){n.x + 1, n.y + 1, n.z + 1}, 0.5);
-	}
-	unit_direction = vec3_unit(ray->direction);
-	a = 0.5 * (unit_direction.y + 1.0);
-	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \
-		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
-}
+#include <math.h>
 
 t_point3	point_at(t_ray const *ray, float t)
 {

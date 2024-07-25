@@ -72,21 +72,22 @@ You must implement Ambient and diffuse lighting.
 ```bash
 	A 0.2 255,255,255
 ```
-
+```
 ∗ identifier: A 
 (식별자: A)   
 ∗ ambient lighting ratio in range [0.0,1.0]: 0.2 
 (주변광 비율 [0.0 ~ 1.0])   
 ∗ R,G,B colors in range [0-255]: 255, 255, 255 
 (RGB 색)   
-
+```
 
 ◦ Camera: (카메라)    
 
 ```bash
 	C -50.0,0,20 0,0,1 70
-```　　　
+```
 
+```
 ∗ identifier: C 　　　
 (식별자: C)   　
 ∗ x,y,z coordinates of the view point: -50.0,0,20 
@@ -97,7 +98,7 @@ You must implement Ambient and diffuse lighting.
 	(각 x,y,z 축의 범위는 [-1 ~ 1])   
 ∗ FOV : Horizontal field of view in degrees in range [0,180]: 70 
 (시야각)     
-
+```
 
 ◦ Light: (조명)　  
 
@@ -105,7 +106,7 @@ You must implement Ambient and diffuse lighting.
 ```bash
 	L -40.0,50.0,0.0 0.6 10,0,255
 ```
-
+```
 ∗ identifier: L 
 (식별자: L)   
 ∗ x,y,z coordinates of the light point: -40.0,50.0,0.0 (조명의 x,y,z 좌표)   
@@ -113,59 +114,59 @@ You must implement Ambient and diffuse lighting.
 (조명 밝기 비율은 [0.0 ~ 1.0])   
 ∗ (unused in mandatory part)R,G,B colors in range [0-255]: 10, 0, 255　
 (［보너스　전용］RGB 색)      
-
+```
 ◦ Sphere: (구)   
 
 ```bash
 	sp 0.0,0.0,20.6 12.6 10,0,255
 ```
-
+```
 ∗ identifier: sp   
-(식별자: sp)
+(식별자: sp)   
 ∗ x,y,z coordinates of the sphere center: 0.0,0.0,20.6
-(구의 중심 x,y,z 좌표)
+(구의 중심 x,y,z 좌표)   
 ∗ the sphere diameter: 12.6
-(구의 지름)
+(구의 지름)   
 ∗ R,G,B colors in range [0-255]: 10, 0, 255
-(RGB 색상)
-
+(RGB 색상)   
+```
 ◦ Plane: (평면)    
 
 ```bash
 	pl 0.0,0.0,-10.0 0.0,1.0,0.0 0,0,225
 ```
-
+```
 ∗ identifier: pl
-(식별자: pl)
+(식별자: pl)   
 ∗ x,y,z coordinates of a point in the plane: 0.0,0.0,-10.0   
-(평면 위의 한점에 대한 x,y,z 좌표)
+(평면 위의 한점에 대한 x,y,z 좌표)   
 ∗ 3d normalized normal vector. In range [-1,1] for each x,y,z axis: 0.0,1.0,0.0   
-(3차원 정규화 법선 백터 각 축의 범위는 [-1 ~ 1])
+(3차원 정규화 법선 백터 각 축의 범위는 [-1 ~ 1])   
 ∗ R,G,B colors in range [0-255]: 0,0,225   
-(RGB 색)
-
+(RGB 색)   
+```
 
 ◦ Cylinder: (원기둥)  
 
 ```bash
 	cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255
 ```
-
+```
 ∗ identifier: cy   
-(식별자: cy)
+(식별자: cy)   
 ∗ x,y,z coordinates of the center of the cylinder: 50.0,0.0,20.6   
-(원기둥 중심의 x,y,z 좌표)
-∗ 3d normalized vector of axis of cylinder.   
+(원기둥 중심의 x,y,z 좌표)   
+∗ 3d normalized vector of axis of cylinder 
 원기둥의 3차원 법선 벡터
 	In range [-1,1] for each x,y,z axis: 0.0,0.0,1.0
 	(각 x,y,z 축 의 범위 [-1 ~ 1])
 ∗ the cylinder diameter: 14.2
-(원기둥의 지름)
+(원기둥의 지름)   
 ∗ the cylinder height: 21.42
-(원기둥의 높이)
+(원기둥의 높이)   
 ∗ R,G,B colors in range [0,255]: 10, 0, 255
-(RGB 색)
-
+(RGB 색)   
+```
 
 • Example of the mandatory part with a minimalist .rt scene:  
 

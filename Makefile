@@ -31,10 +31,10 @@ LIBFT_FLAGS = -I$(LIBFT_INCLUDES) -Llibft -lft
 MLX_FLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit 
 RM = rm -rf
 
-M_FILES += miniRT.c
+M_FILES += minirt.c vec3.c vec3_calc.c ray.c point3.c color.c sphere.c plane.c cylinder.c
 #M_FILES += $(addprefix $(S_PARSE), $(PARSER))
 
-B_FILES += miniRT_bonus.c
+B_FILES += minirt_bonus.c
 #B_FILES += $(addprefix $(B_PARSE), $(BS_PARSER))
 
 S_SRCS = $(addprefix $(SOURCES), $(M_FILES))

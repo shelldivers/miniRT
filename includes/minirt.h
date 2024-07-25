@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:00:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:55:56 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-int	rt_main(void);
+# define RGB 255.999
+# define WIDTH 1920
+# define HEIGHT 1080
+
+
 
 #endif

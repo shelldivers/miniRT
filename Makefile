@@ -18,6 +18,7 @@ NAME = miniRT
 S_INCLUDES = includes/
 B_INCLUDES = includes_bonus/
 LIBFT_INCLUDES = libft/includes
+MLX_INCLUDES = minilibx/
 
 SOURCES = srcs/
 
@@ -27,11 +28,11 @@ B_SOURCES = srcs_bonus/
 
 CC = cc
 CFLAGS = #-Wall -Wextra -Werror
-LIBFT_FLAGS = -I$(LIBFT_INCLUDES) -Llibft -lft 
+LIBFT_FLAGS = -I$(LIBFT_INCLUDES) -I$(MLX_INCLUDES) -Llibft -lft 
 MLX_FLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit 
 RM = rm -rf
 
-M_FILES += minirt.c vec3.c vec3_calc.c ray.c point3.c color.c sphere.c plane.c cylinder.c
+M_FILES += vec3.c vec3_calc.c ray.c point3.c color.c sphere.c plane.c cylinder.c
 #M_FILES += $(addprefix $(S_PARSE), $(PARSER))
 
 B_FILES += minirt_bonus.c
@@ -52,6 +53,8 @@ else
 	INCLUDES = $(S_INCLUDES)
 endif
 
+S_SRCS += minirt.c
+
 all: $(NAME) $(HEADER)
 
 $(NAME): $(OBJS)
@@ -67,13 +70,13 @@ bonus:
 	@$(CC) $(CFLAGS) -c $< -o $@ -Imlx -I$(INCLUDES) -I$(LIBFT_INCLUDES)
 
 clean:
-	@make clean -C ./minilibx
-	@make clean -C ./libft
+#	@make clean -C ./minilibx
+#	@make clean -C ./libft
 	@$(RM) $(S_OBJS) $(B_OBJS)
 
 fclean: clean
-	@make fclean -C ./libft
-	@$(RM) libmlx.dylib
+#	@make fclean -C ./libft
+#	@$(RM) libmlx.dylib
 	@$(RM) $(NAME)
 
 re: fclean all

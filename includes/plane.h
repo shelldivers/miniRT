@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:46:46 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:07:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:49:57 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,12 @@ typedef struct s_plane
 	t_vec3		normal;
 	t_color		color;
 }	t_plane;
+
+typedef struct s_plane_hit
+{
+	t_point3	point;
+	t_vec3		normal;
+	t_color		color;
+}	t_plane_hit;
 
 #endif

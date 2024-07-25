@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:07:55 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:25:01 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "mlx.h"
 #include "vec3.h"
 
-void	init_image(t_img *img, void *mlx)
+void	init_image(void *mlx, t_img *img)
 {
 	double	aspect_ratio;
 

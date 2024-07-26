@@ -22,7 +22,6 @@ t_hittable_list	*init_hittable_list(int capacity)
 	list = (t_hittable_list *)malloc(sizeof(t_hittable_list));
 	if (!list)
 		error_exit("Failed to allocate memory for hittable list");
-	ft_memset(list, 0, sizeof(t_hittable_list));
 	list->objects = (t_hittable **)malloc(sizeof(t_hittable *) * capacity);
 	if (!list->objects)
 		error_exit("Failed to allocate memory for hittable list");

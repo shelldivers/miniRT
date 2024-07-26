@@ -6,15 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:40:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:06:15 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:59:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sphere.h"
-#include "ft_bool.h"
-#include "vec3.h"
-#include "hittable.h"
 #include "error.h"
+#include "ft_bool.h"
+#include "hittable.h"
+#include "sphere.h"
+#include "vec3.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -33,39 +33,47 @@ t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 	return (sphere);
 }
 
-t_bool	hit_sphere(t_hittable *obj,t_ray const *ray, float ray_tmin, \
-	float ray_tmax, t_hit_record *rec)
+t_bool	hit_sphere(t_hittable *obj, t_ray const *ray, \
+	t_collision t, t_hit_record *rec)
 {
 	t_sphere	*sphere;
-	t_vec3		oc;
-	float		a;
-	float		h;
-	float		c;
-	float		discriminant;
-	float		sqrtd;
 	float		root;
 	t_vec3		outward_normal;
 
 	sphere = (t_sphere *)obj;
-	oc = vec3_sub(sphere->center, ray->origin);
-	a = vec3_length_squred(ray->direction);
-	h = vec3_dot(ray->direction, oc);
-	c = vec3_length_squred(oc) - sphere->radius * sphere->radius;
-	discriminant = h * h - a * c;
-	if (discriminant < 0)
+	if (!is_collided(sphere, ray, &root, t))
 		return (FALSE);
-	sqrtd = sqrt(discriminant);
-	root = (h - sqrtd) / a;
-	if (root <= ray_tmin || ray_tmax <= root)
-	{
-		root = (h + sqrtd) / a;
-		if (root <= ray_tmin || ray_tmax <= root)
-			return (FALSE);
-	}
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
 	rec->normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	outward_normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	set_face_normal(rec, ray, outward_normal);
+	return (TRUE);
+}
+
+t_bool	is_collided(t_sphere *sphere, t_ray const *ray, \
+	float *root, t_collision t)
+{
+	float		sqrtd;
+	t_vec3		oc;
+	float		a;
+	float		h;
+	float		discriminant;
+
+	oc = vec3_sub(sphere->center, ray->origin);
+	a = vec3_length_squred(ray->direction);
+	h = vec3_dot(ray->direction, oc);
+	discriminant = h * h - a * \
+		(vec3_length_squred(oc) - sphere->radius * sphere->radius);
+	if (discriminant < 0)
+		return (FALSE);
+	sqrtd = sqrt(discriminant);
+	*root = (h - sqrtd) / a;
+	if (*root <= t.min || t.max <= *root)
+	{
+		*root = (h + sqrtd) / a;
+		if (*root <= t.min || t.max <= *root)
+			return (FALSE);
+	}
 	return (TRUE);
 }

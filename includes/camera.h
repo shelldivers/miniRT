@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:16:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 17:13:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:20:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CAMERA_H
 
 # include "vec3.h"
-# include "point3.h"
 
 typedef struct s_camera
 {

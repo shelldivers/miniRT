@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 23:30:48 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:09:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:38:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ typedef struct s_hit_record
 	t_bool			front_face;
 }	t_hit_record;
 
-void			set_face_normal(t_hit_record *rec, t_ray const *r, \
-	t_vec3 outward_normal);
+typedef struct s_collision
+{
+	float	min;
+	float	max;
+}	t_collision;
 
 typedef struct s_hittable
 {
@@ -41,7 +44,7 @@ typedef struct s_hittable
 }	t_hittable;
 
 typedef t_bool	(*t_hit_func)(t_hittable *, t_ray const *, \
-	float, float, t_hit_record *);
+	t_collision, t_hit_record *);
 
 typedef struct s_hittable_list
 {
@@ -50,11 +53,12 @@ typedef struct s_hittable_list
 	int			capacity;
 }	t_hittable_list;
 
+void			set_face_normal(t_hit_record *rec, t_ray const *r, \
+	t_vec3 outward_normal);
 t_hittable_list	*init_hittable_list(int capacity);
 void			add_hittable_list(t_hittable_list *list, t_hittable *object);
 void			clear_hittable_list(t_hittable_list *list);
 t_bool			hit_shapes(t_hittable_list *list, t_ray const *ray, \
-	float t_min, float t_max, t_hit_record *rec);
-
+	t_collision t, t_hit_record *rec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:13:28 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:24:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ typedef struct s_img
 void	init_image(void *mlx, t_img *img);
 void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport);
 void	put_color(t_img *img, int x, int y, unsigned int color);
-t_color	ray_color(t_ray const *ray, t_hittable_list *world);;
+t_color	ray_color(t_ray const *ray, t_hittable_list *world);
 
 #endif

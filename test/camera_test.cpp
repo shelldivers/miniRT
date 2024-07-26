@@ -1,6 +1,5 @@
 extern "C" {
 #include "camera.h"
-#include "point3.h"
 }
 #include <iostream>
 #include "gtest/gtest.h"

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:19:51 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 23:13:16 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:20:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ typedef struct s_vec3
 	float	y;
 	float	z;
 }	t_vec3;
+
+typedef t_vec3	t_point3;
 
 // vec3.c
 t_vec3	vec3_unit(t_vec3 vec);

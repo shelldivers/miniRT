@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 03:06:13 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:23:00 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RAY_H
 
 # include "vec3.h"
-# include "point3.h"
 # include "color.h"
 # include "camera.h"
 

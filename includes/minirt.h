@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/25 20:21:40 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:14:43 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }				t_data;
+
+void	my_mlx_pixel_put(t_data *data, void *mlx_win, int x, int y, int color);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 23:39:56 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 18:11:59 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ t_color	ray_color(t_ray const *ray)
 
 	if (hit_sphere(point3(0, 0, -1), 0.5, ray))
 	{
-		return (color(1, 0, 0));
+		return (get_color(1, 0, 0));
 	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);
-	color1 = vec3_mul(color(1.0, 1.0, 1.0), 1.0 - a);
-	color2 = vec3_mul(color(0.5, 0.7, 1.0), a);
+	color1 = vec3_mul(get_color(1.0, 1.0, 1.0), 1.0 - a);
+	color2 = vec3_mul(get_color(0.5, 0.7, 1.0), a);
 	return (vec3_add(color1, color2));
 }

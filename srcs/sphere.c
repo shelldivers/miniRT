@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 17:40:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:59:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:09:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 	return (sphere);
 }
 
-t_bool	hit_sphere(t_hittable *obj, t_ray const *ray, \
-	t_collision t, t_hit_record *rec)
+t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 {
 	t_sphere	*sphere;
 	float		root;
@@ -51,8 +50,7 @@ t_bool	hit_sphere(t_hittable *obj, t_ray const *ray, \
 	return (TRUE);
 }
 
-t_bool	is_collided(t_sphere *sphere, t_ray const *ray, \
-	float *root, t_collision t)
+t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
 	float		sqrtd;
 	t_vec3		oc;

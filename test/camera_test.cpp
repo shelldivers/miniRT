@@ -8,9 +8,9 @@ using namespace std;
 
 TEST(CameraTest, CameraTest_viewport)
 {
-    t_camera camera;
+    t_cam camera;
     camera.view_point = (t_point3){0, 0, 0};
-    t_viewport *viewport = get_viewport_malloc(&camera, 4, 4);
+    t_vw *viewport = get_viewport_malloc(&camera, 4, 4);
 
     EXPECT_EQ(viewport->origin.x, 0);
     EXPECT_EQ(viewport->origin.y, 0);

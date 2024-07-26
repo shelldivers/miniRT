@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:16:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:20:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:11:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "vec3.h"
 
-typedef struct s_camera
+typedef struct s_cam
 {
 	t_vec3	view_point;
 	t_vec3	normal;
 	int		fov;
-}	t_camera;
+}	t_cam;
 
-typedef struct s_viewport
+typedef struct s_vw
 {
 	t_vec3		origin;
 	t_vec3		horizontal;
@@ -32,8 +32,8 @@ typedef struct s_viewport
 	t_point3	pixel00_loc;
 	t_vec3		pixel_delta_u;
 	t_vec3		pixel_delta_v;
-}	t_viewport;
+}	t_vw;
 
-t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width);
+t_vw	*get_viewport_malloc(t_cam *camera, int height, int width);
 
 #endif

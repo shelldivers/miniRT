@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:27:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:46:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:10:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_point3	point_at(t_ray const *ray, float t)
 	return (vec3_add(ray->origin, vec3_mul(ray->direction, t)));
 }
 
-t_vec3	get_direction(t_camera *camera, t_viewport *viewport, int i, int j)
+t_vec3	get_direction(t_cam *camera, t_vw *viewport, int i, int j)
 {
 	t_vec3	pixel_center;
 
@@ -44,13 +44,13 @@ void	put_color(t_img *img, int x, int y, unsigned int color)
 	*(unsigned int *)(img->addr + pos) = color;
 }
 
-t_color	ray_color(t_ray const *ray, t_hittable_list *world)
+t_color	ray_color(t_ray const *ray, t_hit_lst *world)
 {
-	t_vec3			unit_direction;
-	float			a;
-	t_hit_record	rec;
+	t_vec3	unit_direction;
+	float	a;
+	t_rec	rec;
 
-	if (hit_shapes(world, ray, (t_collision){0.0, FLOAT_MAX}, &rec))
+	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 		return (vec3_mul(vec3_add(rec.normal, (t_color){1.0, 1.0, 1.0}), 0.5));
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:24:15 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:10:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 # include "camera.h"
 # include "hittable.h"
 
-typedef struct s_minirt
+typedef struct s_rt
 {
 	void			*mlx;
 	void			*win;
-	t_hittable_list	*world;
-}	t_minirt;
+	t_hit_lst	*world;
+}	t_rt;
 
 typedef struct s_data
 {
@@ -47,8 +47,8 @@ typedef struct s_img
 }	t_img;
 
 void	init_image(void *mlx, t_img *img);
-void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport);
+void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
 void	put_color(t_img *img, int x, int y, unsigned int color);
-t_color	ray_color(t_ray const *ray, t_hittable_list *world);
+t_color	ray_color(t_ray const *ray, t_hit_lst *world);
 
 #endif

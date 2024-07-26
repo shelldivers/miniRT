@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 23:30:48 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 23:38:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:07:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,39 @@ enum e_shape
 	CYLINDER
 };
 
-typedef struct s_hit_record
+typedef struct s_rec
 {
-	t_point3		p;
-	t_vec3			normal;
-	float			t;
-	t_bool			front_face;
-}	t_hit_record;
+	t_point3	p;
+	t_vec3		normal;
+	float		t;
+	t_bool		front_face;
+}	t_rec;
 
-typedef struct s_collision
+typedef struct s_coll
 {
 	float	min;
 	float	max;
-}	t_collision;
+}	t_coll;
 
-typedef struct s_hittable
+typedef struct s_hit
 {
 	void			*hit;
 	enum e_shape	shape;
-}	t_hittable;
+}	t_hit;
 
-typedef t_bool	(*t_hit_func)(t_hittable *, t_ray const *, \
-	t_collision, t_hit_record *);
+typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_rec *);
 
-typedef struct s_hittable_list
+typedef struct s_hit_lst
 {
-	t_hittable	**objects;
-	int			size;
-	int			capacity;
-}	t_hittable_list;
+	t_hit	**objects;
+	int		size;
+	int		capacity;
+}	t_hit_lst;
 
-void			set_face_normal(t_hit_record *rec, t_ray const *r, \
-	t_vec3 outward_normal);
-t_hittable_list	*init_hittable_list(int capacity);
-void			add_hittable_list(t_hittable_list *list, t_hittable *object);
-void			clear_hittable_list(t_hittable_list *list);
-t_bool			hit_shapes(t_hittable_list *list, t_ray const *ray, \
-	t_collision t, t_hit_record *rec);
+void		set_face_normal(t_rec *rec, t_ray const *r, t_vec3 outward_normal);
+t_hit_lst	*init_hittable_list(int capacity);
+void		add_hittable_list(t_hit_lst *list, t_hit *object);
+void		clear_hittable_list(t_hit_lst *list);
+t_bool		hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_rec *rec);
 
 #endif

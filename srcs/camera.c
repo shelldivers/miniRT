@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:59:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 19:16:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:10:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "error.h"
 #include <stdlib.h>
 
-t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width)
+t_vw	*get_viewport_malloc(t_cam *camera, int height, int width)
 {
-	t_viewport	*viewport;
+	t_vw	*viewport;
 
-	viewport = (t_viewport *)malloc(sizeof(t_viewport));
+	viewport = (t_vw *)malloc(sizeof(t_vw));
 	if (!viewport)
 		error_exit("Memory allocation failed");
 	viewport->origin = camera->view_point;

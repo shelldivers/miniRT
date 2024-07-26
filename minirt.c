@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 03:04:11 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/27 00:11:16 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	ray_tracing(t_img *img, t_camera *camera, \
-	t_viewport *viewport, t_hittable_list *world);
+void	ray_tracing(t_img *img, t_cam *camera, \
+	t_vw *viewport, t_hit_lst *world);
 
-t_hittable_list	*init_world(t_hittable_list *world, \
-	t_camera *camera, char *filename)
+t_hit_lst	*init_world(t_hit_lst *world, \
+	t_cam *camera, char *filename)
 {
-	t_hittable	*shape;
+	t_hit	*shape;
 
 	(void)filename;
 	camera->view_point = (t_vec3){0, 0, 0};
@@ -39,33 +39,33 @@ t_hittable_list	*init_world(t_hittable_list *world, \
 	if (!world)
 		error_exit("init_hittable_list() failed");
 	// TODO: Parse the scene file and add objects to the world
-	shape = (t_hittable *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
+	shape = (t_hit *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){0, 1, -1}, 0.5, (t_color){0, 1, 0});
+	shape = (t_hit *)init_sphere((t_vec3){0, 1, -1}, 0.5, (t_color){0, 1, 0});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){1, 0, -1}, 0.5, (t_color){0, 0, 1});
+	shape = (t_hit *)init_sphere((t_vec3){1, 0, -1}, 0.5, (t_color){0, 0, 1});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){1, 1, -1}, 0.5, (t_color){0, 1, 0});
+	shape = (t_hit *)init_sphere((t_vec3){1, 1, -1}, 0.5, (t_color){0, 1, 0});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){0, -1, -1}, 0.5, (t_color){1, 1, 0});
+	shape = (t_hit *)init_sphere((t_vec3){0, -1, -1}, 0.5, (t_color){1, 1, 0});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){-1, 0, -1}, 0.5, (t_color){0, 1, 1});
+	shape = (t_hit *)init_sphere((t_vec3){-1, 0, -1}, 0.5, (t_color){0, 1, 1});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){-1, -1, -1}, 0.5, (t_color){1, 1, 1});
+	shape = (t_hit *)init_sphere((t_vec3){-1, -1, -1}, 0.5, (t_color){1, 1, 1});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){-1, 1, -1}, 0.5, (t_color){1, 0, 1});
+	shape = (t_hit *)init_sphere((t_vec3){-1, 1, -1}, 0.5, (t_color){1, 0, 1});
 	add_hittable_list(world, shape);
-	shape = (t_hittable *)init_sphere((t_vec3){1, -1, -1}, 0.5, (t_color){0, 1, 0});
+	shape = (t_hit *)init_sphere((t_vec3){1, -1, -1}, 0.5, (t_color){0, 1, 0});
 	add_hittable_list(world, shape);
 	return (world);
 }
 
 int	main(int argc, char **argv)
 {
-	t_minirt	rt;
-	t_img		img;
-	t_camera	camera;
-	t_viewport	viewport;
+	t_rt	rt;
+	t_img	img;
+	t_cam	camera;
+	t_vw	viewport;
 
 	(void)argc;
 	// if (argc < 2)
@@ -87,8 +87,7 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-void	ray_tracing(t_img *img, t_camera *camera, \
-	t_viewport *viewport, t_hittable_list *world)
+void	ray_tracing(t_img *img, t_cam *camera, t_vw *viewport, t_hit_lst *world)
 {
 	t_ray	ray;
 	int		i;

@@ -17,12 +17,12 @@
 int	key_press(int keycode, t_minirt *rt)
 {
 	if (keycode == KEY_ESC)
-        destroy_minirt(rt);
+		destroy_minirt(rt);
 	return (0);
 }
 
-int destroy_minirt(t_minirt *rt)
+int	destroy_minirt(t_minirt *rt)
 {
-    mlx_destroy_window(rt->mlx, rt->win);
-    exit(0);
+	mlx_destroy_window(rt->mlx, rt->win);
+	exit(0);
 }

@@ -16,6 +16,6 @@
 
 void	error_exit(char *message)
 {
-    ft_dprintf(2, "Error: %s\n", message);
-    exit(EXIT_FAILURE);
+	ft_dprintf(2, "Error: %s\n", message);
+	exit(EXIT_FAILURE);
 }

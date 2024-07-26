@@ -31,14 +31,17 @@ typedef struct s_hit_record
 	t_bool			front_face;
 }	t_hit_record;
 
+void			set_face_normal(t_hit_record *rec, t_ray const *r, \
+	t_vec3 outward_normal);
+
 typedef struct s_hittable
 {
+	void			*hit;
 	enum e_shape	shape;
-	t_bool			(*hit)(struct s_hittable *obj, t_ray const *ray, \
-		float ray_tmin, float ray_tmax, t_hit_record *hit_record);
 }	t_hittable;
 
-void 		   set_face_normal(t_hit_record *rec, t_ray const *r, t_vec3 outward_normal);
+typedef t_bool	(*t_hit_func)(struct s_hittable *, t_ray const *, \
+	float, float, t_hit_record *);
 
 typedef struct s_hittable_list
 {
@@ -50,7 +53,8 @@ typedef struct s_hittable_list
 t_hittable_list	*init_hittable_list(int capacity);
 void			add_hittable_list(t_hittable_list *list, t_hittable *object);
 void			clear_hittable_list(t_hittable_list *list);
-t_bool			hit_shapes(t_hittable_list *list, t_ray const *ray, float t_min, float t_max, t_hit_record *rec);
+t_bool			hit_shapes(t_hittable_list *list, t_ray const *ray, \
+	float t_min, float t_max, t_hit_record *rec);
 
 
 #endif

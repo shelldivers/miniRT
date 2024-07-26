@@ -18,7 +18,9 @@
  * Sets the hit record normal vector.
  * NOTE: the parameter `outward_normal` is assumed to have unit length.
  */
-void    set_face_normal(t_hit_record *rec, t_ray const *ray, t_vec3 outward_normal) {
+void	set_face_normal(t_hit_record *rec, t_ray const *ray, \
+	t_vec3 outward_normal)
+{
 	rec->front_face = vec3_dot(ray->direction, outward_normal) < 0;
 	if (rec->front_face)
 		rec->normal = outward_normal;

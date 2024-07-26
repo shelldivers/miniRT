@@ -61,19 +61,23 @@ void	clear_hittable_list(t_hittable_list *list)
 	list = NULL;
 }
 
-t_bool	hit_shapes(t_hittable_list *list, t_ray const *ray, float t_min, float t_max, t_hit_record *rec)
+t_bool	hit_shapes(t_hittable_list *list, t_ray const *ray, float t_min, \
+	float t_max, t_hit_record *rec)
 {
 	t_bool			hit_anything;
 	t_hit_record	tmp;
 	int				i;
 	int				closest_so_far;
+	t_hit_func		hit_func;
 
 	closest_so_far = t_max;
 	hit_anything = FALSE;
 	i = 0;
 	while (i < list->size)
 	{
-		if (list->objects[i]->hit(list->objects[i], ray, t_min, closest_so_far, &tmp)) {
+		hit_func = list->objects[i]->hit;
+		if (hit_func(list->objects[i], ray, t_min, closest_so_far, &tmp))
+		{
 			hit_anything = TRUE;
 			closest_so_far = tmp.t;
 			*rec = tmp;

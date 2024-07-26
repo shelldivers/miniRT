@@ -23,9 +23,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	ray_tracing(t_img *img, t_camera *camera, t_viewport *viewport, t_hittable_list *world);
+void	ray_tracing(t_img *img, t_camera *camera, \
+	t_viewport *viewport, t_hittable_list *world);
 
-t_hittable_list *init_world(t_hittable_list *world, t_camera *camera, char *filename)
+t_hittable_list	*init_world(t_hittable_list *world, \
+	t_camera *camera, char *filename)
 {
 	t_hittable	*shape;
 
@@ -84,7 +86,8 @@ int	main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 
-void	ray_tracing(t_img *img, t_camera *camera, t_viewport *viewport, t_hittable_list *world)
+void	ray_tracing(t_img *img, t_camera *camera, \
+	t_viewport *viewport, t_hittable_list *world)
 {
 	t_ray	ray;
 	int		i;

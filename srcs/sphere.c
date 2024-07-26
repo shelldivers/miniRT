@@ -17,9 +17,9 @@
 #include <math.h>
 #include <stdlib.h>
 
-t_sphere    *init_sphere(t_point3 center, float radius, t_color color)
+t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 {
-	t_sphere *sphere;
+	t_sphere	*sphere;
 
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
 	if (!sphere)
@@ -32,17 +32,18 @@ t_sphere    *init_sphere(t_point3 center, float radius, t_color color)
 	return (sphere);
 }
 
-t_bool hit_sphere(t_hittable *obj,t_ray const *ray, float ray_tmin, float ray_tmax, t_hit_record *rec)
+t_bool	hit_sphere(t_hittable *obj,t_ray const *ray, float ray_tmin, \
+	float ray_tmax, t_hit_record *rec)
 {
-	t_sphere *sphere;
-	t_vec3 oc;
-	float a;
-	float h;
-	float c;
-	float discriminant;
-	float sqrtd;
-	float root;
-	t_vec3 outward_normal;
+	t_sphere	*sphere;
+	t_vec3		oc;
+	float		a;
+	float		h;
+	float		c;
+	float		discriminant;
+	float		sqrtd;
+	float		root;
+	t_vec3		outward_normal;
 
 	sphere = (t_sphere *)obj;
 	oc = vec3_sub(sphere->center, ray->origin);
@@ -54,7 +55,8 @@ t_bool hit_sphere(t_hittable *obj,t_ray const *ray, float ray_tmin, float ray_tm
 		return (FALSE);
 	sqrtd = sqrt(discriminant);
 	root = (h - sqrtd) / a;
-	if (root <= ray_tmin || ray_tmax <= root) {
+	if (root <= ray_tmin || ray_tmax <= root)
+	{
 		root = (h + sqrtd) / a;
 		if (root <= ray_tmin || ray_tmax <= root)
 			return (FALSE);

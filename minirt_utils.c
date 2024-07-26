@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 18:51:40 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:17:59 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:13:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_image(void *mlx, t_img *img)
 	double	aspect_ratio;
 
 	aspect_ratio = 16.0 / 9.0;
-	img->width = 1440;
+	img->width = 1024;
 	img->height = (int)((double)img->width / aspect_ratio);
 	if (img->height < 1)
 		img->height = 1;
@@ -76,7 +76,7 @@ t_color	ray_color(t_ray const *ray, t_hittable_list *world)
 	float			a;
 	t_hit_record	rec;
 
-	if (hit_shapes(world, ray, 0.0, INFINTE, &rec))
+	if (hit_shapes(world, ray, 0.0, FLOAT_MAX, &rec))
 		return (vec3_mul(vec3_add(rec.normal, (t_color){1.0, 1.0, 1.0}), 0.5));
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);

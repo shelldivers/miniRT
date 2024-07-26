@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:17:45 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:13:28 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_DESTROY 17
 # define KEY_ESC 53
+# define FLOAT_MAX 3.40282347e+38F
+# define FLOAT_MIN 1.17549435e-38F
 
 # include "camera.h"
 # include "hittable.h"

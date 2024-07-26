@@ -6,14 +6,12 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 23:30:48 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/26 02:16:36 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/26 23:09:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HITTABLE_H
 # define HITTABLE_H
-
-# define INFINTE 2147483647
 
 # include "ray.h"
 # include "ft_bool.h"

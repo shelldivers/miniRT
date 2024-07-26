@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "camera.h"
+#include "error.h"
 #include <stdlib.h>
 
 t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width)
@@ -19,7 +20,7 @@ t_viewport	*get_viewport_malloc(t_camera *camera, int height, int width)
 
 	viewport = (t_viewport *)malloc(sizeof(t_viewport));
 	if (!viewport)
-		return (NULL);
+		error_exit("Memory allocation failed");
 	viewport->origin = camera->view_point;
 	viewport->horizontal = (t_vec3){width, 0, 0};
 	viewport->vertical = (t_vec3){0, -height, 0};

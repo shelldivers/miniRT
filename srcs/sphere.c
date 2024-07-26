@@ -14,6 +14,7 @@
 #include "ft_bool.h"
 #include "vec3.h"
 #include "hittable.h"
+#include "error.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -23,7 +24,7 @@ t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
 	if (!sphere)
-		return (NULL);
+		error_exit("Memory allocation failed");
 	sphere->parent.shape = SPHERE;
 	sphere->parent.hit = hit_sphere;
 	sphere->center = center;

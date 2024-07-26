@@ -32,14 +32,18 @@ t_hittable_list	*init_hittable_list(int capacity)
 
 void	add_hittable_list(t_hittable_list *list, t_hittable *object)
 {
+	t_hittable	**tmp;
+
 	if (list->size >= list->capacity)
 	{
 		list->capacity *= 2;
-		list->objects = (t_hittable **)ft_realloc(list->objects, \
-			sizeof(t_hittable *) * list->size, \
-			sizeof(t_hittable *) * list->capacity);
+		tmp = list->objects;
+		list->objects = (t_hittable **)malloc(sizeof(t_hittable *) * list->capacity);
 		if (!list->objects)
-			error_exit("Failed to reallocate memory for hittable list");
+			error_exit("Failed to allocate memory for hittable list");
+		ft_memcpy(list->objects, tmp, sizeof(t_hittable *) * list->size);
+		free(tmp);
+		tmp = NULL;
 	}
 	list->objects[list->size++] = object;
 }

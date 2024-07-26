@@ -67,8 +67,9 @@ int	main(int argc, char **argv)
 	t_camera	camera;
 	t_viewport	viewport;
 
-	if (argc < 2)
-		error_exit("Usage: ./miniRT [scene.rt]");
+	(void)argc;
+	// if (argc < 2)
+	// 	error_exit("Usage: ./miniRT [scene.rt]");
 	rt.mlx = mlx_init();
 	if (!rt.mlx)
 		error_exit("mlx_init() failed");

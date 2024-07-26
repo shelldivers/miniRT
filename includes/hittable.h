@@ -40,7 +40,7 @@ typedef struct s_hittable
 	enum e_shape	shape;
 }	t_hittable;
 
-typedef t_bool	(*t_hit_func)(struct s_hittable *, t_ray const *, \
+typedef t_bool	(*t_hit_func)(t_hittable *, t_ray const *, \
 	float, float, t_hit_record *);
 
 typedef struct s_hittable_list

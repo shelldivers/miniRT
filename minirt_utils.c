@@ -76,7 +76,7 @@ t_color	ray_color(t_ray const *ray, t_hittable_list *world)
 	float			a;
 	t_hit_record	rec;
 
-	if (hit_shapes(world, ray, 0.0, INFINITY, &rec))
+	if (hit_shapes(world, ray, 0.0, INFINTE, &rec))
 		return (vec3_mul(vec3_add(rec.normal, (t_color){1.0, 1.0, 1.0}), 0.5));
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);

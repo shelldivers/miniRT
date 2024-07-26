@@ -13,6 +13,8 @@
 #ifndef HITTABLE_H
 # define HITTABLE_H
 
+# define INFINTE 2147483647
+
 # include "ray.h"
 # include "ft_bool.h"
 

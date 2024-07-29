@@ -6,18 +6,77 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 17:52:32 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/07/26 18:15:31 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:53:50 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "ray.h"
-#include "color.h"
 #include "mlx.h"
-#include <stdio.h>
-#include <math.h>
-#include <unistd.h>
+#include "color.h"
+#include "vec3.h"
+#include "ray.h"
+#include "ft_bool.h"
 
+void	draw_background(t_data *img, void *mlx_win)
+{
+	for (int i = 0; i < WIDTH; ++i)
+	{
+		for (int j = 0; j < HEIGHT; ++j)
+		{
+			my_mlx_pixel_put(img, mlx_win, i, j, get_rgb(89, 32, 215));
+		}
+	}
+}
+
+t_bool	hit_sphere(const t_vec3 *center, float radius, const t_ray *r)
+{
+	t_vec3	oc;
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
+
+	oc = vec3_sub(r->orig, *center);
+	a = vec3_dot(r->dir, r->dir);
+	b = 2.0 * vec3_dot(oc, r->dir);
+	c = vec3_dot(oc, oc) - radius * radius;
+	discriminant = b * b - 4 * a * c;
+	return (discriminant > 0);
+}
+
+void	draw_sphere(t_data *img, void *mlx_win)
+{
+	t_vec3	sphere_center = vec3(0, 0, 20);
+
+	float	aspect_ratio = 16.0 / 9.0;
+
+	float	focal_length = 1.0;
+	float	viewport_height = 2.0;
+	float	viewport_width = aspect_ratio * viewport_height;
+	t_vec3	camera_center = vec3(-50, 0, 20);
+
+	t_vec3	viewport_u = vec3(viewport_width, 0, 0);
+	t_vec3	viewport_v = vec3(0, -viewport_height, 0);
+
+	t_vec3	pixel_delta_u = vec3_div(viewport_u, WIDTH);
+	t_vec3	pixel_delta_v = vec3_div(viewport_v, HEIGHT);
+
+	t_vec3	viewport_upper_left = vec3_sub(vec3_sub(camera_center, vec3(0, 0, focal_length)), \
+		vec3_add(vec3_div(viewport_u, 2), vec3_div(viewport_v, 2)));
+
+	t_vec3	pixel00_loc = vec3_add(viewport_upper_left, vec3_div(vec3_add(pixel_delta_u, pixel_delta_v), 2));
+
+	int i = 0;
+	int j = 0;
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+		{
+			t_vec3	pixel_center = 
+		}
+	}
+}
 
 int	main(void)
 {
@@ -29,23 +88,11 @@ int	main(void)
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(\
 		img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	for (int i = 0; i < WIDTH; ++i)
-	{
-		for (int j = 0; j < HEIGHT; ++j)
-		{
-			my_mlx_pixel_put(&img, vars.win, i, j, 0x00FFFFFF);
-		}
-	}
+	draw_background(&img, vars.win);
+	draw_sphere(&img, vars.win);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);
 	return (0);
 }
 
-void	my_mlx_pixel_put(t_data *data, void *mlx_win, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + \
-		(y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = mlx_get_color_value(mlx_win, color);
-}

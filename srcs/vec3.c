@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:02:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/07/29 15:08:52 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ t_vec3	vec3(float x, float y, float z)
 t_vec3	vec3_unit(t_vec3 vec)
 {
 	return (vec3_div(vec, vec3_length(vec)));
+}
+
+t_vec3	vec3_zero(void)
+{
+	return (vec3(0.0f, 0.0f, 0.0f));
 }
 
 float	vec3_length(t_vec3 vec)

@@ -21,29 +21,30 @@ SRC_ALL += $(addprefix shape/, $(SRC_SPAHE))
 SRC_ALL += $(addprefix vec3/, $(SRC_VEC3))
 SRC_ALL += $(SRC_UTILS)
 
-SRCS += $(addprefix src/, $(SRC_ALL))
+SRCS += $(addprefix srcs/, $(SRC_ALL))
 
 SRCS += $(SRC_MINIRT)
 
-OBJS = $(SRC_ALL:.c=.o)
+OBJS = $(SRCS:.c=.o)
 
 NAME = minirt
 CC = cc
 FLAG = -Wall -Wextra -Werror
 
+INCLUDES = -I./includes -I./includes/shape -I./libft/includes -I./mlx
 LIB_FT = libft/libft.a
-LIB_MLX = mlx/libmlx.dylib
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
 	@make -C libft
 	@make -C mlx
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(LIB_MLX) -framework OpenGL -framework AppKit
+	@cp mlx/libmlx.dylib .
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(INCLUDES) -framework OpenGL -framework AppKit -lmlx -Lmlx
 	@echo "minirt is created"
 
 %.o : %.c
-	$(CC) $(FLAG) -c $< -o $@
+	$(CC) $(FLAG) -c $< -o $@ $(INCLUDES)
 
 clean :
 	@rm -f $(OBJS)

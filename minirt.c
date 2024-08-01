@@ -21,5 +21,7 @@ void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
 
 int	main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	return (EXIT_SUCCESS);
 }

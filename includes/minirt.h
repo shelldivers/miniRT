@@ -22,7 +22,7 @@
 
 # include "vec3.h"
 # include "camera.h"
-# include "hittable.h"
+# include "shape/hittable.h"
 
 typedef struct s_rt
 {

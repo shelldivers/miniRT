@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.c                                           :+:      :+:    :+:   */
+/*   minirt_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/23 02:43:33 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 17:49:38 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "ft_printf.h"
+#include "key_hook.h"
 #include "mlx.h"
+#include <stdlib.h>
 
-int	main(void)
-{
-	ft_printf("Hello, world!\n");
-	return (0);
-}
+void	put_color(t_img *img, int x, int y, unsigned int color);
+t_color	ray_color(t_ray const *ray, t_hit_lst *world);

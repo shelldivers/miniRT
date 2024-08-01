@@ -55,7 +55,7 @@ target_link_libraries(${LIB_NAME} libft)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # build minirt executable
-add_executable(${EXEC_NAME} "minirt.c")
+add_executable(${EXEC_NAME} "main.c")
 add_dependencies(${EXEC_NAME} build_minilibx)
 target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes ${minilibx_SOURCE_DIR})

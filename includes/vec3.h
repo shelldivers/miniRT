@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.h                                             :+:      :+:    :+:   */
+/*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:19:51 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:00:37 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 17:27:36 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ typedef struct s_vec3
 	float	z;
 }	t_vec3;
 
+typedef t_vec3	t_point3;
+
 // vec3.c
-t_vec3	vec3(float x, float y, float z);
 t_vec3	vec3_unit(t_vec3 vec);
 float	vec3_length(t_vec3 vec);
+float	vec3_length_squred(t_vec3 vec);
 
-// vec3_calc.c
+// vec3_utils.c
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
 t_vec3	vec3_mul(t_vec3 a, float t);

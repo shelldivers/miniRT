@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point3.h                                           :+:      :+:    :+:   */
+/*   sphere.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:25:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 23:43:19 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:20:14 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 17:20:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT3_H
-# define POINT3_H
-
-# include "vec3.h"
-
-typedef t_vec3	t_point3;
-
-t_point3	point3(float x, float y, float z);
+#ifndef SPHERE_H
+# define SPHERE_H
 
 #endif

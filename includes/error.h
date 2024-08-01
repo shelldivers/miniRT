@@ -1,15 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 17:40:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/18 17:40:54 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 17:41:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cylinder.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-// TODO
+void	error_exit(char *message);
+
+#endif

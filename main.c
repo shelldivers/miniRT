@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.c                                             :+:      :+:    :+:   */
+/*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 18:18:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 01:02:23 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/07/23 02:43:33 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vec3.h"
-#include <math.h>
+#include "minirt.h"
+#include "key_hook.h"
+#include "mlx.h"
+#include <stdlib.h>
 
-t_vec3	vec3(float x, float y, float z)
+void	init_image(void *mlx, t_img *img);
+void	init_world(t_hit_lst *world, t_cam *cam, char *filename);
+void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
+
+int	main(int argc, char **argv)
 {
-	t_vec3	vec;
-
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return (vec);
-}
-
-t_vec3	vec3_unit(t_vec3 vec)
-{
-	return (vec3_div(vec, vec3_length(vec)));
-}
-
-float	vec3_length(t_vec3 vec)
-{
-	return ((float) sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z));
+	(void)argc;
+	(void)argv;
+	return (EXIT_SUCCESS);
 }

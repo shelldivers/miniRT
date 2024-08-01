@@ -11,9 +11,15 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "key_hook.h"
 #include "mlx.h"
+#include <stdlib.h>
 
-int	main(void)
+void	init_image(void *mlx, t_img *img);
+void	init_world(t_hit_lst *world, t_cam *cam, char *filename);
+void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
+
+int	main(int argc, char **argv)
 {
-	return (0);
+	return (EXIT_SUCCESS);
 }

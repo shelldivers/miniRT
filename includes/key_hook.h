@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   key_hook.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:36:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:36:10 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:37:45 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 17:37:46 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef KEY_HOOK_H
+# define KEY_HOOK_H
 
-# include "vec3.h"
-# include "camera.h"
+# include "minirt.h"
 
-typedef t_vec3	t_color;
-
-typedef struct s_ray
-{
-	t_point3	origin;
-	t_vec3		direction;
-}	t_ray;
-
-// ray.c
-t_point3		point_at(t_ray const *ray, float t);
-t_vec3			get_direction(t_cam *camera, t_vw *viewport, int i, int j);
-
-// color.c
-t_color			color(float r, float g, float b);
-unsigned int	color_to_int(t_color color);
+int	key_press(int keycode, t_rt *rt);
+int	destroy_minirt(t_rt *rt);
 
 #endif

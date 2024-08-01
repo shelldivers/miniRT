@@ -39,14 +39,8 @@ all : $(NAME)
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
 	@make -C libft
 	@make -C mlx
-	@gcc $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(LIB_MLX) -framework OpenGL -framework AppKit
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(LIB_MLX) -framework OpenGL -framework AppKit
 	@echo "minirt is created"
-
-$(LIBFT) :
-	
-
-$(MLX) :
-	
 
 %.o : %.c
 	$(CC) $(FLAG) -c $< -o $@

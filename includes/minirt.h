@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 15:02:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/07/22 09:00:54 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/01 16:55:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
-
-int	rt_main(void);
 
 #endif

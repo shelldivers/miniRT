@@ -11,11 +11,9 @@
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include "ft_printf.h"
 #include "mlx.h"
 
 int	main(void)
 {
-	ft_printf("Hello, world!\n");
 	return (0);
 }

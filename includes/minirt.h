@@ -17,8 +17,8 @@
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_DESTROY 17
 # define KEY_ESC 53
-# define FLOAT_MAX 3.40282347e+38F
-# define FLOAT_MIN 1.17549435e-38F
+# define FLOAT_MAX 3.402823466e+38F
+# define FLOAT_MIN 1.175494351e-38F
 
 # include "camera.h"
 # include "hittable.h"

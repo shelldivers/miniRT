@@ -86,7 +86,7 @@ t_bool	hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_rec *rec)
 	t_bool		hit_anything;
 	t_rec		tmp;
 	t_hit_func	hit_func;
-	int			closest_so_far;
+	float		closest_so_far;
 	int			i;
 
 	closest_so_far = t.max;

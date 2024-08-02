@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/01 16:55:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:25:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
+// minirt.c
 void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world);
+
+// minirt_utils.c
+void	init_mlx(t_rt *rt, t_img *img);
+void	init_world(t_cam *cam, t_hit_lst *world, char *filename);
+void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
 
 #endif

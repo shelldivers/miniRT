@@ -6,11 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:33:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:35:11 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:38:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hittable.h"
+#include "error.h"
+#include "libft.h"
+#include "shape/hittable.h"
 #include "ray.h"
 #include "vec3.h"
 #include <stdlib.h>

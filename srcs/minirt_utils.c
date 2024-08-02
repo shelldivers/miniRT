@@ -6,11 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:25:39 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:42:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "error.h"
+#include "mlx.h"
+#include "shape/sphere.h"
 
 void	init_mlx(t_rt *rt, t_img *img)
 {
@@ -36,7 +39,7 @@ void	init_mlx(t_rt *rt, t_img *img)
 		error_exit("mlx_new_window() failed");
 }
 
-void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
+void	init_world(t_cam *cam, t_hit_lst **world, char *filename)
 {
 	t_hit		*shape;
 
@@ -44,11 +47,11 @@ void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
 	cam->view_point = (t_vec3){0, 0, 0};
 	cam->normal = (t_vec3){0, 0, 0};
 	cam->fov = 70;
-	world = init_hittable_list(10);
-	if (!world)
+	*world = init_hittable_list(10);
+	if (!*world)
 		error_exit("init_hittable_list() failed");
 	shape = (t_hit *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
-	add_hittable_list(world, shape);
+	add_hittable_list(*world, shape);
 }
 
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)

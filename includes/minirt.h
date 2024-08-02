@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:31:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:43:29 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world);
 
 // minirt_utils.c
 void	init_mlx(t_rt *rt, t_img *img);
-void	init_world(t_cam *cam, t_hit_lst *world, char *filename);
+void	init_world(t_cam *cam, t_hit_lst **world, char *filename);
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
 
 #endif

@@ -6,12 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:26:13 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/03 00:44:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "error.h"
 #include "key_hook.h"
+#include "minirt.h"
 #include "mlx.h"
 #include <stdlib.h>
 
@@ -22,8 +23,7 @@ int	main(int argc, char **argv)
 	t_cam	cam;
 	t_vw	vw;
 
-	if (argc != 2)
-		error_exit("Usage: ./miniRT [filename]");
+	(void)argc;
 	init_mlx(&rt, &img);
 	init_world(&cam, &rt.world, argv[1]);
 	init_viewport(&img, &cam, &vw);

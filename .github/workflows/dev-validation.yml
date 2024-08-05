@@ -26,6 +26,7 @@ jobs:
           source norminette_venv/bin/activate
           shopt -s globstar
           norminette **/*.[ch]
+        shell: bash
 
   check-compile-flags:
     runs-on: macos-latest

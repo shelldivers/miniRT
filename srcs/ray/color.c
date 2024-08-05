@@ -25,7 +25,6 @@ unsigned int	color_to_int(t_color color)
 		| (unsigned int)(color.z * 255.999));
 }
 
-
 /**
  * @brief 0~255 사이의 값을 받아서 0~1 사이의 값으로 정규화
  * @param r

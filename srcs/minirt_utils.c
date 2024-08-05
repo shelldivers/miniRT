@@ -39,21 +39,6 @@ void	init_mlx(t_rt *rt, t_img *img)
 		error_exit("mlx_new_window() failed");
 }
 
-void	init_world(t_cam *cam, t_hit_lst **world, char *filename)
-{
-	t_hit		*shape;
-
-	(void)filename;
-	cam->view_point = (t_vec3){0, 0, 0};
-	cam->normal = (t_vec3){0, 0, 0};
-	cam->fov = 70;
-	*world = init_hittable_list(10);
-	if (!*world)
-		error_exit("init_hittable_list() failed");
-	shape = (t_hit *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
-	add_hittable_list(*world, shape);
-}
-
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)
 {
 	float		viewport_height;

@@ -13,6 +13,9 @@
 #ifndef ERROR_H
 # define ERROR_H
 
+# define ERROR_USAGE "Usage: ./minirt [filename]"
+# define ERROR_OPEN_FILE "Failed to open the file"
+
 void	error_exit(char *message);
 
 #endif

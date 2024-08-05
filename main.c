@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	t_cam	cam;
 	t_vw	vw;
 
-	(void)argc;
+	if (argc != 2)
+		error_exit(ERROR_USAGE);
 	init_mlx(&rt, &img);
 	init_world(&cam, &rt.world, argv[1]);
 	init_viewport(&img, &cam, &vw);

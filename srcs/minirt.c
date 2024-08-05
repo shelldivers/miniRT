@@ -18,7 +18,6 @@
 static void		put_color(t_img *img, int x, int y, unsigned int color);
 static t_color	ray_color(t_ray const *ray, t_hit_lst *world);
 
-
 void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world)
 {
 	t_ray	ray;

@@ -24,9 +24,7 @@ jobs:
       - name: 👮 Run norminette
         run: |
           source norminette_venv/bin/activate
-          shopt -s globstar
-          norminette **/*.[ch]
-        shell: bash
+          norminette
 
   check-compile-flags:
     runs-on: macos-latest

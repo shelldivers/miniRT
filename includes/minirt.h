@@ -68,4 +68,7 @@ void	parse_plane(char *line, t_cam *cam, t_hit_lst **world);
 void	parse_sphere(char *line, t_cam *cam, t_hit_lst **world);
 void	parse_cylinder(char *line, t_cam *cam, t_hit_lst **world);
 
+// minirt_parse_utils.c
+t_vec3	parse_vec3(char *line);
+
 #endif

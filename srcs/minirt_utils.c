@@ -14,6 +14,7 @@
 #include "error.h"
 #include "mlx.h"
 #include "shape/sphere.h"
+#include <fcntl.h>
 
 void	init_mlx(t_rt *rt, t_img *img)
 {
@@ -37,6 +38,17 @@ void	init_mlx(t_rt *rt, t_img *img)
 	rt->win = mlx_new_window(rt->mlx, img->width, img->height, "miniRT");
 	if (!rt->win)
 		error_exit("mlx_new_window() failed");
+}
+
+void	init_world(t_cam *cam, t_hit_lst **world, char *filename)
+{
+	int		fd;
+
+	(void)filename;
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		error_exit(ERROR_OPEN_FILE);
+	parse_rtfile(fd, cam, world);
 }
 
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)

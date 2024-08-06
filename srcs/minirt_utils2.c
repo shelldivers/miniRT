@@ -12,26 +12,32 @@
 
 #include "error.h"
 #include "minirt.h"
-#include <fcntl.h>
+#include "libft.h"
+#include "get_next_line.h"
 
-void	init_world(t_cam *cam, t_hit_lst **world, char *filename)
+void	parse_rtfile(int fd, t_cam *cam, t_hit_lst **world)
 {
-	t_hit	*shape;
-	int		fd;
+	char	*line;
 
-	(void)filename;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		error_exit(ERROR_OPEN_FILE);
-	// TODO: stash
-	cam->view_point = (t_vec3){0, 0, 0};
-	cam->normal = (t_vec3){0, 0, 0};
-	cam->fov = 70;
-	*world = init_hittable_list(10);
-	if (!*world)
-		error_exit("init_hittable_list() failed");
-	shape = (t_hit *)init_sphere((t_vec3){0, 0, -1}, 0.5, (t_color){1, 0, 0});
-	add_hittable_list(*world, shape);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (line[0] == 'A' && ft_isspace(line[1]))
+			parse_ambient(line, cam, world);
+		else if (line[0] == 'C' && ft_isspace(line[1]))
+			parse_camera(line, cam, world);
+		else if (line[0] == 'L' && ft_isspace(line[1]))
+			parse_light(line, cam, world);
+		else if (line[0] == 'p' && line[1] == 'l' && ft_isspace(line[2]))
+			parse_plane(line, cam, world);
+		else if (line[0] == 's' && line[1] == 'p' && ft_isspace(line[2]))
+			parse_sphere(line, cam, world);
+		else if (line[0] == 'c' && line[1] == 'y' && ft_isspace(line[2]))
+			parse_cylinder(line, cam, world);
+		else
+			error_exit(ERROR_INVALID_IDENTIFIER);
+		free(line);
+	}
 }
-
-

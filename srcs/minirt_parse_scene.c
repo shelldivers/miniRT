@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   minirt_parse_scene.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/01 17:41:03 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/06 19:01:02 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "minirt.h"
 
-# define ERROR_USAGE "Usage: ./minirt [filename]"
-# define ERROR_OPEN_FILE "Failed to open the file"
-# define ERROR_INVALID_IDENTIFIER "Invalid identifier"
+void	parse_ambient(char *line, t_cam *cam, t_hit_lst **world)
+{
+    (void)line;
+    (void)cam;
+    (void)world;
+}
 
-void	error_exit(char *message);
+void	parse_camera(char *line, t_cam *cam, t_hit_lst **world)
+{
+    (void)line;
+    (void)cam;
+    (void)world;
+}
 
-#endif
+void	parse_light(char *line, t_cam *cam, t_hit_lst **world)
+{
+    (void)line;
+    (void)cam;
+    (void)world;
+}

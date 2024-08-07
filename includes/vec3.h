@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 01:43:21 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:52:51 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_vec3
 	float	z;
 }	t_vec3;
 
+typedef t_vec3	t_color;
 typedef t_vec3	t_point3;
 
 // vec3.c

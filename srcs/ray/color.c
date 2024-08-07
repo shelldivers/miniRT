@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:59:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 01:35:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:04:23 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@
  * @param color
  * @return unsigned int
  */
-unsigned int	color_to_int(t_color color)
+unsigned int	color_to_int_ratio(t_color color)
 {
 	return ((unsigned int)(color.x * 255.999) << 16 \
 		| (unsigned int)(color.y * 255.999) << 8 \
 		| (unsigned int)(color.z * 255.999));
+}
+
+unsigned int	color_to_int_rgb(t_color color)
+{
+	return ((unsigned int)(color.x) << 16 \
+		| (unsigned int)(color.y) << 8 \
+		| (unsigned int)(color.z));
 }
 
 

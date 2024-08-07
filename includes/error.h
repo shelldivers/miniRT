@@ -16,6 +16,7 @@
 # define ERROR_USAGE "Usage: ./minirt [filename]"
 # define ERROR_OPEN_FILE "Failed to open the file"
 # define ERROR_INVALID_IDENTIFIER "Invalid identifier"
+# define ERROR_MALLOC "Failed to allocate memory"
 
 void	error_exit(char *message);
 

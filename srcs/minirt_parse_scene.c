@@ -21,11 +21,12 @@ void	parse_ambient(char *line, t_cam *cam, t_hit_lst **world)
 }
 
 /**
- *  @brief parse camera line: <identifier> <view_point> <normal_vector> <FOV>
- *  @param line		"C	-50.0,0,20	0,0,1	70"
- *  @param cam		pointer to the camera
- *  @param world	pointer to the world
- *  @return void
+ * @brief parse camera line: <identifier> <view_point> <normal_vector> <FOV>
+ * @remark it is assumed that identifier(C) is already parsed
+ * @param line	"C	-50.0,0,20	0,0,1	70"
+ * @param cam	pointer to the camera
+ * @param world	pointer to the world
+ * @return	void
  */
 void	parse_camera(char *line, t_cam *cam)
 {

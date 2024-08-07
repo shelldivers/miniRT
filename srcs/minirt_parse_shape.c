@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 01:27:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 01:29:34 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@ void	parse_sphere(char *line, t_hit_lst **world)
 	while (*line && ft_isspace(*line))
 		++line;
 	center = parse_vec3(line);
+	while (*line && !ft_isspace(*line))
+		++line;
 	while (*line && ft_isspace(*line))
 		++line;
 	radius = ft_atof(line) / 2;
+	while (*line && !ft_isspace(*line))
+		++line;
 	while (*line && ft_isspace(*line))
 		++line;
 	color = parse_vec3(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:34:19 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/05 19:34:20 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 01:30:28 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_rtfile(int fd, t_cam *cam, t_hit_lst **world)
 		else if (line[0] == 'p' && line[1] == 'l' && ft_isspace(line[2]))
 			parse_plane(line + 2, cam, world);
 		else if (line[0] == 's' && line[1] == 'p' && ft_isspace(line[2]))
-			parse_sphere(line + 2, cam, world);
+			parse_sphere(line + 2, world);
 		else if (line[0] == 'c' && line[1] == 'y' && ft_isspace(line[2]))
 			parse_cylinder(line + 2, cam, world);
 		else

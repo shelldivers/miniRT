@@ -21,6 +21,22 @@ TEST(ft_atof_test, ft_atof_test)
 	}
 }
 
+TEST(ft_atof_test, normal)
+{
+	std::random_device rd;  // 랜덤한 시드를 생성합니다.
+	std::mt19937 gen(rd()); // Mersenne Twister 알고리즘을 사용하는 난수 생성기를 초기화합니다.
+	std::uniform_real_distribution<> dis(0.0, 1.0); // 0.0과 1.0 사이의 균일 분포를 정의합니다.
+
+	for (int i = 0; i < 10000; i++) {
+		float random_float = dis(gen); // 랜덤한 float 값을 생성합니다.
+		std::string str = std::to_string(random_float);
+		const char *nbr = str.c_str();
+		float a = ft_atof(nbr);
+		float b = atof(nbr);
+		ASSERT_FLOAT_EQ(a, b);
+	}
+}
+
 TEST(ft_atof_test, negative)
 {
 	std::random_device rd;  // 랜덤한 시드를 생성합니다.

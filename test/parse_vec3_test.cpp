@@ -176,3 +176,11 @@ TEST(parse_vec3_test, two_comma)
 	ASSERT_FLOAT_EQ(vec.y, 0);
 	ASSERT_FLOAT_EQ(vec.z, 0);
 }
+
+TEST(parse_vec3_test, empty)
+{
+	t_vec3 vec = parse_vec3("");
+	ASSERT_FLOAT_EQ(vec.x, 0);
+	ASSERT_FLOAT_EQ(vec.y, 0);
+	ASSERT_FLOAT_EQ(vec.z, 0);
+}

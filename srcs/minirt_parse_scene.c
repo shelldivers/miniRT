@@ -27,15 +27,15 @@ void	parse_ambient(char *line, t_cam *cam, t_hit_lst **world)
  *  @param world	pointer to the world
  *  @return void
  */
-void	parse_camera(char *line, t_cam *cam, t_hit_lst **world)
+void	parse_camera(char *line, t_cam *cam)
 {
-	while (line && ft_isspace(*line))
+	while (*line && ft_isspace(*line))
 		++line;
-	cam->view_point = parse_vec3(&line);
-	while (line && ft_isspace(*line))
+	cam->view_point = parse_vec3(line);
+	while (*line && ft_isspace(*line))
 		++line;
-	cam->normal = parse_vec3(&line);
-	while (line && ft_isspace(*line))
+	cam->normal = parse_vec3(line);
+	while (*line && ft_isspace(*line))
 		++line;
 	cam->fov = ft_atoi(line);
 }

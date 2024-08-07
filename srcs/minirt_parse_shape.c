@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parse_shape.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/06 19:01:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 01:24:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ void	parse_plane(char *line, t_cam *cam, t_hit_lst **world)
  */
 void	parse_sphere(char *line, t_cam *cam, t_hit_lst **world)
 {
-	t_sphere	*sphere;
-	t_hit_lst	*new;
+	t_hit		*new_obj;
+	t_point3	center;
+	float		radius;
+	t_color		color;
 
-	sphere = (t_sphere *)malloc(sizeof(t_sphere));
-	if (!sphere)
+	(void)cam;
+	while (*line && ft_isspace(*line))
+		++line;
+	center = parse_vec3(line);
+	while (*line && !ft_isspace(*line))
+		++line;
+	while (*line && ft_isspace(*line))
+		++line;
+	radius = ft_atof(line) / 2;
+	while (*line && !ft_isspace(*line))
+		++line;
+	while (*line && ft_isspace(*line))
+		++line;
+	color = parse_vec3(line);
+	new_obj = (t_hit *)init_sphere(center, radius, color);
+	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	ft_memset(sphere, 0, sizeof(t_sphere));
-	while (*line && ft_isspace(*line))
-		++line;
-	sphere->center = parse_vec3(line);
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	sphere->radius = ft_atof(line) / 2;
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	sphere->color = parse_vec3(line);
-	sphere->parent.hit = hit_sphere;
-	sphere->parent.shape = SPHERE;
-	add_hittable_list(world, sphere);
+	add_hittable_list(*world, new_obj);
 }
 
 void	parse_cylinder(char *line, t_cam *cam, t_hit_lst **world)

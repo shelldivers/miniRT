@@ -4,17 +4,12 @@ extern "C" {
 }
 #include "gtest/gtest.h"
 
-extern "C" void error_exit(char *message) {
-	std::string msg(message);
-    throw std::runtime_error("Error code: " + msg);
-}
-
 TEST(parse_sphere_test, basic_case)
 {
 	t_hit_lst	*world = init_hittable_list(10);
 	char		*line = (char *)"sp	0,0,20	10	255,255,255";
 
-	parse_sphere(line + 2, world);
+	parse_sphere(line, world);
 	ASSERT_NE(world, nullptr);
 	t_hit *result = world->objects[0];
 	ASSERT_EQ(result->shape, SPHERE);
@@ -33,5 +28,5 @@ TEST(parse_sphere_test, invalid)
 	t_hit_lst	*world = init_hittable_list(10);
 	char		*line = (char *)"sp	0,20	10	255,255,255";
 
-	ASSERT_THROW(parse_sphere(line + 2, world), std::runtime_error);
+	ASSERT_THROW(parse_sphere(line, world), std::runtime_error);
 }

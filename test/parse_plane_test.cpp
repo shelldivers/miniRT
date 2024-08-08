@@ -9,7 +9,7 @@ TEST(parse_plane_test, basic_case)
 	t_hit_lst	*world = init_hittable_list(10);
 	char		*line = (char *)"pl	0,0,20	0,0,1	255,255,255";
 
-	parse_plane(line + 2, world);
+	parse_plane(line, world);
 	ASSERT_NE(world, nullptr);
 	t_hit *result = world->objects[0];
 	ASSERT_EQ(result->shape, PLANE);
@@ -23,4 +23,12 @@ TEST(parse_plane_test, basic_case)
 	ASSERT_EQ(plane->color.x, 255);
 	ASSERT_EQ(plane->color.y, 255);
 	ASSERT_EQ(plane->color.z, 255);
+}
+
+TEST(parse_plane_test, invalid)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	char		*line = (char *)"pl	0,0	0,0,1	255,255,255";
+
+	ASSERT_THROW(parse_plane(line, world), std::runtime_error);
 }

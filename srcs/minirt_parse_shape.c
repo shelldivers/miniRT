@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:09:34 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:18:00 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /**
  * @brief parse plane line: <identifier> <center> <normal> <color>
- * @remark it is assumed that identifier(pl) is already parsed
+ * @warning line and world must not be NULL
  * @param line		"pl	0,0,20	0,1,0	255,255,255"
  * @param cam		pointer to the camera
  * @param world 	pointer to the world
@@ -49,6 +49,7 @@ void	parse_plane(char const *line, t_hit_lst *world)
 
 /**
  * @brief parse sphere line: <identifier> <center> <diameter> <color>
+ * @warning line and world must not be NULL
  * @param line		"sp	0,0,20	10	255,255,255"
  * @param cam		pointer to the camera
  * @param world 	pointer to the world
@@ -79,6 +80,7 @@ void	parse_sphere(char const *line, t_hit_lst *world)
 /**
  * @brief parse cylinder line:
  *        <identifier> <center> <normal> <diameter> <height> <color>
+ * @warning line and world must not be NULL
  * @param line		"cy	0,0,20	0,1,0	10.2	10.4	255,255,255"
  * @param cam		pointer to the camera
  * @param world 	pointer to the world

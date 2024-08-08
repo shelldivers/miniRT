@@ -99,3 +99,15 @@ TEST(parse_plane_test, invalid_param)
 	line = (char *)"pl	0,0,20	0,0,1	255,255,a";
 	ASSERT_THROW(parse_plane(line, world), std::runtime_error);
 }
+
+TEST(parse_plane_test, empty)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_plane("", world), std::runtime_error);
+}
+
+TEST(parse_plane_test, empty_vec3)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_plane("pl ,, 10,10,0 255,255,255", world), std::runtime_error);
+}

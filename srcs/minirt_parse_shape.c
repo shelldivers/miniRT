@@ -16,7 +16,7 @@
 #include "shape/plane.h"
 #include "shape/sphere.h"
 
-void	parse_plane(char *line, t_cam *cam, t_hit_lst **world)
+void	parse_plane(char *line, t_hit_lst **world)
 {
 	t_hit		*new_obj;
 	t_point3	center;

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 01:26:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:44:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,16 @@ void	parse_camera(char *line, t_cam *cam);
 void	parse_light(char *line, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_shape.c
-void	parse_plane(char *line, t_hit_lst *world);
-void	parse_sphere(char *line, t_hit_lst *world);
-void	parse_cylinder(char *line, t_cam *cam, t_hit_lst *world);
+void	parse_plane(char const *line, t_hit_lst *world);
+void	parse_sphere(char const *line, t_hit_lst *world);
+void	parse_cylinder(char const *line, t_hit_lst *world);
 
 // minirt_parse_utils.c
+void	move_to_next_param(char const **ptr);
+void	skip_spaces(char const **ptr);
+void	must_be_last_param(char const *line);
+
+// minirt_parse_vec3.c
 t_vec3	parse_vec3(char const *line);
 
 #endif

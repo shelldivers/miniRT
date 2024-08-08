@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 16:42:00 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:40:47 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "error.h"
 #include <stdlib.h>
 
-t_plane	*init_plane(t_point3 center, t_vec3 normal, t_color color)
+t_plane	*init_plane(t_plane data)
 {
 	t_plane	*plane;
 
@@ -23,9 +23,9 @@ t_plane	*init_plane(t_point3 center, t_vec3 normal, t_color color)
 		error_exit(ERROR_MALLOC);
 	plane->parent.shape = PLANE;
 	plane->parent.hit = hit_plane;
-	plane->center = center;
-	plane->normal = normal;
-	plane->color = color;
+	plane->center = data.center;
+	plane->normal = data.normal;
+	plane->color = data.color;
 	return (plane);
 }
 

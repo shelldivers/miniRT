@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:43:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:41:02 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <math.h>
 #include <stdlib.h>
 
-t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
+t_sphere	*init_sphere(t_sphere data)
 {
 	t_sphere	*sphere;
 
@@ -27,9 +27,9 @@ t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 		error_exit("Memory allocation failed");
 	sphere->parent.shape = SPHERE;
 	sphere->parent.hit = hit_sphere;
-	sphere->center = center;
-	sphere->radius = radius;
-	sphere->color = color;
+	sphere->center = data.center;
+	sphere->radius = data.radius;
+	sphere->color = data.color;
 	return (sphere);
 }
 

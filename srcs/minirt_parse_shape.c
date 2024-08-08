@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 01:29:34 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:44:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,32 @@
 #include "libft.h"
 #include "shape/plane.h"
 #include "shape/sphere.h"
+#include "shape/cylinder.h"
 
-void	parse_plane(char *line, t_hit_lst *world)
+/**
+ * @brief parse plane line: <identifier> <center> <normal> <color>
+ * @remark it is assumed that identifier(pl) is already parsed
+ * @param line		"pl	0,0,20	0,1,0	255,255,255"
+ * @param cam		pointer to the camera
+ * @param world 	pointer to the world
+ * @return void
+ */
+void	parse_plane(char const *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
-	t_point3	center;
-	t_vec3		normal;
-	t_color		color;
+	t_plane		data;
 
-	while (*line && ft_isspace(*line))
-		++line;
-	center = parse_vec3(line);
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	normal = parse_vec3(line);
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	color = parse_vec3(line);
-	new_obj = (t_hit *)init_plane(center, normal, color);
+	line += 2;
+	skip_spaces(&line);
+	data.center = parse_vec3(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.normal = parse_vec3(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.color = parse_vec3(line);
+	must_be_last_param(line);
+	new_obj = (t_hit *)init_plane(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
 	add_hittable_list(world, new_obj);
@@ -44,41 +48,63 @@ void	parse_plane(char *line, t_hit_lst *world)
 
 /**
  * @brief parse sphere line: <identifier> <center> <diameter> <color>
- * @remark it is assumed that identifier(sp) is already parsed
  * @param line		"sp	0,0,20	10	255,255,255"
  * @param cam		pointer to the camera
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_sphere(char *line, t_hit_lst *world)
+void	parse_sphere(char const *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
-	t_point3	center;
-	float		radius;
-	t_color		color;
+	t_sphere	data;
 
-	while (*line && ft_isspace(*line))
-		++line;
-	center = parse_vec3(line);
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	radius = ft_atof(line) / 2;
-	while (*line && !ft_isspace(*line))
-		++line;
-	while (*line && ft_isspace(*line))
-		++line;
-	color = parse_vec3(line);
-	new_obj = (t_hit *)init_sphere(center, radius, color);
+	line += 2;
+	skip_spaces(&line);
+	data.center = parse_vec3(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.radius = ft_atof(line) / 2;
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.color = parse_vec3(line);
+	must_be_last_param(line);
+	new_obj = (t_hit *)init_sphere(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
 	add_hittable_list(world, new_obj);
 }
 
-void	parse_cylinder(char *line, t_cam *cam, t_hit_lst *world)
+/**
+ * @brief parse cylinder line:
+ *        <identifier> <center> <normal> <diameter> <height> <color>
+ * @param line		"cy	0,0,20	0,1,0	10.2	10.4	255,255,255"
+ * @param cam		pointer to the camera
+ * @param world 	pointer to the world
+ * @return void
+ */
+void	parse_cylinder(char const *line, t_hit_lst *world)
 {
-	(void)line;
-	(void)cam;
-	(void)world;
+	t_hit		*new_obj;
+	t_cylinder	data;
+
+	line += 2;
+	skip_spaces(&line);
+	data.center = parse_vec3(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.normal = parse_vec3(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.diameter = ft_atof(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.height = ft_atof(line);
+	move_to_next_param(&line);
+	skip_spaces(&line);
+	data.color = parse_vec3(line);
+	must_be_last_param(line);
+	new_obj = (t_hit *)init_cylinder(data);
+	if (!new_obj)
+		error_exit(ERROR_MALLOC);
+	add_hittable_list(world, new_obj);
 }

@@ -73,9 +73,12 @@ TEST(ft_atof_test, no_decimal)
 	float a = ft_atof("10");
 	float b = atof("10");
 	ASSERT_FLOAT_EQ(a, b);
+}
 
-	a = ft_atof("");
-	b = atof("");
+TEST(ft_atof_test, emtpy)
+{
+	float a = ft_atof("");
+	float b = atof("");
 	ASSERT_FLOAT_EQ(a, b);
 }
 

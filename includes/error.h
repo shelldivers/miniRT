@@ -17,6 +17,7 @@
 # define ERROR_OPEN_FILE "Failed to open the file"
 # define ERROR_INVALID_IDENTIFIER "Invalid identifier"
 # define ERROR_MALLOC "Failed to allocate memory"
+# define ERROR_INVALID_VEC3 "Invalid vec3 format"
 
 void	error_exit(char *message);
 

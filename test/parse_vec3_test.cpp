@@ -106,10 +106,7 @@ TEST(parse_vec3_test, negative)
 
 TEST(parse_vec3_test, more_than_3)
 {
-	t_vec3 vec = parse_vec3("1,2,3,4,5");
-	ASSERT_FLOAT_EQ(vec.x, 1);
-	ASSERT_FLOAT_EQ(vec.y, 2);
-	ASSERT_FLOAT_EQ(vec.z, 3);
+	ASSERT_THROW(parse_vec3("1,2,3,4,5"), std::runtime_error);
 }
 
 TEST(parse_vec3_test, no_num)
@@ -135,28 +132,14 @@ TEST(parse_vec3_test, invalid_param)
 
 TEST(parse_vec3_test, no_comma)
 {
-	t_vec3 vec = parse_vec3("1a3");
-	ASSERT_FLOAT_EQ(vec.x, 1);
-	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 0);
-
-	vec = parse_vec3("...");
-	ASSERT_FLOAT_EQ(vec.x, 0);
-	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 0);
+	ASSERT_THROW(parse_vec3("1a3"), std::runtime_error);
+	ASSERT_THROW(parse_vec3("..."), std::runtime_error);
 }
 
 TEST(parse_vec3_test, one_comma)
 {
-	t_vec3 vec = parse_vec3("1.3,");
-	ASSERT_FLOAT_EQ(vec.x, 1.3);
-	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 0);
-
-	vec = parse_vec3(",1.3");
-	ASSERT_FLOAT_EQ(vec.x, 0);
-	ASSERT_FLOAT_EQ(vec.y, 1.3);
-	ASSERT_FLOAT_EQ(vec.z, 0);
+	ASSERT_THROW(parse_vec3("1.3,"), std::runtime_error);
+	ASSERT_THROW(parse_vec3(",1.3"), std::runtime_error);
 }
 
 TEST(parse_vec3_test, two_comma)
@@ -171,16 +154,13 @@ TEST(parse_vec3_test, two_comma)
 	ASSERT_FLOAT_EQ(vec.y, 1);
 	ASSERT_FLOAT_EQ(vec.z, 0);
 
-	vec = parse_vec3("1a3,,");
-	ASSERT_FLOAT_EQ(vec.x, 1);
+	vec = parse_vec3(",,1a3");
+	ASSERT_FLOAT_EQ(vec.x, 0);
 	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 0);
+	ASSERT_FLOAT_EQ(vec.z, 1);
 }
 
 TEST(parse_vec3_test, empty)
 {
-	t_vec3 vec = parse_vec3("");
-	ASSERT_FLOAT_EQ(vec.x, 0);
-	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 0);
+	ASSERT_THROW(parse_vec3(""), std::runtime_error);
 }

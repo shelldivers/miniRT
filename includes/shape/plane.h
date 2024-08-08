@@ -13,4 +13,18 @@
 #ifndef PLANE_H
 # define PLANE_H
 
+# include "vec3.h"
+# include "ft_bool.h"
+# include "hittable.h"
+
+typedef struct s_plane
+{
+	t_hit		parent;
+	t_point3	center;
+	t_vec3		normal;
+	t_color		color;
+}	t_plane;
+
+t_plane	*init_plane(t_point3 center, t_vec3 normal, t_color color);
+
 #endif

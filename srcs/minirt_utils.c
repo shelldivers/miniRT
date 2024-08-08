@@ -40,11 +40,11 @@ void	init_mlx(t_rt *rt, t_img *img)
 		error_exit("mlx_new_window() failed");
 }
 
-void	init_world(t_cam *cam, t_hit_lst **world, char *filename)
+void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
 {
 	int		fd;
 
-	(void)filename;
+	world = init_hittable_list(10);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		error_exit(ERROR_OPEN_FILE);

@@ -16,7 +16,7 @@
 #include "shape/plane.h"
 #include "shape/sphere.h"
 
-void	parse_plane(char *line, t_hit_lst **world)
+void	parse_plane(char *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_point3	center;
@@ -39,7 +39,7 @@ void	parse_plane(char *line, t_hit_lst **world)
 	new_obj = (t_hit *)init_plane(center, normal, color);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(*world, new_obj);
+	add_hittable_list(world, new_obj);
 }
 
 /**
@@ -50,7 +50,7 @@ void	parse_plane(char *line, t_hit_lst **world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_sphere(char *line, t_hit_lst **world)
+void	parse_sphere(char *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_point3	center;
@@ -73,10 +73,10 @@ void	parse_sphere(char *line, t_hit_lst **world)
 	new_obj = (t_hit *)init_sphere(center, radius, color);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(*world, new_obj);
+	add_hittable_list(world, new_obj);
 }
 
-void	parse_cylinder(char *line, t_cam *cam, t_hit_lst **world)
+void	parse_cylinder(char *line, t_cam *cam, t_hit_lst *world)
 {
 	(void)line;
 	(void)cam;

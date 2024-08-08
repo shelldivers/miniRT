@@ -26,5 +26,6 @@ typedef struct s_plane
 }	t_plane;
 
 t_plane	*init_plane(t_point3 center, t_vec3 normal, t_color color);
+t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec);
 
 #endif

@@ -4,13 +4,12 @@ extern "C" {
 }
 #include "gtest/gtest.h"
 
-TEST(parse_sphere_test, basic_case)
+TEST(parse_plane_test, basic_case)
 {
-	t_hit_lst	*world = (t_hit_lst *)malloc(sizeof(t_hit_lst));
+	t_hit_lst	*world = init_hittable_list(10);
 	char		*line = (char *)"pl	0,0,20	0,0,1	255,255,255";
 
-	world = NULL;
-	parse_plane(line, &world);
+	parse_plane(line, world);
 	ASSERT_NE(world, nullptr);
 	t_hit *result = world->objects[0];
 	ASSERT_EQ(result->shape, SPHERE);
@@ -24,4 +23,5 @@ TEST(parse_sphere_test, basic_case)
 	ASSERT_EQ(plane->color.x, 255);
 	ASSERT_EQ(plane->color.y, 255);
 	ASSERT_EQ(plane->color.z, 255);
+	printf("plane->center.x: %f\n", plane->center.x);
 }

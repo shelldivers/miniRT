@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-void	parse_rtfile(int fd, t_cam *cam, t_hit_lst **world)
+void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world)
 {
 	char	*line;
 

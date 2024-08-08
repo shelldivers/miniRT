@@ -13,7 +13,7 @@
 #include "minirt.h"
 #include "libft.h"
 
-void	parse_ambient(char *line, t_cam *cam, t_hit_lst **world)
+void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world)
 {
 	(void)line;
 	(void)cam;
@@ -41,7 +41,7 @@ void	parse_camera(char *line, t_cam *cam)
 	cam->fov = ft_atoi(line);
 }
 
-void	parse_light(char *line, t_cam *cam, t_hit_lst **world)
+void	parse_light(char *line, t_cam *cam, t_hit_lst *world)
 {
 	(void)line;
 	(void)cam;

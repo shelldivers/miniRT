@@ -1,5 +1,6 @@
 extern "C" {
 #include "ray.h"
+#include "color.h"
 }
 #include "gtest/gtest.h"
 
@@ -8,7 +9,7 @@ TEST(color_test, color_to_int) {
     float g = 165 / 255.0;
     float b = 0 / 255.0;
     t_color color = {r, g, b};
-    unsigned int int_color = color_to_int(color);
+    unsigned int int_color = color_to_int_ratio(color);
     EXPECT_FLOAT_EQ(int_color, 0xFFA500);
 }
 

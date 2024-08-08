@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/07 18:52:51 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:35:19 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef t_vec3	t_point3;
 // vec3.c
 t_vec3	vec3_unit(t_vec3 vec);
 float	vec3_length(t_vec3 vec);
-float	vec3_length_squred(t_vec3 vec);
+float	vec3_length_squared(t_vec3 vec);
 float	vec3_dot(t_vec3 a, t_vec3 b);
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 
@@ -35,5 +35,9 @@ t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
 t_vec3	vec3_mul(t_vec3 a, float t);
 t_vec3	vec3_div(t_vec3 a, float t);
+
+// vec3_random.c
+t_vec3	vec3_random(void);
+t_vec3	vec3_random_range(float min, float max);
 
 #endif

@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 23:59:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/07 19:04:23 by jiwojung         ###   ########.fr       */
+/*   Created: 2024/08/08 14:03:12 by jiwojung          #+#    #+#             */
+/*   Updated: 2024/08/08 16:41:39 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
+#include "vec3.h"
 #include "ray.h"
+#include "color.h"
 
 /**
  * @brief 0~1 사이의 값을 받아서 0~255 사이의 값으로 정규화
@@ -25,6 +28,11 @@ unsigned int	color_to_int_ratio(t_color color)
 		| (unsigned int)(color.z * 255.999));
 }
 
+/**
+ * @brief rgb값을 받아서 그대로 unsigned int로 변환
+ * @param color
+ * @return unsigned int
+ */
 unsigned int	color_to_int_rgb(t_color color)
 {
 	return ((unsigned int)(color.x) << 16 \
@@ -49,3 +57,4 @@ t_color	rgb_to_color(unsigned int r, unsigned int g, unsigned int b)
 	ret.z = (float)b / 255.0;
 	return (ret);
 }
+

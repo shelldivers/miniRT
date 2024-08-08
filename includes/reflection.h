@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phong_reflection.h                                 :+:      :+:    :+:   */
+/*   reflection.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:29:31 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/07 18:52:31 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:42:54 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONG_REFLECTION_H
-# define PHONG_REFLECTION_H
+#ifndef REFLECTION_H
+# define REFLECTION_H
 
 # include "vec3.h"
 
@@ -44,6 +44,13 @@ typedef struct s_phong
 	t_specular	specular;
 }	t_phong;
 
+// ambient.c
 t_color	get_ambient_light(t_ambient ambient);
+
+// diffuse.c
+t_vec3	random_on_hemisphere(t_vec3 normal);
+
+// specular.c
+
 
 #endif

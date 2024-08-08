@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:43:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:50:03 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 	float		discriminant;
 
 	oc = vec3_sub(sphere->center, ray->origin);
-	a = vec3_length_squred(ray->direction);
+	a = vec3_length_squared(ray->direction);
 	h = vec3_dot(ray->direction, oc);
 	discriminant = h * h - a * \
-		(vec3_length_squred(oc) - sphere->radius * sphere->radius);
+		(vec3_length_squared(oc) - sphere->radius * sphere->radius);
 	if (discriminant < 0)
 		return (FALSE);
 	sqrtd = sqrt(discriminant);

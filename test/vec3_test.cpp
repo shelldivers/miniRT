@@ -19,7 +19,7 @@ TEST(vec3_test, vec3_length) {
 
 TEST(vec3_test, vec3_length_squred) {
     t_vec3 vec = {1, 2, 3};
-    float length_squred = vec3_length_squred(vec);
+    float length_squred = vec3_length_squared(vec);
     ASSERT_FLOAT_EQ(length_squred, 14);
 }
 

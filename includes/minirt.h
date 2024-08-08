@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:44:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:09:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	parse_sphere(char const *line, t_hit_lst *world);
 void	parse_cylinder(char const *line, t_hit_lst *world);
 
 // minirt_parse_utils.c
+void	must_numuric_and_comma(char const *line);
 void	move_to_next_param(char const **ptr);
 void	skip_spaces(char const **ptr);
 void	must_be_last_param(char const *line);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:44:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/08 23:09:34 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	parse_plane(char const *line, t_hit_lst *world)
 	t_plane		data;
 
 	line += 2;
+	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
@@ -59,6 +60,7 @@ void	parse_sphere(char const *line, t_hit_lst *world)
 	t_sphere	data;
 
 	line += 2;
+	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
@@ -88,6 +90,7 @@ void	parse_cylinder(char const *line, t_hit_lst *world)
 	t_cylinder	data;
 
 	line += 2;
+	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);

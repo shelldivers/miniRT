@@ -36,9 +36,8 @@ void	parse_camera(char const *line, t_cam *cam)
 	move_to_next_param(&line);
 	cam->normal = parse_vec3(line);
 	move_to_next_param(&line);
-	if (!ft_isnumeric((char *)line))
-		error_exit(ERROR_INVALID_PARAM);
-	cam->fov = ft_atoi(line);
+	cam->fov = ft_strtoi(line, (char **)&line);
+	must_be_last_number(line);
 	if (cam->fov < 0 || cam->fov > 180)
 		error_exit(ERROR_INVALID_FOV);
 }

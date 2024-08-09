@@ -37,7 +37,7 @@ void	parse_plane(char const *line, t_hit_lst *world)
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_last_param(line);
+	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_plane(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
@@ -67,7 +67,7 @@ void	parse_sphere(char const *line, t_hit_lst *world)
 		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_last_param(line);
+	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_sphere(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
@@ -104,7 +104,7 @@ void	parse_cylinder(char const *line, t_hit_lst *world)
 		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_last_param(line);
+	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_cylinder(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);

@@ -47,9 +47,16 @@ void	must_numuric_and_comma(char const *line)
 	}
 }
 
-void	must_be_last_param(char const *line)
+void	must_be_last_vec3(char const *line)
 {
 	move_to_next_param(&line);
+	if (*line)
+		error_exit(ERROR_INVALID_PARAM);
+}
+
+void	must_be_last_number(char const *line)
+{
+	skip_spaces(&line);
 	if (*line)
 		error_exit(ERROR_INVALID_PARAM);
 }

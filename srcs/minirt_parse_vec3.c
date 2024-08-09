@@ -46,7 +46,9 @@ static void	must_not_null_or_empty(char const *line)
 
 static void	must_not_empty(char const *line)
 {
-	if (*line != ',' || *(line + 1) == ',')
+	if (*line != ',')
+		error_exit(ERROR_INVALID_VEC3);
+	if (*(line + 1) == ',' || ft_isspace(*(line + 1)) || !*(line + 1))
 		error_exit(ERROR_INVALID_VEC3);
 }
 

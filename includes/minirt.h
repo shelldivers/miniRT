@@ -72,7 +72,8 @@ void	parse_cylinder(char const *line, t_hit_lst *world);
 void	must_numuric_and_comma(char const *line);
 void	move_to_next_param(char const **ptr);
 void	skip_spaces(char const **ptr);
-void	must_be_last_param(char const *line);
+void	must_be_last_vec3(char const *line);
+void	must_be_last_number(char const *line);
 
 // minirt_parse_vec3.c
 t_vec3	parse_vec3(char const *line);

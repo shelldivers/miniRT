@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 02:04:44 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:11:47 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "shape/plane.h"
 #include "shape/sphere.h"
 #include "shape/cylinder.h"
+
+static void	must_have_no_remain(char const *line);
 
 /**
  * @brief parse plane line: <identifier> <center> <normal> <color>
@@ -65,8 +67,7 @@ void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2;
-	if (!ft_isspace(*line))
-		error_exit(ERROR_INVALID_PARAM);
+	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
 	must_be_valid_color(data.color);
@@ -99,12 +100,10 @@ void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world)
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
 	data.diameter = ft_strtof(line, (char **)&line);
-	if (!ft_isspace(*line))
-		error_exit(ERROR_INVALID_PARAM);
+	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.height = ft_strtof(line, (char **)&line);
-	if (!ft_isspace(*line))
-		error_exit(ERROR_INVALID_PARAM);
+	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
 	must_be_valid_color(data.color);
@@ -113,4 +112,10 @@ void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world)
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
 	add_hittable_list(world, new_obj);
+}
+
+void	must_have_no_remain(char const *line)
+{
+	if (!ft_isspace(*line))
+		error_exit(ERROR_INVALID_PARAM);
 }

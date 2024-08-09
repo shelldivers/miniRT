@@ -48,37 +48,11 @@ void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
 	int		fd;
 
 	must_be_rt_extension(filename);
-	world = init_hittable_list(10);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		error_exit(ERROR_OPEN_FILE);
+	world = init_hittable_list(10);
 	parse_rtfile(fd, cam, world);
-}
-
-void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)
-{
-	float		viewport_height;
-	float		viewport_width;
-	t_vec3		viewport_u;
-	t_vec3		viewport_v;
-
-	viewport->focal_length = 1.0;
-	viewport_height = 2.0;
-	viewport_width = viewport_height * ((float)img->width / img->height);
-	viewport_u = (t_vec3){viewport_width, 0, 0};
-	viewport_v = (t_vec3){0, -viewport_height, 0};
-	viewport->pixel_delta_u = vec3_div(viewport_u, img->width);
-	viewport->pixel_delta_v = vec3_div(viewport_v, img->height);
-	viewport->upper_left_corner = vec3_sub(camera->view_point, \
-		(t_vec3){0, 0, viewport->focal_length});
-	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
-		vec3_div(viewport_u, 2));
-	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
-		vec3_div(viewport_v, 2));
-	viewport->pixel00_loc = vec3_add(viewport->upper_left_corner, \
-		vec3_mul(viewport->pixel_delta_u, 0.5));
-	viewport->pixel00_loc = vec3_add(viewport->pixel00_loc, \
-		vec3_mul(viewport->pixel_delta_v, 0.5));
 }
 
 void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world)
@@ -106,4 +80,30 @@ void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world)
 			error_exit(ERROR_INVALID_IDENTIFIER);
 		free(line);
 	}
+}
+
+void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)
+{
+	float		viewport_height;
+	float		viewport_width;
+	t_vec3		viewport_u;
+	t_vec3		viewport_v;
+
+	viewport->focal_length = 1.0;
+	viewport_height = 2.0;
+	viewport_width = viewport_height * ((float)img->width / img->height);
+	viewport_u = (t_vec3){viewport_width, 0, 0};
+	viewport_v = (t_vec3){0, -viewport_height, 0};
+	viewport->pixel_delta_u = vec3_div(viewport_u, img->width);
+	viewport->pixel_delta_v = vec3_div(viewport_v, img->height);
+	viewport->upper_left_corner = vec3_sub(camera->view_point, \
+		(t_vec3){0, 0, viewport->focal_length});
+	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
+		vec3_div(viewport_u, 2));
+	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
+		vec3_div(viewport_v, 2));
+	viewport->pixel00_loc = vec3_add(viewport->upper_left_corner, \
+		vec3_mul(viewport->pixel_delta_u, 0.5));
+	viewport->pixel00_loc = vec3_add(viewport->pixel00_loc, \
+		vec3_mul(viewport->pixel_delta_v, 0.5));
 }

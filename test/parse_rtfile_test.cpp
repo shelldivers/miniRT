@@ -216,3 +216,31 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우)	// TODO: 허용할지 말�
 	close(fd);
 	remove(filename.c_str());
 }
+
+TEST(parse_rtfile_test, 공백_줄이_있는_경우2)	// TODO: 허용할지 말지 결정
+{
+    std::string filename = "example.rt";
+    std::ofstream file(filename, std::ios::out | std::ios::trunc);
+    if (file.is_open()) {
+        file << "A 0.1 255,255,255\n";
+		file << "\n";
+        file << "C 0,0,0 0,0,1 70\n";
+		file << "\t\n";
+        file << "cy 0,0,0 0,0,1 1 1 255,255,255\n";
+        file << "sp 0,0,0 1 255,255,255\n";
+		file << "\n\n\n\n\n\n\n\n";
+        file << "pl 0,0,0 0,0,1 255,255,255\n";
+        file.close();
+    } else {
+        std::cout << "Unable to open test file" << std::endl;
+    }
+
+	int fd = open(filename.c_str(), O_RDONLY);
+	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_hit_lst *world = init_hittable_list(10);
+
+	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
+
+	close(fd);
+	remove(filename.c_str());
+}

@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "error.h"
 
-void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world)
+void	parse_ambient(char const *line, t_cam *cam, t_hit_lst *world)
 {
 	(void)line;
 	(void)cam;
@@ -42,7 +42,7 @@ void	parse_camera(char const *line, t_cam *cam)
 		error_exit(ERROR_INVALID_FOV);
 }
 
-void	parse_light(char *line, t_cam *cam, t_hit_lst *world)
+void	parse_light(char const *line, t_cam *cam, t_hit_lst *world)
 {
 	(void)line;
 	(void)cam;

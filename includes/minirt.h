@@ -52,17 +52,17 @@ void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world);
 
 // minirt_utils.c
 void	init_mlx(t_rt *rt, t_img *img);
-void	init_world(t_cam *cam, t_hit_lst *world, char *filename);
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
+
+// minirt_parse_world.c
+void	init_world(t_cam *cam, t_hit_lst *world, char *filename);
+void	must_be_rt_extension(char const *filename);
 void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world);
 
-// minirt_utils2.c
-void	must_be_rt_extension(char const *filename);
-
 // minirt_parse_scene.c
-void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world);
+void	parse_ambient(char const *line, t_cam *cam, t_hit_lst *world);
 void	parse_camera(char const *line, t_cam *cam);
-void	parse_light(char *line, t_cam *cam, t_hit_lst *world);
+void	parse_light(char const *line, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_shape.c
 void	parse_plane(char const *line, t_hit_lst *world);

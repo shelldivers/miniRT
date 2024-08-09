@@ -56,15 +56,14 @@ void	parse_sphere(char const *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_sphere	data;
-	char		*end_ptr;
 
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
-	data.radius = ft_strtof(line, &end_ptr) / 2;
-	if (!ft_isspace(*end_ptr))
+	data.radius = ft_strtof(line, (char **)&line) / 2;
+	if (!ft_isspace(*line))
 		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);

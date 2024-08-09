@@ -73,6 +73,15 @@ TEST(parse_camera_test, FOV가_0에서_180사이가_아닌_경우)
 	ASSERT_THROW(parse_camera(line, &camera), std::runtime_error);
 }
 
+TEST(parse_camera_test, 빈_문자열_인_경우)
+{
+	t_cam	camera;
+	char	*line;
+
+	line = (char *)"";
+	ASSERT_THROW(parse_camera(line, &camera), std::runtime_error);
+}
+
 TEST(parse_camera_test, 벡터가_빈_문자열인_경우)
 {
 	t_cam	camera;

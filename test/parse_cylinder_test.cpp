@@ -78,6 +78,13 @@ TEST(parse_cylinder_test, invalid)
     ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
 }
 
+TEST(parse_cylinder_test, no_nums_in_vec)
+{
+    t_hit_lst	*world = init_hittable_list(10);
+    char *line = (char *)"cy	0,0,20	,,	10	5	255,255,255	255,255";
+    ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
+}
+
 TEST(parse_cylinder_test, invalid_param)
 {
     t_hit_lst	*world = init_hittable_list(10);

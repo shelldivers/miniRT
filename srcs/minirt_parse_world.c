@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 02:06:50 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:13:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,8 @@ void	dispatch_line(char const *line, t_cam *cam, t_hit_lst *world)
 	int				i;
 	int				identifier_length;
 	const t_parser	parsers[] = {
-	{"A", parse_ambient},
-	{"C", parse_camera},
-	{"L", parse_light},
-	{"pl", parse_plane},
-	{"sp", parse_sphere},
-	{"cy", parse_cylinder},
+	{"A", parse_ambient}, {"C", parse_camera}, {"L", parse_light},
+	{"pl", parse_plane}, {"sp", parse_sphere}, {"cy", parse_cylinder},
 	{NULL, NULL}};
 
 	i = 0;

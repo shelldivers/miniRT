@@ -90,8 +90,8 @@ TEST(parse_sphere_test, empty)
 	ASSERT_THROW(parse_sphere("", world), std::runtime_error);
 }
 
-// TEST(parse_sphere_test, empty_vec3)
-// {
-// 	t_hit_lst	*world = init_hittable_list(10);
-// 	ASSERT_THROW(parse_sphere("sp ,, 10 255,255,255", world), std::runtime_error);
-// }
+TEST(parse_sphere_test, empty_vec3)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_sphere("sp ,, 10 255,255,255", world), std::runtime_error);
+}

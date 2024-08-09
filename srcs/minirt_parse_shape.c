@@ -34,10 +34,8 @@ void	parse_plane(char const *line, t_hit_lst *world)
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	data.color = parse_vec3(line);
 	must_be_last_param(line);
 	new_obj = (t_hit *)init_plane(data);
@@ -57,16 +55,17 @@ void	parse_sphere(char const *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_sphere	data;
+	char		*end_ptr;
 
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
-	skip_spaces(&line);
-	data.radius = ft_atof(line) / 2;
+	data.radius = ft_strtof(line, &end_ptr) / 2;
+	if (!ft_isspace(*end_ptr))
+		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	data.color = parse_vec3(line);
 	must_be_last_param(line);
 	new_obj = (t_hit *)init_sphere(data);
@@ -87,22 +86,23 @@ void	parse_cylinder(char const *line, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_cylinder	data;
+	char		*end_ptr;
 
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
-	skip_spaces(&line);
-	data.diameter = ft_atof(line);
+	data.diameter = ft_strtof(line, &end_ptr);
+	if (!ft_isspace(*end_ptr))
+		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
-	skip_spaces(&line);
-	data.height = ft_atof(line);
+	data.height = ft_strtof(line, &end_ptr);
+	if (!ft_isspace(*end_ptr))
+		error_exit(ERROR_INVALID_PARAM);
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	data.color = parse_vec3(line);
 	must_be_last_param(line);
 	new_obj = (t_hit *)init_cylinder(data);

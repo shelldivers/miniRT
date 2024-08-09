@@ -14,6 +14,27 @@
 #include "libft.h"
 #include "error.h"
 
+void	skip_spaces(char const **ptr)
+{
+	char const	*line;
+
+	line = *ptr;
+	while (*line && ft_isspace(*line))
+		line++;
+	*ptr = line;
+}
+
+void	move_to_next_param(char const **ptr)
+{
+	char const	*line;
+
+	line = *ptr;
+	while (*line && !ft_isspace(*line))
+		line++;
+	skip_spaces(&line);
+	*ptr = line;
+}
+
 void	must_numuric_and_comma(char const *line)
 {
 	const char	*list = "0123456789,.";
@@ -26,30 +47,9 @@ void	must_numuric_and_comma(char const *line)
 	}
 }
 
-void	skip_spaces(char const **ptr)
-{
-	char const	*line;
-
-	line = *ptr;
-	while (*line && ft_isspace(*line))
-		++line;
-	*ptr = line;
-}
-
-void	move_to_next_param(char const **ptr)
-{
-	char const	*line;
-
-	line = *ptr;
-	while (*line && !ft_isspace(*line))
-		++line;
-	*ptr = line;
-}
-
 void	must_be_last_param(char const *line)
 {
 	move_to_next_param(&line);
-	skip_spaces(&line);
 	if (*line)
 		error_exit(ERROR_INVALID_PARAM);
 }

@@ -46,7 +46,9 @@ static void	move_to_next_number(char const **ptr)
 			error_exit(ERROR_INVALID_VEC3);
 		line++;
 	}
-	*ptr = ++line;
+	if (*(++line) == ',')
+		error_exit(ERROR_INVALID_VEC3);
+	*ptr = line;
 }
 
 static void	must_be_three_numbers(char const *line)

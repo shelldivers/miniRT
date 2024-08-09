@@ -81,7 +81,15 @@ TEST(parse_cylinder_test, invalid)
 TEST(parse_cylinder_test, invalid_param)
 {
     t_hit_lst	*world = init_hittable_list(10);
-    char		*line = (char *)"cy	0,0,20	0,0,1	10.2	10.4	255,255,255";
+    char		*line = (char *)"cy	0,0	0,0,1	10.2	10.4	255,255,255";
+
+    ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
+}
+
+TEST(parse_cylinder_test, invalid_param2)
+{
+    t_hit_lst	*world = init_hittable_list(10);
+    char		*line = (char *)"cy	0,0	0,0,1	10.2	10,4,0	255,255,255";
 
     ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
 }

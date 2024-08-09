@@ -37,7 +37,7 @@ void	move_to_next_param(char const **ptr)
 
 void	must_numuric_and_comma(char const *line)
 {
-	const char	*list = "0123456789,.";
+	const char	*list = "0123456789,.+-";
 
 	while (*line)
 	{

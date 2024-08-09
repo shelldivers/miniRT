@@ -117,9 +117,7 @@ TEST(parse_vec3_test, no_num)
 TEST(parse_vec3_test, not_numeric)
 {
 	t_vec3 vec = parse_vec3("1,a,3");
-	ASSERT_FLOAT_EQ(vec.x, 1);
-	ASSERT_FLOAT_EQ(vec.y, 0);
-	ASSERT_FLOAT_EQ(vec.z, 3);
+	ASSERT_THROW(parse_vec3("1,a,3"), std::runtime_error);
 }
 
 TEST(parse_vec3_test, no_comma)

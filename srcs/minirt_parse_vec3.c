@@ -14,7 +14,8 @@
 #include "libft.h"
 #include "error.h"
 
-static void	move_to_next_number(char const **ptr);
+static void	must_not_null_or_empty(char const *line);
+static void	must_not_empty(char const *line);
 static void	must_be_three_numbers(char const *line);
 
 /**
@@ -26,37 +27,31 @@ t_vec3	parse_vec3(char const *line)
 {
 	t_vec3	vec;
 
-	vec.x = ft_atof(line);
-	move_to_next_number(&line);
-	vec.y = ft_atof(line);
-	move_to_next_number(&line);
-	vec.z = ft_atof(line);
+	must_not_null_or_empty(line);
+	must_numuric_and_comma(line);
+	vec.x = ft_strtof(line, (char **)&line);
+	must_not_empty(line++);
+	vec.y = ft_strtof(line, (char **)&line);
+	must_not_empty(line++);
+	vec.z = ft_strtof(line, (char **)&line);
 	must_be_three_numbers(line);
 	return (vec);
 }
 
-static void	move_to_next_number(char const **ptr)
+static void	must_not_null_or_empty(char const *line)
 {
-	char const	*line;
-
-	line = *ptr;
-	while (*line != ',')
-	{
-		if (!*line || ft_isspace(*line))
-			error_exit(ERROR_INVALID_VEC3);
-		line++;
-	}
-	if (*(++line) == ',')
+	if (!line || !*line)
 		error_exit(ERROR_INVALID_VEC3);
-	*ptr = line;
+}
+
+static void	must_not_empty(char const *line)
+{
+	if (*line != ',' || *(line + 1) == ',')
+		error_exit(ERROR_INVALID_VEC3);
 }
 
 static void	must_be_three_numbers(char const *line)
 {
-	while (*line && !ft_isspace(*line))
-	{
-		if (*line == ',')
-			error_exit(ERROR_INVALID_VEC3);
-		line++;
-	}
+	if (*line && !ft_isspace(*line))
+		error_exit(ERROR_INVALID_VEC3);
 }

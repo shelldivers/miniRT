@@ -75,6 +75,9 @@ void	skip_spaces(char const **ptr);
 void	must_be_last_vec3(char const *line);
 void	must_be_last_number(char const *line);
 
+// minirt_parse_utils2.c
+void	must_be_valid_color(t_color color);
+
 // minirt_parse_vec3.c
 t_vec3	parse_vec3(char const *line);
 

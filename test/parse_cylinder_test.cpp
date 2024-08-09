@@ -100,3 +100,19 @@ TEST(parse_cylinder_test, invalid_param2)
 
     ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
 }
+
+TEST(parse_cylinder_test, 색상값이_0_미만인_경우)
+{
+    t_hit_lst	*world = init_hittable_list(10);
+    char		*line = (char *)"cy	0,0,20	0,0,1	10	5	-1,255,255";
+
+    ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
+}
+
+TEST(parse_cylinder_test, 색상값이_255_초과인_경우)
+{
+    t_hit_lst	*world = init_hittable_list(10);
+    char		*line = (char *)"cy	0,0,20	0,0,1	10	5	256,255,255";
+
+    ASSERT_THROW(parse_cylinder(line, world), std::runtime_error);
+}

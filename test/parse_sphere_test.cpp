@@ -95,3 +95,26 @@ TEST(parse_sphere_test, empty_vec3)
 	t_hit_lst	*world = init_hittable_list(10);
 	ASSERT_THROW(parse_sphere("sp ,, 10 255,255,255", world), std::runtime_error);
 }
+
+TEST(parse_sphere_test, empty_color)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10", world), std::runtime_error);
+}
+
+TEST(parse_sphere_test, empty_param)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_sphere("sp", world), std::runtime_error);
+}
+
+TEST(parse_sphere_test, 색상값이_0_255범위를_벗어난_경우)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 256,255,255", world), std::runtime_error);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 255,256,255", world), std::runtime_error);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 255,255,256", world), std::runtime_error);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 -1,255,255", world), std::runtime_error);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 255,-1,255", world), std::runtime_error);
+	ASSERT_THROW(parse_sphere("sp 0,0,20 10 255,255,-1", world), std::runtime_error);
+}

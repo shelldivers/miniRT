@@ -111,3 +111,15 @@ TEST(parse_plane_test, empty_vec3)
 	t_hit_lst	*world = init_hittable_list(10);
 	ASSERT_THROW(parse_plane("pl ,, 10,10,0 255,255,255", world), std::runtime_error);
 }
+
+TEST(parse_plane_test, 색상값이_0_미만인_경우)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_plane("pl 0,0,20 1,2,3 255,255,-1", world), std::runtime_error);
+}
+
+TEST(parse_plane_test, 색상값이_255_초과인_경우)
+{
+	t_hit_lst	*world = init_hittable_list(10);
+	ASSERT_THROW(parse_plane("pl 0,0,20 1,2,3 255,255,256", world), std::runtime_error);
+}

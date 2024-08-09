@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 01:47:38 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:04:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,28 @@ t_bool	is_not_blank(char const *line)
 
 void	rtline_branch(char const *line, t_cam *cam, t_hit_lst *world)
 {
-	if (line[0] == 'A' && ft_isspace(line[1]))
-		parse_ambient(line, cam, world);
-	else if (line[0] == 'C' && ft_isspace(line[1]))
-		parse_camera(line, cam);
-	else if (line[0] == 'L' && ft_isspace(line[1]))
-		parse_light(line, cam, world);
-	else if (line[0] == 'p' && line[1] == 'l' && ft_isspace(line[2]))
-		parse_plane(line, world);
-	else if (line[0] == 's' && line[1] == 'p' && ft_isspace(line[2]))
-		parse_sphere(line, world);
-	else if (line[0] == 'c' && line[1] == 'y' && ft_isspace(line[2]))
-		parse_cylinder(line, world);
-	else
-		error_exit(ERROR_INVALID_IDENTIFIER);
+	int				i;
+	int				identifier_length;
+	const t_parser	parsers[] = {
+	{"A", parse_ambient},
+	{"C", parse_camera},
+	{"L", parse_light},
+	{"pl", parse_plane},
+	{"sp", parse_sphere},
+	{"cy", parse_cylinder},
+	{NULL, NULL}};
+
+	i = 0;
+	while (parsers[i].identifier)
+	{
+		identifier_length = ft_strlen(parsers[i].identifier);
+		if (!ft_strncmp(line, parsers[i].identifier, identifier_length)
+			&& ft_isspace(line[identifier_length]))
+		{
+			parsers[i].func(line, cam, world);
+			return ;
+		}
+		i++;
+	}
+	error_exit(ERROR_INVALID_IDENTIFIER);
 }

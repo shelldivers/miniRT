@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:19:34 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 02:04:44 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_plane(char const *line, t_hit_lst *world)
+void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_plane		data;
 
+	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -52,11 +53,12 @@ void	parse_plane(char const *line, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_sphere(char const *line, t_hit_lst *world)
+void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_sphere	data;
 
+	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -83,11 +85,12 @@ void	parse_sphere(char const *line, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_cylinder(char const *line, t_hit_lst *world)
+void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_cylinder	data;
 
+	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);

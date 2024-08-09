@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:09:18 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 01:53:44 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
+typedef void	(*t_parse_func)(char const *line, t_cam *cam, t_hit_lst *world);
+
+typedef struct s_parser
+{
+	char			*identifier;
+	t_parse_func	func;
+}	t_parser;
+
 // minirt.c
 void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world);
 
@@ -61,13 +69,13 @@ void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_scene.c
 void	parse_ambient(char const *line, t_cam *cam, t_hit_lst *world);
-void	parse_camera(char const *line, t_cam *cam);
+void	parse_camera(char const *line, t_cam *cam, t_hit_lst *world);
 void	parse_light(char const *line, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_shape.c
-void	parse_plane(char const *line, t_hit_lst *world);
-void	parse_sphere(char const *line, t_hit_lst *world);
-void	parse_cylinder(char const *line, t_hit_lst *world);
+void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_utils.c
 void	must_numuric_and_comma(char const *line);

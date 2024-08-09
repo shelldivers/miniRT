@@ -214,7 +214,7 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우)
 	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
 	t_hit_lst *world = init_hittable_list(10);
 
-	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
+	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
 
 	close(fd);
 	remove(filename.c_str());
@@ -245,7 +245,7 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우2)
 	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
 	t_hit_lst *world = init_hittable_list(10);
 
-	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
+	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
 
 	close(fd);
 	remove(filename.c_str());

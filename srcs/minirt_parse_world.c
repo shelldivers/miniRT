@@ -6,18 +6,20 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:19:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 01:47:38 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "libft.h"
 #include "error.h"
+#include "ft_bool.h"
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdlib.h>
 
-static void	rtline_branch(char const *line, t_cam *cam, t_hit_lst *world);
+static void		rtline_branch(char const *line, t_cam *cam, t_hit_lst *world);
+static t_bool	is_not_blank(char const *line);
 
 void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
 {
@@ -51,10 +53,21 @@ void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (*line && *line != '\n')
+		if (*line && is_not_blank(line))
 			rtline_branch(line, cam, world);
 		free(line);
 	}
+}
+
+t_bool	is_not_blank(char const *line)
+{
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (TRUE);
+		line++;
+	}
+	return (FALSE);
 }
 
 void	rtline_branch(char const *line, t_cam *cam, t_hit_lst *world)

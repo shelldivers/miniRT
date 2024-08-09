@@ -60,7 +60,7 @@ void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_scene.c
 void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world);
-void	parse_camera(char *line, t_cam *cam);
+void	parse_camera(char const *line, t_cam *cam);
 void	parse_light(char *line, t_cam *cam, t_hit_lst *world);
 
 // minirt_parse_shape.c

@@ -19,6 +19,7 @@
 # define ERROR_MALLOC "Failed to allocate memory"
 # define ERROR_INVALID_VEC3 "Invalid vec3 format"
 # define ERROR_INVALID_PARAM "Invalid parameter format"
+# define ERROR_INVALID_FOV "FOV must be between 0 and 180"
 
 void	error_exit(char *message);
 

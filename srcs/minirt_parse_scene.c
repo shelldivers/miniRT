@@ -12,6 +12,7 @@
 
 #include "minirt.h"
 #include "libft.h"
+#include "error.h"
 
 void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world)
 {
@@ -22,23 +23,24 @@ void	parse_ambient(char *line, t_cam *cam, t_hit_lst *world)
 
 /**
  * @brief parse camera line: <identifier> <view_point> <normal_vector> <FOV>
- * @remark it is assumed that identifier(C) is already parsed
  * @param line	"C	-50.0,0,20	0,0,1	70"
  * @param cam	pointer to the camera
  * @param world	pointer to the world
  * @return	void
  */
-void	parse_camera(char *line, t_cam *cam)
+void	parse_camera(char const *line, t_cam *cam)
 {
-	while (*line && ft_isspace(*line))
-		++line;
+	line++;
+	skip_spaces(&line);
 	cam->view_point = parse_vec3(line);
-	while (*line && ft_isspace(*line))
-		++line;
+	move_to_next_param(&line);
 	cam->normal = parse_vec3(line);
-	while (*line && ft_isspace(*line))
-		++line;
+	move_to_next_param(&line);
+	if (!ft_isnumeric((char *)line))
+		error_exit(ERROR_INVALID_PARAM);
 	cam->fov = ft_atoi(line);
+	if (cam->fov < 0 || cam->fov > 180)
+		error_exit(ERROR_INVALID_FOV);
 }
 
 void	parse_light(char *line, t_cam *cam, t_hit_lst *world)

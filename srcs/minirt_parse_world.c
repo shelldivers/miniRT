@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 21:39:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:55:22 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 static void		dispatch_line(char const *line, t_cam *cam, t_hit_lst *world);
 static t_bool	is_not_blank(char const *line);
 
-void	init_world(t_cam *cam, t_hit_lst **world_ptr, char *filename)
+void	init_world(t_cam *cam, t_hit_lst **world_ptr, char const *filename)
 {
 	int			fd;
 	t_hit_lst	*world;

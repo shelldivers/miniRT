@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:40:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:40:31 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 	(void)ray;
 	(void)t;
 	(void)rec;
-	return (TRUE);
+	return (FALSE);
 }

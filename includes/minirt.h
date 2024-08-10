@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 01:53:44 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:39:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	init_mlx(t_rt *rt, t_img *img);
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
 
 // minirt_parse_world.c
-void	init_world(t_cam *cam, t_hit_lst *world, char *filename);
+void	init_world(t_cam *cam, t_hit_lst **world_ptr, char *filename);
 void	must_be_rt_extension(char const *filename);
 void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world);
 

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 02:13:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:39:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 #include "ft_bool.h"
 #include "get_next_line.h"
 #include <fcntl.h>
+#include <unistd.h>
 #include <stdlib.h>
 
 static void		dispatch_line(char const *line, t_cam *cam, t_hit_lst *world);
 static t_bool	is_not_blank(char const *line);
 
-void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
+void	init_world(t_cam *cam, t_hit_lst **world_ptr, char *filename)
 {
-	int		fd;
+	int			fd;
+	t_hit_lst	*world;
 
 	must_be_rt_extension(filename);
 	fd = open(filename, O_RDONLY);
@@ -31,6 +33,8 @@ void	init_world(t_cam *cam, t_hit_lst *world, char *filename)
 		error_exit(ERROR_OPEN_FILE);
 	world = init_hittable_list(10);
 	parse_rtfile(fd, cam, world);
+	close(fd);
+	*world_ptr = world;
 }
 
 void	must_be_rt_extension(char const *filename)

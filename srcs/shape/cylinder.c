@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:42:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:40:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ t_bool	hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 	(void)ray;
 	(void)t;
 	(void)rec;
-	return (TRUE);
+	return (FALSE);
 }

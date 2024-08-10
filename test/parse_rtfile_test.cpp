@@ -189,9 +189,6 @@ TEST(parse_rtfile_test, 중간에_개행이_많은_경우)
 	remove(filename.c_str());
 }
 
-/**
- * @todo: 허용할지 말지 결정
- */
 TEST(parse_rtfile_test, 공백_줄이_있는_경우)
 {
     std::string filename = "example.rt";
@@ -220,10 +217,7 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우)
 	remove(filename.c_str());
 }
 
-/**
- * @todo: 허용할지 말지 결정
- */
-TEST(parse_rtfile_test, 공백_줄이_있는_경우2)
+TEST(parse_rtfile_test, 들여쓰기_줄이_있는_경우)
 {
     std::string filename = "example.rt";
     std::ofstream file(filename, std::ios::out | std::ios::trunc);
@@ -251,9 +245,6 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우2)
 	remove(filename.c_str());
 }
 
-/**
- * @todo: 허용할지 말지 결정
- */
 TEST(parse_rtfile_test, 식별자_앞에_공백이_있는_경우)
 {
     std::string filename = "example.rt";
@@ -282,10 +273,7 @@ TEST(parse_rtfile_test, 식별자_앞에_공백이_있는_경우)
 	remove(filename.c_str());
 }
 
-/**
- * @todo: 허용할지 말지 결정
- */
-TEST(parse_rtfile_test, 식별자_앞에_공백이_있는_경우2)
+TEST(parse_rtfile_test, 식별자_앞에_들여쓰기가_있는_경우)
 {
     std::string filename = "example.rt";
     std::ofstream file(filename, std::ios::out | std::ios::trunc);

@@ -301,7 +301,7 @@ TEST(parse_rtfile_test, 식별자_앞에_들여쓰기가_있는_경우)
 	remove(filename.c_str());
 }
 
-TEST(parse_rtfile_test, 허용되지_않은_식별자인_경우)
+TEST(parse_rtfile_test, 혀용된_식별자_뒤에_문자가_추가된_경우)
 {
     std::string filename = "example.rt";
     std::ofstream file(filename, std::ios::out | std::ios::trunc);

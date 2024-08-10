@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:41:02 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 23:52:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "vec3.h"
 #include <math.h>
 #include <stdlib.h>
+
+static t_bool	is_collided(t_sphere *s, t_ray const *ray, float *r, t_coll t);
 
 t_sphere	*init_sphere(t_sphere data)
 {

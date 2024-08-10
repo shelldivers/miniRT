@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 23:53:36 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:55:39 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
+	rec->color = plane->color;
 	rec->normal = plane->normal;
 	set_face_normal(rec, ray, plane->normal);
 	return (FALSE);

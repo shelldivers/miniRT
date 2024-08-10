@@ -19,9 +19,9 @@ TEST(parse_sphere_test, basic_case)
 	ASSERT_EQ(sphere->center.y, 0);
 	ASSERT_EQ(sphere->center.z, 20);
 	ASSERT_EQ(sphere->radius, 5);
-	ASSERT_EQ(sphere->color.x, 255);
-	ASSERT_EQ(sphere->color.y, 255);
-	ASSERT_EQ(sphere->color.z, 255);
+	ASSERT_EQ(sphere->color.x, 1);
+	ASSERT_EQ(sphere->color.y, 1);
+	ASSERT_EQ(sphere->color.z, 1);
 }
 
 TEST(parse_sphere_test, invalid)
@@ -67,9 +67,9 @@ TEST(parse_sphere_test, success_with_last_space)
 	ASSERT_EQ(sphere->center.y, 0);
 	ASSERT_EQ(sphere->center.z, 20);
 	ASSERT_EQ(sphere->radius, 5);
-	ASSERT_EQ(sphere->color.x, 255);
-	ASSERT_EQ(sphere->color.y, 255);
-	ASSERT_EQ(sphere->color.z, 255);
+	ASSERT_EQ(sphere->color.x, 1);
+	ASSERT_EQ(sphere->color.y, 1);
+	ASSERT_EQ(sphere->color.z, 1);
 }
 
 TEST(parse_sphere_test, invalid_param)

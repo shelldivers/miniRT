@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 02:11:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 02:05:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world)
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_valid_color(data.color);
+	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_plane(data);
 	if (!new_obj)
@@ -70,7 +70,7 @@ void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world)
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_valid_color(data.color);
+	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_sphere(data);
 	if (!new_obj)
@@ -106,7 +106,7 @@ void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world)
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
-	must_be_valid_color(data.color);
+	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_cylinder(data);
 	if (!new_obj)

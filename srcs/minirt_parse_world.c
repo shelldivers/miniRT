@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 22:55:22 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:44:21 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,14 @@ void	init_world(t_cam *cam, t_hit_lst **world_ptr, char const *filename)
 void	must_be_rt_extension(char const *filename)
 {
 	char	*pos;
+	char	*basename;
 
-	if (*filename == '.')
+	basename = ft_strrchr(filename, '/');
+	if (basename)
+		basename++;
+	else
+		basename = (char *)filename;
+	if (*basename == '.')
 		error_exit(ERROR_INVALID_IDENTIFIER);
 	pos = ft_strrchr(filename, '.');
 	if (ft_strcmp(pos, ".rt"))

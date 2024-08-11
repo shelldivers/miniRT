@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 00:55:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 11:17:52 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ t_sphere	*init_sphere(t_sphere data)
 	return (sphere);
 }
 
+/**
+ * @brief Check if the ray hits the sphere
+ * @param obj The sphere object
+ * @param ray The ray
+ * @param t The collision range
+ * @param rec The record of the collision
+ * @return t_bool TRUE if the ray hits the sphere, FALSE otherwise
+ */
 t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 {
 	t_sphere	*sphere;
@@ -53,6 +61,15 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 	return (TRUE);
 }
 
+
+/**
+ * @brief h ± sqrt(square(h) - a * c) / a 
+ * @param sphere The sphere object
+ * @param ray The ray
+ * @param root The root of the equation
+ * @param t The collision range
+ * @return t_bool TRUE if the ray hits the sphere, FALSE otherwise
+ */
 t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
 	float		sqrtd;

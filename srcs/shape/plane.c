@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 02:34:50 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 11:19:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ t_plane	*init_plane(t_plane data)
 	return (plane);
 }
 
+/**
+ * @brief Check if the ray hits the plane
+ * @param obj The plane object
+ * @param ray The ray
+ * @param t The collision range
+ * @param rec The record of the collision
+ * @return t_bool TRUE if the ray hits the plane, FALSE otherwise
+ */
 t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 {
 	t_plane	*plane;
@@ -47,6 +55,14 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 	return (TRUE);
 }
 
+/**
+ * @brief n · (p - c) / n · d
+ * @param plane The plane object
+ * @param ray The ray
+ * @param root The pointer to the root
+ * @param t The collision range
+ * @return t_bool TRUE if the ray hits the plane, FALSE otherwise
+ */
 t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 {
 	float	p;

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:35:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:54:10 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_rec
 	t_vec3		normal;
 	float		t;
 	t_bool		front_face;
+	t_color		color;
 }	t_rec;
 
 typedef struct s_coll

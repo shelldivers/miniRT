@@ -60,10 +60,17 @@ add_dependencies(${EXEC_NAME} build_minilibx)
 target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes ${minilibx_SOURCE_DIR})
 
+add_custom_target(mlx
+	COMMAND cp ${CMAKE_SOURCE_DIR}/example.rt ${CMAKE_BINARY_DIR}
+    COMMAND ${CMAKE_BINARY_DIR}/${EXEC_NAME} example.rt
+    DEPENDS ${EXEC_NAME}
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
-target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest_main)
+target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest)
 
 # add tests
 add_test(
@@ -73,7 +80,7 @@ add_test(
 
 # build coverage
 add_custom_target(coverage
-	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
+	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -type f -print0 | xargs -0 rm
 	COMMAND ${CMAKE_COMMAND} -B${CMAKE_BINARY_DIR} -DENABLE_COVERAGE=ON ${CMAKE_SOURCE_DIR}
 	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target ${TEST_NAME}
 	COMMAND ${CMAKE_BINARY_DIR}/${TEST_NAME}
@@ -83,6 +90,6 @@ add_custom_target(coverage
 				-e '${CMAKE_SOURCE_DIR}/test/*'
 				--html --html-details
 				-o '${CMAKE_BINARY_DIR}/reports/test-coverage.html'
-	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -print0 | xargs -0 rm
+	COMMAND find ${CMAKE_BINARY_DIR} -name "*.gcda" -type f -print0 | xargs -0 rm
 	COMMAND rm -f ${CMAKE_BINARY_DIR}/${TEST_NAME} ${CMAKE_BINARY_DIR}/${EXEC_NAME} 
 )

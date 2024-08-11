@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:43:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:30:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include <math.h>
 #include <stdlib.h>
 
-t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
+static t_bool	is_collided(t_sphere *s, t_ray const *ray, float *r, t_coll t);
+
+t_sphere	*init_sphere(t_sphere data)
 {
 	t_sphere	*sphere;
 
@@ -27,12 +29,20 @@ t_sphere	*init_sphere(t_point3 center, float radius, t_color color)
 		error_exit("Memory allocation failed");
 	sphere->parent.shape = SPHERE;
 	sphere->parent.hit = hit_sphere;
-	sphere->center = center;
-	sphere->radius = radius;
-	sphere->color = color;
+	sphere->center = data.center;
+	sphere->radius = data.radius;
+	sphere->color = data.color;
 	return (sphere);
 }
 
+/**
+ * @brief Check if the ray hits the sphere
+ * @param obj The sphere object
+ * @param ray The ray
+ * @param t The collision range
+ * @param rec The record of the collision
+ * @return t_bool TRUE if the ray hits the sphere, FALSE otherwise
+ */
 t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 {
 	t_sphere	*sphere;
@@ -44,12 +54,21 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
+	rec->color = sphere->color;
 	rec->normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	outward_normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);
 }
 
+/**
+ * @brief h ± sqrt(square(h) - a * c) / a 
+ * @param sphere The sphere object
+ * @param ray The ray
+ * @param root The root of the equation
+ * @param t The collision range
+ * @return t_bool TRUE if the ray hits the sphere, FALSE otherwise
+ */
 t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
 	float		sqrtd;

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:44:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/10 21:40:00 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	t_cam	cam;
 	t_vw	vw;
 
-	(void)argc;
+	if (argc != 2)
+		error_exit(ERROR_USAGE);
 	init_mlx(&rt, &img);
 	init_world(&cam, &rt.world, argv[1]);
 	init_viewport(&img, &cam, &vw);

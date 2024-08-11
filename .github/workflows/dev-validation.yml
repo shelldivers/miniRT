@@ -24,7 +24,7 @@ jobs:
       - name: 👮 Run norminette
         run: |
           source norminette_venv/bin/activate
-          norminette **/*.[ch]
+          norminette
 
   check-compile-flags:
     runs-on: macos-latest

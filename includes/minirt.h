@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:43:29 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 02:05:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,47 @@ typedef struct s_img
 	int		height;
 }	t_img;
 
+typedef void	(*t_parse_func)(char const *line, t_cam *cam, t_hit_lst *world);
+
+typedef struct s_parser
+{
+	char			*identifier;
+	t_parse_func	func;
+}	t_parser;
+
 // minirt.c
 void	ray_tracing(t_img *img, t_cam *cam, t_vw *vw, t_hit_lst *world);
 
 // minirt_utils.c
 void	init_mlx(t_rt *rt, t_img *img);
-void	init_world(t_cam *cam, t_hit_lst **world, char *filename);
 void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport);
+
+// minirt_parse_world.c
+void	init_world(t_cam *cam, t_hit_lst **world_ptr, char const *filename);
+void	must_be_rt_extension(char const *filename);
+void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world);
+
+// minirt_parse_scene.c
+void	parse_ambient(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_camera(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_light(char const *line, t_cam *cam, t_hit_lst *world);
+
+// minirt_parse_shape.c
+void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world);
+void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world);
+
+// minirt_parse_utils.c
+void	must_numuric_and_comma(char const *line);
+void	move_to_next_param(char const **ptr);
+void	skip_spaces(char const **ptr);
+void	must_be_last_vec3(char const *line);
+void	must_be_last_number(char const *line);
+
+// minirt_parse_utils2.c
+void	normalize_color_value(t_color *color);
+
+// minirt_parse_vec3.c
+t_vec3	parse_vec3(char const *line);
 
 #endif

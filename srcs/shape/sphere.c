@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 11:17:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/11 14:30:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);
 }
-
 
 /**
  * @brief h ± sqrt(square(h) - a * c) / a 

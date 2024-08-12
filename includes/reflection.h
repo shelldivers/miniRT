@@ -24,7 +24,7 @@ typedef struct s_light
 
 typedef struct s_light_lst
 {
-	t_light	**lights;
+	t_light	**objects;
 	int		size;
 	int		capacity;
 }	t_light_lst;

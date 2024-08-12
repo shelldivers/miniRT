@@ -21,10 +21,10 @@ t_light_lst	*init_light_list(int capacity)
 	list = (t_light_lst *)malloc(sizeof(t_light_lst));
 	if (!list)
 		error_exit(ERROR_MALLOC);
-	list->lights = (t_light **)malloc(sizeof(t_light *) * capacity);
-	if (!list->lights)
+	list->objects = (t_light **)malloc(sizeof(t_light *) * capacity);
+	if (!list->objects)
 		error_exit(ERROR_MALLOC);
-	ft_memset(list->lights, 0, sizeof(t_light *) * capacity);
+	ft_memset(list->objects, 0, sizeof(t_light *) * capacity);
 	list->size = 0;
 	list->capacity = capacity;
 	return (list);
@@ -37,15 +37,15 @@ void	add_light_list(t_light_lst *list, t_light *light)
 	if (list->size >= list->capacity)
 	{
 		list->capacity *= 2;
-		tmp = list->lights;
-		list->lights = malloc(sizeof(t_light *) * list->capacity);
-		if (!list->lights)
+		tmp = list->objects;
+		list->objects = malloc(sizeof(t_light *) * list->capacity);
+		if (!list->objects)
 			error_exit(ERROR_MALLOC);
-		ft_memcpy(list->lights, tmp, sizeof(t_light *) * list->size);
+		ft_memcpy(list->objects, tmp, sizeof(t_light *) * list->size);
 		free(tmp);
 		tmp = NULL;
 	}
-	list->lights[list->size++] = light;
+	list->objects[list->size++] = light;
 }
 
 void	clear_light_list(t_light_lst *list)
@@ -55,12 +55,12 @@ void	clear_light_list(t_light_lst *list)
 	i = 0;
 	while (i < list->size)
 	{
-		free(list->lights[i]);
-		list->lights[i] = NULL;
+		free(list->objects[i]);
+		list->objects[i] = NULL;
 		i++;
 	}
-	free(list->lights);
-	list->lights = NULL;
+	free(list->objects);
+	list->objects = NULL;
 	free(list);
 	list = NULL;
 }

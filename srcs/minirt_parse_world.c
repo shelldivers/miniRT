@@ -25,16 +25,15 @@ static t_bool	is_not_blank(char const *line);
 void	init_world(t_rt *rt, char const *filename)
 {
 	int			fd;
-	t_hit_lst	*world;
 
 	must_be_rt_extension(filename);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		error_exit(ERROR_OPEN_FILE);
-	world = init_hittable_list(10);
+	rt->world = init_hittable_list(10);
+	rt->lights = init_light_list(10);
 	parse_rtfile(fd, rt);
 	close(fd);
-	rt->world = world;
 }
 
 void	must_be_rt_extension(char const *filename)

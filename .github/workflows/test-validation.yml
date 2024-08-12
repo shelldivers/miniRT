@@ -26,7 +26,7 @@ jobs:
       - name: 📊 Generate coverage report
         run: |
           mkdir ./build/reports
-          gcovr -r . -e 'build/_deps/*' -e 'build/test/*' -o './build/reports/test-coverage.xml'
+          gcovr -r . -e 'build/_deps/*' -e 'build/test/*' -o './build/reports/test-coverage.html'
 
       - name: 📪 Upload Test Coverage to Codecov
         uses: codecov/codecov-action@v4

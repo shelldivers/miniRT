@@ -32,11 +32,35 @@ t_light_lst	*init_light_list(int capacity)
 
 void	add_light_list(t_light_lst *list, t_light *light)
 {
-	(void)list;
-	(void)light;
+	t_light	**tmp;
+
+	if (list->size >= list->capacity)
+	{
+		list->capacity *= 2;
+		tmp = list->lights;
+		list->lights = malloc(sizeof(t_light *) * list->capacity);
+		if (!list->lights)
+			error_exit(ERROR_MALLOC);
+		ft_memcpy(list->lights, tmp, sizeof(t_light *) * list->size);
+		free(tmp);
+		tmp = NULL;
+	}
+	list->lights[list->size++] = light;
 }
 
 void	clear_light_list(t_light_lst *list)
 {
-	(void)list;
+	int	i;
+
+	i = 0;
+	while (i < list->size)
+	{
+		free(list->lights[i]);
+		list->lights[i] = NULL;
+		i++;
+	}
+	free(list->lights);
+	list->lights = NULL;
+	free(list);
+	list = NULL;
 }

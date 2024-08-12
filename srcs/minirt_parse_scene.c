@@ -14,11 +14,16 @@
 #include "libft.h"
 #include "error.h"
 
-void	parse_ambient(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_ambient(char const *line, t_rt *rt)
 {
-	(void)line;
-	(void)cam;
-	(void)world;
+	line++;
+	skip_spaces(&line);
+	rt->ambient.ratio = ft_strtof(line, (char **)&line);
+	must_have_no_remain(line);
+	move_to_next_param(&line);
+	rt->ambient.color = parse_vec3(line);
+	normalize_color_value(&rt->ambient.color);
+	must_be_last_vec3(line);
 }
 
 /**
@@ -28,24 +33,36 @@ void	parse_ambient(char const *line, t_camera *cam, t_hit_lst *world)
  * @param world	pointer to the world
  * @return	void
  */
-void	parse_camera(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_camera(char const *line, t_rt *rt)
 {
-	(void)world;
 	line++;
 	skip_spaces(&line);
-	cam->view_point = parse_vec3(line);
+	rt->cam.view_point = parse_vec3(line);
 	move_to_next_param(&line);
-	cam->normal = parse_vec3(line);
+	rt->cam.normal = parse_vec3(line);
 	move_to_next_param(&line);
-	cam->fov = ft_strtoi(line, (char **)&line);
+	rt->cam.fov = ft_strtoi(line, (char **)&line);
 	must_be_last_number(line);
-	if (cam->fov < 0 || cam->fov > 180)
+	if (rt->cam.fov < 0 || rt->cam.fov > 180)
 		error_exit(ERROR_INVALID_FOV);
 }
 
-void	parse_light(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_light(char const *line, t_rt *rt)
 {
-	(void)line;
-	(void)cam;
-	(void)world;
+	t_light	*new_light;
+
+	new_light = (t_light *)malloc(sizeof(t_light));
+	if (!new_light)
+		error_exit(ERROR_MALLOC);
+	line++;
+	skip_spaces(&line);
+	new_light->center = parse_vec3(line);
+	move_to_next_param(&line);
+	new_light->ratio = ft_strtof(line, (char **)&line);
+	must_have_no_remain(line);
+	move_to_next_param(&line);
+	new_light->color = parse_vec3(line);
+	normalize_color_value(&new_light->color);
+	must_be_last_vec3(line);
+	add_light_list(rt->lights, new_light);
 }

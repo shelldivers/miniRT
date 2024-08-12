@@ -36,7 +36,7 @@ typedef struct s_ambient
 }	t_ambient;
 
 t_light_lst	*init_light_list(int capacity);
-void		add_light_list(t_light_lst *list, t_light *object);
+void		add_light_list(t_light_lst *list, t_light *light);
 void		clear_light_list(t_light_lst *list);
 
 #endif

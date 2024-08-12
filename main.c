@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(ERROR_USAGE);
 	init_mlx(&rt, &rt.img);
-	init_world(&rt.cam, &rt.world, argv[1]);
+	init_world(&rt, argv[1]);
 	init_viewport(&rt.img, &rt.cam, &rt.vw);
 	ray_tracing(&rt);
 	mlx_put_image_to_window(rt.mlx, rt.win, rt.img.ptr, 0, 0);

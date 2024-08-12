@@ -18,8 +18,6 @@
 #include "shape/sphere.h"
 #include "shape/cylinder.h"
 
-static void	must_have_no_remain(char const *line);
-
 /**
  * @brief parse plane line: <identifier> <center> <normal> <color>
  * @warning line and world must not be NULL
@@ -27,12 +25,11 @@ static void	must_have_no_remain(char const *line);
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_plane(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_plane(char const *line, t_rt *rt)
 {
 	t_hit		*new_obj;
 	t_plane		data;
 
-	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -46,7 +43,7 @@ void	parse_plane(char const *line, t_camera *cam, t_hit_lst *world)
 	new_obj = (t_hit *)init_plane(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(world, new_obj);
+	add_hittable_list(rt->world, new_obj);
 }
 
 /**
@@ -56,12 +53,11 @@ void	parse_plane(char const *line, t_camera *cam, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_sphere(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_sphere(char const *line, t_rt *rt)
 {
 	t_hit		*new_obj;
 	t_sphere	data;
 
-	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -76,7 +72,7 @@ void	parse_sphere(char const *line, t_camera *cam, t_hit_lst *world)
 	new_obj = (t_hit *)init_sphere(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(world, new_obj);
+	add_hittable_list(rt->world, new_obj);
 }
 
 /**
@@ -87,12 +83,11 @@ void	parse_sphere(char const *line, t_camera *cam, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_cylinder(char const *line, t_camera *cam, t_hit_lst *world)
+void	parse_cylinder(char const *line, t_rt *rt)
 {
 	t_hit		*new_obj;
 	t_cylinder	data;
 
-	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -112,11 +107,5 @@ void	parse_cylinder(char const *line, t_camera *cam, t_hit_lst *world)
 	new_obj = (t_hit *)init_cylinder(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(world, new_obj);
-}
-
-void	must_have_no_remain(char const *line)
-{
-	if (!ft_isspace(*line))
-		error_exit(ERROR_INVALID_PARAM);
+	add_hittable_list(rt->world, new_obj);
 }

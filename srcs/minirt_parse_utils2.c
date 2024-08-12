@@ -42,3 +42,9 @@ void	must_be_valid_ratio(float ratio)
 	if (ratio < 0 || ratio > 1)
 		error_exit(ERROR_INVALID_RATIO);
 }
+
+void	must_have_no_remain(char const *line)
+{
+	if (!ft_isspace(*line))
+		error_exit(ERROR_INVALID_PARAM);
+}

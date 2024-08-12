@@ -54,8 +54,7 @@ typedef struct s_rt
 }	t_rt;
 
 // minirt_parser_world.c
-typedef void	(*t_parse_func)( \
-	char const *line, t_camera *cam, t_hit_lst *world);
+typedef void	(*t_parse_func)(char const *line, t_rt *rt);
 
 typedef struct s_parser
 {
@@ -71,19 +70,19 @@ void	init_mlx(t_rt *rt, t_img *img);
 void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport);
 
 // minirt_parse_world.c
-void	init_world(t_camera *cam, t_hit_lst **world_ptr, char const *filename);
+void	init_world(t_rt *rt, char const *filename);
 void	must_be_rt_extension(char const *filename);
-void	parse_rtfile(int fd, t_camera *cam, t_hit_lst *world);
+void	parse_rtfile(int fd, t_rt *rt);
 
 // minirt_parse_scene.c
-void	parse_ambient(char const *line, t_camera *cam, t_hit_lst *world);
-void	parse_camera(char const *line, t_camera *cam, t_hit_lst *world);
-void	parse_light(char const *line, t_camera *cam, t_hit_lst *world);
+void	parse_ambient(char const *line, t_rt *rt);
+void	parse_camera(char const *line, t_rt *rt);
+void	parse_light(char const *line, t_rt *rt);
 
 // minirt_parse_shape.c
-void	parse_plane(char const *line, t_camera *cam, t_hit_lst *world);
-void	parse_sphere(char const *line, t_camera *cam, t_hit_lst *world);
-void	parse_cylinder(char const *line, t_camera *cam, t_hit_lst *world);
+void	parse_plane(char const *line, t_rt *rt);
+void	parse_sphere(char const *line, t_rt *rt);
+void	parse_cylinder(char const *line, t_rt *rt);
 
 // minirt_parse_utils.c
 void	must_numuric_and_comma(char const *line);
@@ -93,6 +92,7 @@ void	must_be_last_vec3(char const *line);
 void	must_be_last_number(char const *line);
 
 // minirt_parse_utils2.c
+void	must_have_no_remain(char const *line);
 void	normalize_color_value(t_color *color);
 
 // minirt_parse_vec3.c

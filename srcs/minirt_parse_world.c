@@ -19,11 +19,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static void		dispatch_line( \
-	char const *line, t_camera *cam, t_hit_lst *world);
+static void		dispatch_line(char const *line, t_rt *rt);
 static t_bool	is_not_blank(char const *line);
 
-void	init_world(t_camera *cam, t_hit_lst **world_ptr, char const *filename)
+void	init_world(t_rt *rt, char const *filename)
 {
 	int			fd;
 	t_hit_lst	*world;
@@ -33,9 +32,9 @@ void	init_world(t_camera *cam, t_hit_lst **world_ptr, char const *filename)
 	if (fd < 0)
 		error_exit(ERROR_OPEN_FILE);
 	world = init_hittable_list(10);
-	parse_rtfile(fd, cam, world);
+	parse_rtfile(fd, rt);
 	close(fd);
-	*world_ptr = world;
+	rt->world = world;
 }
 
 void	must_be_rt_extension(char const *filename)
@@ -55,7 +54,7 @@ void	must_be_rt_extension(char const *filename)
 		error_exit(ERROR_INVALID_IDENTIFIER);
 }
 
-void	parse_rtfile(int fd, t_camera *cam, t_hit_lst *world)
+void	parse_rtfile(int fd, t_rt *rt)
 {
 	char	*line;
 
@@ -65,7 +64,7 @@ void	parse_rtfile(int fd, t_camera *cam, t_hit_lst *world)
 		if (!line)
 			break ;
 		if (*line && is_not_blank(line))
-			dispatch_line(line, cam, world);
+			dispatch_line(line, rt);
 		free(line);
 	}
 }
@@ -81,7 +80,7 @@ t_bool	is_not_blank(char const *line)
 	return (FALSE);
 }
 
-void	dispatch_line(char const *line, t_camera *cam, t_hit_lst *world)
+void	dispatch_line(char const *line, t_rt *rt)
 {
 	int				i;
 	int				identifier_length;
@@ -97,7 +96,7 @@ void	dispatch_line(char const *line, t_camera *cam, t_hit_lst *world)
 		if (!ft_strncmp(line, parsers[i].identifier, identifier_length)
 			&& ft_isspace(line[identifier_length]))
 		{
-			parsers[i].func(line, cam, world);
+			parsers[i].func(line, rt);
 			return ;
 		}
 		i++;

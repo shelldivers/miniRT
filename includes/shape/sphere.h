@@ -26,6 +26,6 @@ typedef struct s_sphere
 }	t_sphere;
 
 t_sphere	*init_sphere(t_sphere data);
-t_bool		hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec);
+t_bool		hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
 
 #endif

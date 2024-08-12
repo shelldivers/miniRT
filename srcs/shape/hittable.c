@@ -17,7 +17,7 @@
 #include "vec3.h"
 #include <stdlib.h>
 
-void	set_face_normal(t_rec *rec, t_ray const *ray, t_vec3 outward_normal)
+void	set_face_normal(t_record *rec, t_ray const *ray, t_vec3 outward_normal)
 {
 	rec->front_face = vec3_dot(ray->direction, outward_normal) < 0;
 	if (rec->front_face)
@@ -77,10 +77,10 @@ void	clear_hittable_list(t_hit_lst *list)
 	list = NULL;
 }
 
-t_bool	hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_rec *rec)
+t_bool	hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_record *rec)
 {
 	t_bool		hit_anything;
-	t_rec		tmp;
+	t_record	tmp;
 	t_hit_func	hit_func;
 	float		closest_so_far;
 	int			i;

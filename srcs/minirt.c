@@ -44,9 +44,9 @@ void	ray_tracing(t_rt *rt)
 
 t_color	ray_color(t_ray const *ray, t_hit_lst *world)
 {
-	t_vec3	unit_direction;
-	float	a;
-	t_rec	rec;
+	t_vec3		unit_direction;
+	float		a;
+	t_record	rec;
 
 	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 		return (rec.color);

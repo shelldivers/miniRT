@@ -24,14 +24,14 @@ enum e_shape
 	CYLINDER
 };
 
-typedef struct s_rec
+typedef struct s_record
 {
 	t_point3	p;
 	t_vec3		normal;
 	float		t;
 	t_bool		front_face;
 	t_color		color;
-}	t_rec;
+}	t_record;
 
 typedef struct s_coll
 {
@@ -45,7 +45,7 @@ typedef struct s_hit
 	enum e_shape	shape;
 }	t_hit;
 
-typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_rec *);
+typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_record *);
 
 typedef struct s_hit_lst
 {
@@ -54,10 +54,12 @@ typedef struct s_hit_lst
 	int		capacity;
 }	t_hit_lst;
 
-void		set_face_normal(t_rec *rec, t_ray const *r, t_vec3 outward_normal);
+void		set_face_normal( \
+	t_record *rec, t_ray const *r, t_vec3 outward_normal);
 t_hit_lst	*init_hittable_list(int capacity);
 void		add_hittable_list(t_hit_lst *list, t_hit *object);
 void		clear_hittable_list(t_hit_lst *list);
-t_bool		hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_rec *rec);
+t_bool		hit_shapes( \
+	t_hit_lst *list, t_ray const *ray, t_coll t, t_record *rec);
 
 #endif

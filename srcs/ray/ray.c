@@ -12,13 +12,14 @@
 
 #include "ray.h"
 #include "vec3.h"
+#include "minirt.h"
 
 t_point3	point_at(t_ray const *ray, float t)
 {
 	return (vec3_add(ray->origin, vec3_mul(ray->direction, t)));
 }
 
-t_vec3	get_direction(t_cam *camera, t_vw *viewport, int i, int j)
+t_vec3	get_direction(t_camera *camera, t_viewport *viewport, int i, int j)
 {
 	t_vec3	pixel_center;
 

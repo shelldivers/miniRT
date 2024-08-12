@@ -20,7 +20,7 @@ TEST(init_world_test, 성공)
         std::cout << "Unable to open test file" << std::endl;
     }
 
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(init_world(cam, &world, filename.c_str()));
@@ -32,7 +32,7 @@ TEST(init_world_test, 파일이_없는_경우)
 {
     std::string filename = "example.rt";
 
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_THROW(init_world(cam, &world, filename.c_str()), std::runtime_error);

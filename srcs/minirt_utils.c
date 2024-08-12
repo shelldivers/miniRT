@@ -38,7 +38,7 @@ void	init_mlx(t_rt *rt, t_img *img)
 		error_exit("mlx_new_window() failed");
 }
 
-void	init_viewport(t_img *img, t_cam *camera, t_vw *viewport)
+void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport)
 {
 	float		viewport_height;
 	float		viewport_width;

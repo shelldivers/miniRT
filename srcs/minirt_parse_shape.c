@@ -13,6 +13,7 @@
 #include "minirt.h"
 #include "error.h"
 #include "libft.h"
+#include "camera.h"
 #include "shape/plane.h"
 #include "shape/sphere.h"
 #include "shape/cylinder.h"
@@ -26,7 +27,7 @@ static void	must_have_no_remain(char const *line);
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world)
+void	parse_plane(char const *line, t_camera *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_plane		data;
@@ -55,7 +56,7 @@ void	parse_plane(char const *line, t_cam *cam, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world)
+void	parse_sphere(char const *line, t_camera *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_sphere	data;
@@ -86,7 +87,7 @@ void	parse_sphere(char const *line, t_cam *cam, t_hit_lst *world)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_cylinder(char const *line, t_cam *cam, t_hit_lst *world)
+void	parse_cylinder(char const *line, t_camera *cam, t_hit_lst *world)
 {
 	t_hit		*new_obj;
 	t_cylinder	data;

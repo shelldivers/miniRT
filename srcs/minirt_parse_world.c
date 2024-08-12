@@ -19,10 +19,11 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static void		dispatch_line(char const *line, t_cam *cam, t_hit_lst *world);
+static void		dispatch_line( \
+	char const *line, t_camera *cam, t_hit_lst *world);
 static t_bool	is_not_blank(char const *line);
 
-void	init_world(t_cam *cam, t_hit_lst **world_ptr, char const *filename)
+void	init_world(t_camera *cam, t_hit_lst **world_ptr, char const *filename)
 {
 	int			fd;
 	t_hit_lst	*world;
@@ -54,7 +55,7 @@ void	must_be_rt_extension(char const *filename)
 		error_exit(ERROR_INVALID_IDENTIFIER);
 }
 
-void	parse_rtfile(int fd, t_cam *cam, t_hit_lst *world)
+void	parse_rtfile(int fd, t_camera *cam, t_hit_lst *world)
 {
 	char	*line;
 
@@ -80,7 +81,7 @@ t_bool	is_not_blank(char const *line)
 	return (FALSE);
 }
 
-void	dispatch_line(char const *line, t_cam *cam, t_hit_lst *world)
+void	dispatch_line(char const *line, t_camera *cam, t_hit_lst *world)
 {
 	int				i;
 	int				identifier_length;

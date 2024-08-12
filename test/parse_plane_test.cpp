@@ -7,7 +7,7 @@ extern "C" {
 TEST(parse_plane_test, basic_case)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	char		*line = (char *)"pl	0,0,20	0,0,1	255,255,255";
 
 	parse_plane(line, &cam, world);
@@ -28,7 +28,7 @@ TEST(parse_plane_test, basic_case)
 
 TEST(parse_plane_test, success_with_last_space)
 {	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	char		*line = (char *)"pl	0,0,20	0,0,1	255,255,255 ";
 	
 	parse_plane(line, &cam, world);
@@ -51,7 +51,7 @@ TEST(parse_plane_test, success_with_last_space)
 TEST(parse_plane_test, invalid)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	char		*line;
 	
 	line = (char *)"pl	0,20	0,0,1	255,255,255";
@@ -76,7 +76,7 @@ TEST(parse_plane_test, invalid)
 TEST(parse_plane_test, invalid_param)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	char		*line;
 	
 	line = (char *)"pl	0,0,20	0,0,1	255,255,a";
@@ -107,27 +107,27 @@ TEST(parse_plane_test, invalid_param)
 TEST(parse_plane_test, empty)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	ASSERT_THROW(parse_plane("", &cam, world), std::runtime_error);
 }
 
 TEST(parse_plane_test, empty_vec3)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	ASSERT_THROW(parse_plane("pl ,, 10,10,0 255,255,255", &cam, world), std::runtime_error);
 }
 
 TEST(parse_plane_test, 색상값이_0_미만인_경우)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	ASSERT_THROW(parse_plane("pl 0,0,20 1,2,3 255,255,-1", &cam, world), std::runtime_error);
 }
 
 TEST(parse_plane_test, 색상값이_255_초과인_경우)
 {
 	t_hit_lst	*world = init_hittable_list(10);
-	t_cam		cam;
+	t_camera	cam;
 	ASSERT_THROW(parse_plane("pl 0,0,20 1,2,3 255,255,256", &cam, world), std::runtime_error);
 }

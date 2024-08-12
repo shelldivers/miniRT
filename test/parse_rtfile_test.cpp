@@ -21,7 +21,7 @@ TEST(parse_rtfile_test, 성공)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -47,7 +47,7 @@ TEST(parse_rtfile_test, 허용되지_않는_식별자)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
@@ -72,7 +72,7 @@ TEST(parse_rtfile_test, 마지막_개행이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -98,7 +98,7 @@ TEST(parse_rtfile_test, 추가_개행이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -124,7 +124,7 @@ TEST(parse_rtfile_test, 추가_개행이_많은_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -150,7 +150,7 @@ TEST(parse_rtfile_test, 중간에_개행이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -180,7 +180,7 @@ TEST(parse_rtfile_test, 중간에_개행이_많은_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -208,7 +208,7 @@ TEST(parse_rtfile_test, 공백_줄이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -236,7 +236,7 @@ TEST(parse_rtfile_test, 들여쓰기_줄이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_NO_THROW(parse_rtfile(fd, cam, world));
@@ -264,7 +264,7 @@ TEST(parse_rtfile_test, 식별자_앞에_공백이_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
@@ -292,7 +292,7 @@ TEST(parse_rtfile_test, 식별자_앞에_들여쓰기가_있는_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);
@@ -317,7 +317,7 @@ TEST(parse_rtfile_test, 혀용된_식별자_뒤에_문자가_추가된_경우)
     }
 
 	int fd = open(filename.c_str(), O_RDONLY);
-	t_cam *cam = (t_cam *)malloc(sizeof(t_cam));
+	t_camera *cam = (t_camera *)malloc(sizeof(t_camera));
 	t_hit_lst *world = init_hittable_list(10);
 
 	ASSERT_THROW(parse_rtfile(fd, cam, world), std::runtime_error);

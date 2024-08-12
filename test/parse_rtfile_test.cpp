@@ -6,12 +6,7 @@ extern "C" {
 #include <fstream>
 #include <fcntl.h>
 
-extern "C" void clear_get_next_line_buffer(int fd) {
-	char *line;
-	while ((line = get_next_line(fd))) {
-		free(line);
-	}
-}
+void clear_get_next_line_buffer(int fd);    // from test/main.cpp
 
 TEST(parse_light_test, 실패)
 {

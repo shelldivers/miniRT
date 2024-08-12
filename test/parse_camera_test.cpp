@@ -117,3 +117,17 @@ TEST(parse_camera_test, 양수_음수_부호가_들어오는_경우)
 	line = (char *)"C	-50.0,1,20	0,0,1	+-70";
 	ASSERT_THROW(parse_camera(line, &rt), std::runtime_error);
 }
+
+
+TEST(parse_camera_test, normal_vector가_범위를_벗어난_경우)
+{
+	t_rt 	rt;
+	rt.world = init_hittable_list(10);
+	char	*line;
+
+	line = (char *)"C	-50.0,1,20	0,0,-1.1	70";
+	ASSERT_THROW(parse_camera(line, &rt), std::runtime_error);
+
+	line = (char *)"C	-50.0,1,20	0,0,1.1	70";
+	ASSERT_THROW(parse_camera(line, &rt), std::runtime_error);
+}

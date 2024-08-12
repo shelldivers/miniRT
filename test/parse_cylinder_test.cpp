@@ -122,3 +122,17 @@ TEST(parse_cylinder_test, 색상값이_255_초과인_경우)
 
     ASSERT_THROW(parse_cylinder(line, &rt), std::runtime_error);
 }
+
+TEST(parse_cylinder_test, normal_vector가_범위를_벗어난_경우)
+{
+    t_rt 	rt;
+	rt.world = init_hittable_list(10);
+    char		*line;
+    
+    
+    line = (char *)"cy	0,0,20	0,0,-1.1	10	5	254,255,255";
+    ASSERT_THROW(parse_cylinder(line, &rt), std::runtime_error);
+
+    line = (char *)"cy	0,0,20	1.0,1.1,-0	10	5	254,255,255";
+    ASSERT_THROW(parse_cylinder(line, &rt), std::runtime_error);
+}

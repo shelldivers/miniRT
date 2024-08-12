@@ -19,7 +19,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-static void		dispatch_line(char const *line, t_rt *rt);
 static t_bool	is_not_blank(char const *line);
 
 void	init_world(t_rt *rt, char const *filename)

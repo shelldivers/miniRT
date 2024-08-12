@@ -20,6 +20,7 @@ void	parse_ambient(char const *line, t_rt *rt)
 	skip_spaces(&line);
 	rt->ambient.ratio = ft_strtof(line, (char **)&line);
 	must_have_no_remain(line);
+	must_be_valid_ratio(rt->ambient.ratio);
 	move_to_next_param(&line);
 	rt->ambient.color = parse_vec3(line);
 	normalize_color_value(&rt->ambient.color);
@@ -40,6 +41,7 @@ void	parse_camera(char const *line, t_rt *rt)
 	rt->cam.view_point = parse_vec3(line);
 	move_to_next_param(&line);
 	rt->cam.normal = parse_vec3(line);
+	must_be_valid_normal(rt->cam.normal);
 	move_to_next_param(&line);
 	rt->cam.fov = ft_strtoi(line, (char **)&line);
 	must_be_last_number(line);
@@ -60,6 +62,7 @@ void	parse_light(char const *line, t_rt *rt)
 	move_to_next_param(&line);
 	new_light->ratio = ft_strtof(line, (char **)&line);
 	must_have_no_remain(line);
+	must_be_valid_ratio(new_light->ratio);
 	move_to_next_param(&line);
 	new_light->color = parse_vec3(line);
 	normalize_color_value(&new_light->color);

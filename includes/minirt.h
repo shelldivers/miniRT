@@ -73,6 +73,7 @@ void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport);
 void	init_world(t_rt *rt, char const *filename);
 void	must_be_rt_extension(char const *filename);
 void	parse_rtfile(int fd, t_rt *rt);
+void	dispatch_line(char const *line, t_rt *rt);
 
 // minirt_parse_scene.c
 void	parse_ambient(char const *line, t_rt *rt);
@@ -92,8 +93,10 @@ void	must_be_last_vec3(char const *line);
 void	must_be_last_number(char const *line);
 
 // minirt_parse_utils2.c
-void	must_have_no_remain(char const *line);
 void	normalize_color_value(t_color *color);
+void	must_be_valid_normal(t_vec3 normal);
+void	must_be_valid_ratio(float ratio);
+void	must_have_no_remain(char const *line);
 
 // minirt_parse_vec3.c
 t_vec3	parse_vec3(char const *line);

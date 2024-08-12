@@ -36,6 +36,7 @@ void	parse_plane(char const *line, t_rt *rt)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.normal = parse_vec3(line);
+	must_be_valid_normal(data.normal);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
 	normalize_color_value(&data.color);
@@ -94,6 +95,7 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.normal = parse_vec3(line);
+	must_be_valid_normal(data.normal);
 	move_to_next_param(&line);
 	data.diameter = ft_strtof(line, (char **)&line);
 	must_have_no_remain(line);

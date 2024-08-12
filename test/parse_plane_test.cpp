@@ -129,3 +129,17 @@ TEST(parse_plane_test, 색상값이_255_초과인_경우)
 	rt.world = init_hittable_list(10);
 	ASSERT_THROW(parse_plane("pl 0,0,20 1,2,3 255,255,256", &rt), std::runtime_error);
 }
+
+TEST(parse_plane_test, normal_vector가_범위를_벗어난_경우)
+{
+    t_rt 	rt;
+	rt.world = init_hittable_list(10);
+    char		*line;
+    
+    
+    line = (char *)"pl 0.0,0.0,-10.0 0.0,-1.1,0.0 0,0,225";
+    ASSERT_THROW(parse_plane(line, &rt), std::runtime_error);
+
+	line = (char *)"pl 0.0,0.0,-10.0 0.0,1.1,0.0 0,0,225";
+    ASSERT_THROW(parse_plane(line, &rt), std::runtime_error);
+}

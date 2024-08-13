@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:04 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 22:28:11 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:48:32 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ typedef struct s_cone
 }	t_cone;
 
 t_cone	*init_cone(t_cone data);
-t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec);
+t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 22:29:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:49:16 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,11 @@ void	parse_cylinder(char const *line, t_rt *rt)
  * @param world 	pointer to the world
  * @return void
  */
-void	parse_cone(char const *line, t_cam *cam, t_hit_lst *world)
+void	parse_cone(char const *line, t_rt *rt)
 {
 	t_hit	*new_obj;
 	t_cone	data;
 
-	(void)cam;
 	line += 2;
 	must_numuric_and_comma(line);
 	skip_spaces(&line);
@@ -146,5 +145,5 @@ void	parse_cone(char const *line, t_cam *cam, t_hit_lst *world)
 	new_obj = (t_hit *)init_cone(data);
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
-	add_hittable_list(world, new_obj);
+	add_hittable_list(rt->world, new_obj);
 }

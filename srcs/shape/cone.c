@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 22:28:33 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/13 23:48:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_cone	*init_cone(t_cone data)
 	return (cone);
 }
 
-t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
+t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 {
 	(void)obj;
 	(void)ray;

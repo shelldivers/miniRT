@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 02:15:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 03:01:02 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ t_bool	is_collided_endcaps(\
 	bottom_t = is_collided_bottom(cy, ray, t);
 	if (top_t == FLOAT_MAX && bottom_t == FLOAT_MAX)
 		return (FALSE);
-	*root = bottom_t;
 	if (top_t < bottom_t)
 		*root = top_t;
+	else
+		*root = bottom_t;
 	return (TRUE);
 }
 
@@ -54,7 +55,7 @@ float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t)
 	float	denominator;
 
 	denominator = vec3_dot(ray->direction, cy->normal);
-	if (denominator == 0)
+	if (fabs(denominator) < FLOAT_EPSILON)
 		return (FLOAT_MAX);
 	p = vec3_dot(cy->top, cy->normal);
 	n = vec3_dot(ray->origin, cy->normal);
@@ -76,13 +77,13 @@ float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t)
 	float	denominator;
 
 	denominator = vec3_dot(cy->normal, ray->direction);
-	if (denominator == 0)
+	if (fabs(denominator) < FLOAT_EPSILON)
 		return (FLOAT_MAX);
 	p = vec3_dot(cy->bottom, cy->normal);
 	n = vec3_dot(ray->origin, cy->normal);
 	bottom_t = (p - n) / denominator;
 	if (bottom_t <= t.min || t.max <= bottom_t)
-		bottom_t = FLOAT_MAX;
+		return (FLOAT_MAX);
 	length = vec3_length_squared(vec3_sub(point_at(ray, bottom_t), cy->bottom));
 	if (length > pow(cy->radius, 2.0))
 		return (FLOAT_MAX);

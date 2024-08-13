@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:36:17 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:31:58 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/08 21:19:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 # include "vec3.h"
 
-typedef struct s_cam
+typedef struct s_camera
 {
 	t_vec3	view_point;
 	t_vec3	normal;
 	int		fov;
-}	t_cam;
+}	t_camera;
 
-typedef struct s_vw
+typedef struct s_viewport
 {
 	t_vec3		origin;
 	t_vec3		horizontal;
@@ -32,6 +32,6 @@ typedef struct s_vw
 	t_point3	pixel00_loc;
 	t_vec3		pixel_delta_u;
 	t_vec3		pixel_delta_v;
-}	t_vw;
+}	t_viewport;
 
 #endif

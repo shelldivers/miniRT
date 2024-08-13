@@ -43,7 +43,7 @@ t_sphere	*init_sphere(t_sphere data)
  * @param rec The record of the collision
  * @return t_bool TRUE if the ray hits the sphere, FALSE otherwise
  */
-t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
+t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 {
 	t_sphere	*sphere;
 	float		root;

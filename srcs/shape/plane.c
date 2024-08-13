@@ -39,7 +39,7 @@ t_plane	*init_plane(t_plane data)
  * @param rec The record of the collision
  * @return t_bool TRUE if the ray hits the plane, FALSE otherwise
  */
-t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec)
+t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 {
 	t_plane	*plane;
 	float	root;

@@ -18,18 +18,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_rt	rt;
-	t_img	img;
-	t_cam	cam;
-	t_vw	vw;
+	t_rt		rt;
 
 	if (argc != 2)
 		error_exit(ERROR_USAGE);
-	init_mlx(&rt, &img);
-	init_world(&cam, &rt.world, argv[1]);
-	init_viewport(&img, &cam, &vw);
-	ray_tracing(&img, &cam, &vw, rt.world);
-	mlx_put_image_to_window(rt.mlx, rt.win, img.ptr, 0, 0);
+	init_mlx(&rt, &rt.img);
+	init_world(&rt, argv[1]);
+	init_viewport(&rt.img, &rt.cam, &rt.vw);
+	ray_tracing(&rt);
+	mlx_put_image_to_window(rt.mlx, rt.win, rt.img.ptr, 0, 0);
 	mlx_hook(rt.win, X_EVENT_KEY_PRESS, 1L << 0, key_press, &rt);
 	mlx_hook(rt.win, X_EVENT_DESTROY, 0L, destroy_minirt, &rt);
 	mlx_loop(rt.mlx);

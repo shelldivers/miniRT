@@ -28,6 +28,6 @@ typedef struct s_cylinder
 }	t_cylinder;
 
 t_cylinder	*init_cylinder(t_cylinder data);
-t_bool		hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_rec *rec);
+t_bool		hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
 
 #endif

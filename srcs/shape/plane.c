@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 11:19:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 02:14:20 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 	denominator = vec3_dot(plane->normal, ray->direction);
 	if (denominator == 0)
 		return (FALSE);
-	p = vec3_dot(plane->normal, plane->center);
-	n = vec3_dot(plane->normal, ray->origin);
+	p = vec3_dot(plane->center, plane->normal);
+	n = vec3_dot(ray->origin, plane->normal);
 	*root = (p - n) / denominator;
 	if (*root <= t.min || t.max <= *root)
 		return (FALSE);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 01:20:00 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 01:50:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,13 @@ static float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t);
 static float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t);
 
 
-t_bool	hit_cylinder_endcaps(\
-	t_cylinder *cy, t_ray const *ray, t_coll t, t_record *rec)
+float	hit_cylinder_endcaps(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
 	float		root;
 
 	if (!is_collided_endcaps(cy, ray, t, &root))
-		return (FALSE);
-	rec->t = root;
-	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
-	rec->normal = cy->normal;
-	set_face_normal(rec, ray, cy->normal);
-	return (TRUE);
+		return (FLOAT_MAX);
+	return (root);
 }
 
 t_bool	is_collided_endcaps(\

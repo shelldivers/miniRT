@@ -6,30 +6,24 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 01:27:15 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 01:44:48 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "shape/cylinder.h"
 #include <math.h>
 
 static t_bool	is_collided_surface(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root);
 
-t_bool	hit_cylinder_surface(\
-	t_cylinder *cy, t_ray const *ray, t_coll t, t_record *rec)
+float	hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
 	float		root;
 
 	if (!is_collided_surface(cy, ray, t, &root))
-		return (FALSE);
-	rec->t = root;
-	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
-	rec->normal = vec3_sub(vec3_sub(cy->top, rec->p), \
-		vec3_mul(cy->normal, vec3_dot(vec3_sub(cy->top, rec->p), cy->normal)));
-	set_face_normal(rec, ray, rec->normal);
-	return (TRUE);
+		return (FLOAT_MAX);
+	return (root);
 }
 
 t_bool	is_collided_surface(\

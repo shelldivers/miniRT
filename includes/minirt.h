@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 02:45:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 03:11:31 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	must_be_last_number(char const *line);
 // minirt_parse_utils2.c
 void	normalize_color_value(t_color *color);
 void	must_be_valid_normal(t_vec3 normal);
+void	normalize_vec3(t_vec3 *vec);
 void	must_be_valid_ratio(float ratio);
 void	must_have_no_remain(char const *line);
 

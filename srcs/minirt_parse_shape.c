@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/13 23:58:40 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 03:12:43 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.normal = parse_vec3(line);
-	must_be_valid_normal(data.normal);
+	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2.0;
 	must_have_no_remain(line);

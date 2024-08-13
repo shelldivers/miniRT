@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 00:54:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:01:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ enum e_shape
 	PLANE,
 	CYLINDER
 };
+
+typedef struct s_quadratic
+{
+	t_vec3	oc;
+	t_vec3	u;
+	t_vec3	v;
+	float	a;
+	float	b;
+	float	c;
+}	t_quadratic;
 
 typedef struct s_record
 {

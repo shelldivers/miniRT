@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:19:54 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:40:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:05:35 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ typedef struct s_cylinder
 {
 	t_hit		parent;
 	t_point3	center;
+	t_point3	top;
+	t_point3	bottom;
 	t_vec3		normal;
-	float		diameter;
+	float		radius;
 	float		height;
 	t_color		color;
 }	t_cylinder;

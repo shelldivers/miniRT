@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 02:01:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 02:22:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ void	set_record_surface(\
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = cy->color;
+	rec->color.x = rec->color.x * 0.5;
+	rec->color.y = rec->color.y * 0.5;
+	rec->color.z = rec->color.z * 0.5;
 	rec->normal = vec3_sub(vec3_sub(cy->top, rec->p), \
 		vec3_mul(cy->normal, vec3_dot(vec3_sub(cy->top, rec->p), cy->normal)));
 	set_face_normal(rec, ray, rec->normal);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 02:13:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:07:14 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,32 @@
 
 static void		put_color(t_img *img, int x, int y, unsigned int color);
 static t_color	ray_color(t_ray const *ray, t_hit_lst *world);
+static void		render_width(t_rt *rt, t_ray *ray, int hei);
 
 void	ray_tracing(t_rt *rt)
 {
 	t_ray	ray;
-	int		i;
-	int		j;
+	int		hei;
+	
+	hei = 0;
+	ray.origin = rt->cam.view_point;
+	while (hei < rt->img.height)
+		render_width(rt, &ray, hei++);
+}
+
+void	render_width(t_rt *rt, t_ray *ray, int hei)
+{
+	int 	wid;
 	t_color	color;
 
-	i = 0;
-	j = 0;
-	ray.origin = rt->cam.view_point;
-	while (j < rt->img.height)
+	wid = 0;
+	while (wid < rt->img.width)
 	{
-		i = 0;
-		while (i < rt->img.width)
-		{
-			ray.direction = get_direction(&(rt->cam), &(rt->vw), i, j);
-			color = ray_color(&ray, rt->world);
-			put_color(&(rt->img), i, j, color_to_int(color));
-			i++;
-		}
-		j++;
+		ray->direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+		color = ray_color(ray, rt->world);
+		color = embient_lighting(color, rt->ambient.light);
+		put_color(&(rt->img), wid, hei, color_to_int(color));
+		wid++;
 	}
 }
 

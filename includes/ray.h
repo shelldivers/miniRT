@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:36:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 01:00:21 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:22:59 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_vec3			get_direction(t_camera *cam, t_viewport *vw, int i, int j);
 
 // color.ct_viewport
 unsigned int	color_to_int(t_color color);
+t_color			int_to_color(unsigned int color);
 t_color			rgb_to_color(unsigned int r, unsigned int g, unsigned int b);
 
 #endif

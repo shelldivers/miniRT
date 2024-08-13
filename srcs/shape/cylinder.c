@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 01:45:33 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 01:53:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ void	set_record_endcaps(\
 
 t_cylinder	*init_cylinder(t_cylinder data)
 {
-	t_cylinder	*cylinder;
+	t_cylinder	*cy;
 
-	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	if (!cylinder)
+	cy = (t_cylinder *)malloc(sizeof(t_cylinder));
+	if (!cy)
 		error_exit(ERROR_MALLOC);
-	cylinder->parent.shape = CYLINDER;
-	cylinder->parent.hit = hit_cylinder;
-	cylinder->center = data.center;
-	cylinder->normal = data.normal;
-	cylinder->radius = data.radius;
-	cylinder->height = data.height;
-	cylinder->color = data.color;
-	return (cylinder);
+	cy->parent.shape = CYLINDER;
+	cy->parent.hit = hit_cylinder;
+	cy->center = data.center;
+	cy->normal = data.normal;
+	cy->radius = data.radius;
+	cy->height = data.height;
+	cy->color = data.color;
+	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
+	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
+	return (cy);
 }
 
 t_bool	hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
@@ -45,8 +47,6 @@ t_bool	hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	float		endcaps_t;
 
 	cy = (t_cylinder *)obj;
-	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
-	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	surface_t = hit_cylinder_surface(cy, ray, t);
 	endcaps_t = hit_cylinder_endcaps(cy, ray, t);
 	if (surface_t == FLOAT_MAX && endcaps_t == FLOAT_MAX)

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/13 19:07:14 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/13 20:13:18 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	render_width(t_rt *rt, t_ray *ray, int hei)
 	{
 		ray->direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
 		color = ray_color(ray, rt->world);
-		color = embient_lighting(color, rt->ambient.light);
+		// color = embient_lighting(color, rt->ambient.light);
 		put_color(&(rt->img), wid, hei, color_to_int(color));
 		wid++;
 	}
@@ -48,12 +48,18 @@ void	render_width(t_rt *rt, t_ray *ray, int hei)
 
 t_color	ray_color(t_ray const *ray, t_hit_lst *world)
 {
+	t_ray		scattered;
+	t_vec3		direction;
 	t_vec3		unit_direction;
 	float		a;
 	t_record	rec;
 
 	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
-		return (rec.color);
+	{
+		direction = random_on_hemisphere(rec.normal);
+		scattered = (t_ray){rec.p, direction};
+		return (vec3_mul(ray_color(&scattered, world), 0.5));
+	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);
 	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \

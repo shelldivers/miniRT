@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:40:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/13 18:56:54 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:53:28 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,10 @@ void		clear_light_list(t_light_lst *list);
 
 // ambient.c
 t_color		embient_lighting(t_color color, t_color ambient_light);
+
+// diffuse.c
+t_vec3		random_in_unit_sphere(void);
+t_vec3		random_unit_vector(void);
+t_vec3		random_on_hemisphere(t_vec3 normal);
 
 #endif

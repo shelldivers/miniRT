@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:29:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:48:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,17 @@ t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 	float		discriminant;
 	float		sqrtd;
 	float		m;
-	t_vec3		h;
 	t_vec3		w;
 
-	h = vec3_div(vec3_sub(co->bottom, co->top), co->height);
 	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
 	w = vec3_sub(ray->origin, co->top);
 	var.a = vec3_dot(ray->direction, ray->direction) - \
-		(m - 1) * pow(vec3_dot(ray->direction, h), 2.0);
+		(m - 1) * pow(vec3_dot(ray->direction, co->normal), 2.0);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = vec3_dot(ray->direction, w) - \
-		(m - 1) * vec3_dot(ray->direction, h) * vec3_dot(w, h);
-	var.c = vec3_dot(w, w) - (m - 1) * pow(vec3_dot(w, h), 2.0);
+	var.b = vec3_dot(ray->direction, w) - (m - 1) \
+		* vec3_dot(ray->direction, co->normal) * vec3_dot(w, co->normal);
+	var.c = vec3_dot(w, w) - (m - 1) * pow(vec3_dot(w, co->normal), 2.0);
 	discriminant = pow(var.b, 2.0) - var.a * var.c;
 	if (discriminant < 0)
 		return (FALSE);

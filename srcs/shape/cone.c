@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:10:30 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:11:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 /**
  * @brief Check if the ray hits the cone
  * @see http://www.illusioncatalyst.com/notes_files/mathematics/line_cone_intersection.php
+ * @param co	pointer to the cone
+ * @param ray	pointer to the ray
+ * @param root	pointer to the root
+ * @param t		t_coll
+ * @return t_bool
  */
 t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 {

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:06:16 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:10:30 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+static float	get_theta(t_cone *co);
 static t_bool	is_collided(\
 	t_cone *co, t_ray const *ray, float *root, t_coll t);
 
@@ -33,9 +34,15 @@ t_cone	*init_cone(t_cone data)
 	co->radius = data.radius;
 	co->height = data.height;
 	co->color = data.color;
+	co->theta = get_theta(co);
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
 	return (co);
+}
+
+float	get_theta(t_cone *co)
+{
+	return (atan(co->radius / co->height));
 }
 
 t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)

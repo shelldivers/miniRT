@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:02:38 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:03:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	return (TRUE);
 }
 
+/**
+ * @todo Check if the normal vector is correct
+ */
 void	set_record_surface(\
 	t_cone *co, t_ray const *ray, t_record *rec, float surface_t)
 {
@@ -68,7 +71,6 @@ void	set_record_surface(\
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = co->color;
-
 	hc = vec3_sub(co->top, co->bottom);
 	hp = vec3_sub(rec->p, co->bottom);
 	m = pow(co->radius, 2.0) / pow(co->height, 2.0);

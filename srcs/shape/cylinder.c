@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:01:39 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:04:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ t_bool	hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	return (TRUE);
 }
 
+/**
+ * @todo Check if the normal vector is correct
+ */
 void	set_record_surface(\
 	t_cylinder *cy, t_ray const *ray, t_record *rec, float surface_t)
 {

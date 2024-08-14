@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:25:16 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:36:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	parse_camera(char const *line, t_rt *rt)
 	rt->cam.view_point = parse_vec3(line);
 	move_to_next_param(&line);
 	rt->cam.normal = parse_vec3(line);
-	must_be_valid_normal(rt->cam.normal);
+	normalize_vec3(&rt->cam.normal);
 	move_to_next_param(&line);
 	rt->cam.fov = ft_strtoi(line, (char **)&line);
 	must_be_last_number(line);

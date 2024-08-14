@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:16:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:18:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 		(m - 1) * vec3_dot(ray->direction, h) * vec3_dot(w, h);
 	var.c = vec3_dot(w, w) - (m - 1) * pow(vec3_dot(w, h), 2.0);
 	discriminant = pow(var.b, 2.0) - var.a * var.c;
-	if (discriminant < FLOAT_EPSILON)
+	if (discriminant < 0)
 		return (FALSE);
 	sqrtd = sqrtf(discriminant);
 	*root = (-var.b - sqrtd) / var.a;

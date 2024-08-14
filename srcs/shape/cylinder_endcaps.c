@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 15:55:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:19:05 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t)
 	float	denominator;
 
 	denominator = vec3_dot(ray->direction, cy->normal);
-	if (fabs(denominator) < FLOAT_EPSILON)
+	if (fabs(denominator) < 0)
 		return (FLOAT_MAX);
 	p = vec3_dot(cy->top, cy->normal);
 	n = vec3_dot(ray->origin, cy->normal);
@@ -76,7 +76,7 @@ float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t)
 	float	denominator;
 
 	denominator = vec3_dot(cy->normal, ray->direction);
-	if (fabs(denominator) < FLOAT_EPSILON)
+	if (fabs(denominator) < 0)
 		return (FLOAT_MAX);
 	p = vec3_dot(cy->bottom, cy->normal);
 	n = vec3_dot(ray->origin, cy->normal);

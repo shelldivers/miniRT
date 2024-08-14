@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 03:11:31 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:18:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # define KEY_ESC 53
 # define FLOAT_MAX 3.402823466e+38F
 # define FLOAT_MIN 1.175494351e-38F
-# define FLOAT_EPSILON 1.19209290e-07F
 
 # include "vec3.h"
 # include "camera.h"

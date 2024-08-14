@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:04:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:22:23 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
 
-	var.oc = vec3_sub(sphere->center, ray->origin);
+	var.oc = vec3_sub(ray->origin, sphere->center);
 	var.a = vec3_length_squared(ray->direction);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = -vec3_dot(ray->direction, var.oc);
+	var.b = vec3_dot(ray->direction, var.oc);
 	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
 	if (!quadratic_equation(var, t, root))
 		return (FALSE);

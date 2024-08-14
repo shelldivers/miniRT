@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:39:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:13:43 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ static t_bool	is_collided_surface(\
 static t_bool	is_point_within_cylinder_bounds(\
 	t_cylinder *cy, t_ray const *ray, float root);
 
+/**
+ * @brief Check if the ray hits the cylinder surface
+ * @param cy	pointer to the cylinder
+ * @param ray	pointer to the ray
+ * @param t		t_coll
+ * @return float
+ */
 float	hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
 	float		root;
@@ -31,13 +38,13 @@ float	hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t)
 }
 
 /**
- * @brief Check if the ray hits the cylinder
- * @see http://www.illusioncatalyst.com/notes.php
+ * @brief collision detection with the cylinder surface
  * @param cy	pointer to the cylinder
  * @param ray	pointer to the ray
  * @param t		t_coll
- * @param rec	pointer to the record
+ * @param root	pointer to the root
  * @return t_bool
+ * @see http://www.illusioncatalyst.com/notes.php
  */
 t_bool	is_collided_surface(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root)

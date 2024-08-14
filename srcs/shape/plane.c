@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:39:46 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:21:35 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 /**
- * @brief Check if the ray hits the plane
- * @see http://www.illusioncatalyst.com/notes.php
+ * @brief collision detection between the plane and the ray
  * @param plane The plane object
  * @param ray The ray
  * @param root The pointer to the root
  * @param t The collision range
  * @return t_bool TRUE if the ray hits the plane, FALSE otherwise
+ * @see http://www.illusioncatalyst.com/notes.php
  */
 t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 {

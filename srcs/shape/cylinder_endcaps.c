@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:48:13 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:16:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,10 @@
 #include "shape/cylinder.h"
 #include <math.h>
 
-static t_bool	is_collided_endcaps(\
-	t_cylinder *cy, t_ray const *ray, t_coll t, float *root);
 static float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t);
 static float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t);
 
 float	hit_cylinder_endcaps(t_cylinder *cy, t_ray const *ray, t_coll t)
-{
-	float		root;
-
-	if (!is_collided_endcaps(cy, ray, t, &root))
-		return (FLOAT_MAX);
-	return (root);
-}
-
-t_bool	is_collided_endcaps(\
-	t_cylinder *cy, t_ray const *ray, t_coll t, float *root)
 {
 	float	top_t;
 	float	bottom_t;
@@ -37,11 +25,11 @@ t_bool	is_collided_endcaps(\
 	top_t = is_collided_top(cy, ray, t);
 	bottom_t = is_collided_bottom(cy, ray, t);
 	if (top_t == FLOAT_MAX && bottom_t == FLOAT_MAX)
-		return (FALSE);
+		return (FLOAT_MAX);
 	if (top_t < bottom_t)
-		*root = top_t;
+		return (top_t);
 	else
-		*root = bottom_t;
+		return (bottom_t);
 	return (TRUE);
 }
 

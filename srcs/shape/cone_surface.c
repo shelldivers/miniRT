@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:49:40 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:19:21 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ static t_bool	is_collided_surface(\
 static t_bool	is_point_within_cone_bounds(\
 	t_cone *co, t_ray const *ray, float root);
 
-float	hit_cone_surface(\
-	t_cone *co, t_ray const *ray, t_coll t)
+/**
+ * @brief Check if the ray hits the cone surface
+ * @param co	pointer to the cone
+ * @param ray	pointer to the ray
+ * @param t		t_coll
+ * @return float
+ */
+float	hit_cone_surface(t_cone *co, t_ray const *ray, t_coll t)
 {
 	float		root;
 
@@ -34,16 +40,15 @@ float	hit_cone_surface(\
 }
 
 /**
- * @brief Check if the ray hits the cone
- * @see http://www.illusioncatalyst.com/notes.php
+ * @brief collision detection with the cone surface
  * @param co	pointer to the cone
  * @param ray	pointer to the ray
- * @param root	pointer to the root
  * @param t		t_coll
+ * @param root	pointer to the root
  * @return t_bool
+ * @see http://www.illusioncatalyst.com/notes.php
  */
-t_bool	is_collided_surface(\
-	t_cone *co, t_ray const *ray, float *root, t_coll t)
+t_bool	is_collided_surface(t_cone *co, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
 	float		m;

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:42:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:58:49 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:18:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-static t_bool	is_collided_bottom(\
-	t_cone *co, t_ray const *ray, t_coll t, float *root);
-
 float	hit_cone_endcaps(t_cone *co, t_ray const *ray, t_coll t)
-{
-	float	root;
-
-	if (!is_collided_bottom(co, ray, t, &root))
-		return (FLOAT_MAX);
-	return (root);
-}
-
-t_bool	is_collided_bottom(t_cone *co, t_ray const *ray, t_coll t, float *root)
 {
 	t_vec3	pn;
 	float	length;
@@ -37,14 +25,13 @@ t_bool	is_collided_bottom(t_cone *co, t_ray const *ray, t_coll t, float *root)
 
 	denominator = vec3_dot(ray->direction, co->normal);
 	if (fabs(denominator) < 0)
-		return (FALSE);
+		return (FLOAT_MAX);
 	pn = vec3_sub(co->bottom, ray->origin);
 	bottom_t = vec3_dot(pn, co->normal) / denominator;
 	if (bottom_t <= t.min || t.max <= bottom_t)
-		return (FALSE);
+		return (FLOAT_MAX);
 	length = vec3_length_squared(vec3_sub(point_at(ray, bottom_t), co->bottom));
 	if (length > pow(co->radius, 2.0))
-		return (FALSE);
-	*root = length;
-	return (TRUE);
+		return (FLOAT_MAX);
+	return (bottom_t);
 }

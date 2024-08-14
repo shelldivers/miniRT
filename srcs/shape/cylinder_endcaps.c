@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 03:01:02 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:55:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_bool	is_collided_endcaps(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root);
 static float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t);
 static float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t);
-
 
 float	hit_cylinder_endcaps(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
@@ -89,5 +88,3 @@ float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t)
 		return (FLOAT_MAX);
 	return (bottom_t);
 }
-
-

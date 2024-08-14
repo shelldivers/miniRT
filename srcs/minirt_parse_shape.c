@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 03:12:43 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:08:09 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	parse_cone(char const *line, t_rt *rt)
 	move_to_next_param(&line);
 	data.normal = parse_vec3(line);
 	move_to_next_param(&line);
-	data.diameter = ft_strtof(line, (char **)&line);
+	data.radius = ft_strtof(line, (char **)&line) / 2.0;
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.height = ft_strtof(line, (char **)&line);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:04:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:05:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_hit_lst
 	int		size;
 	int		capacity;
 }	t_hit_lst;
-
 
 t_hit_lst	*init_hittable_list(int capacity);
 void		add_hittable_list(t_hit_lst *list, t_hit *object);

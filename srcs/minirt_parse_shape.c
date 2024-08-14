@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:33:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:26:22 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
 
 /**
  * @brief parse plane line: <identifier> <center> <normal> <color>
- * @warning line and world must not be NULL
- * @param line		"pl	0,0,20	0,1,0	255,255,255"
- * @param world 	pointer to the world
+ * @param line	"pl	0,0,20	0,1,0	255,255,255"
+ * @param rt	pointer to the raytracer
  * @return void
  */
 void	parse_plane(char const *line, t_rt *rt)
@@ -50,9 +49,8 @@ void	parse_plane(char const *line, t_rt *rt)
 
 /**
  * @brief parse sphere line: <identifier> <center> <diameter> <color>
- * @warning line and world must not be NULL
- * @param line		"sp	0,0,20	10	255,255,255"
- * @param world 	pointer to the world
+ * @param line	"sp	0,0,20	10	255,255,255"
+ * @param rt	pointer to the raytracer
  * @return void
  */
 void	parse_sphere(char const *line, t_rt *rt)
@@ -80,9 +78,8 @@ void	parse_sphere(char const *line, t_rt *rt)
 /**
  * @brief parse cylinder line:
  *        <identifier> <center> <normal> <diameter> <height> <color>
- * @warning line and world must not be NULL
- * @param line		"cy	0,0,20	0,1,0	10.2	10.4	255,255,255"
- * @param world 	pointer to the world
+ * @param line	"cy	0,0,20	0,1,0	10.2	10.4	255,255,255"
+ * @param rt	pointer to the raytracer
  * @return void
  */
 void	parse_cylinder(char const *line, t_rt *rt)
@@ -115,10 +112,10 @@ void	parse_cylinder(char const *line, t_rt *rt)
 
 /**
  * @brief parse cone line:
- * 	  <identifier> <center> <normal> <diameter> <height> <color>
+ * 	      <identifier> <center> <normal> <diameter> <height> <color>
  * @warning line and world must not be NULL
- * @param line		"co	0,0,20	0,1,0	10.2	10.4	255,255,255"
- * @param world 	pointer to the world
+ * @param line	"co	0,0,20	0,1,0	10.2	10.4	255,255,255"
+ * @param rt	pointer to the raytracer
  * @return void
  */
 void	parse_cone(char const *line, t_rt *rt)

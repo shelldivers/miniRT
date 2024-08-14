@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:18:43 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:20:47 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 
 	var.oc = vec3_sub(sphere->center, ray->origin);
 	var.a = vec3_length_squared(ray->direction);
+	if (var.a == 0)
+		return (FALSE);
 	var.b = vec3_dot(ray->direction, var.oc);
 	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
 	discriminant = var.b * var.b - var.a * var.c;

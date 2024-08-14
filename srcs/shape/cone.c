@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:21:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:29:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	t_cone		*co;
 	float		root;
 	t_vec3		outward_normal;
+	t_vec3		cp;
+	float		k;
 
 	co = (t_cone *)obj;
 	if (!is_collided(co, ray, &root, t))
@@ -58,7 +60,9 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	rec->p = point_at(ray, rec->t);
 	rec->color = co->color;
 	rec->normal = co->normal;	// TODO: set normal
-	outward_normal = co->normal;	// TODO: set outward_normal
+	cp = vec3_sub(rec->p, co->bottom);
+	k = vec3_dot(cp, co->normal) / vec3_dot(co->normal, co->normal);
+	outward_normal = vec3_unit(vec3_sub(cp, vec3_mul(co->normal, k)));
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);
 }
@@ -81,7 +85,7 @@ t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 	t_vec3		h;
 	t_vec3		w;
 
-	h = vec3_div(vec3_sub(co->top, co->bottom), co->height);
+	h = vec3_div(vec3_sub(co->bottom, co->top), co->height);
 	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
 	w = vec3_sub(ray->origin, co->top);
 	var.a = vec3_dot(ray->direction, ray->direction) - \

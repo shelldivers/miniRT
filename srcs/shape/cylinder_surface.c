@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:18:43 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:21:01 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_bool	is_collided_surface(\
 	var.u = vec3_cross(ray->direction, cy->normal);
 	var.v = vec3_cross(var.oc, cy->normal);
 	var.a = vec3_length_squared(var.u);
-	if (var.a < 0)
+	if (var.a == 0)
 		return (FALSE);
 	var.b = vec3_dot(var.u, var.v);
 	var.c = vec3_length_squared(var.v) - pow(cy->radius, 2.0);

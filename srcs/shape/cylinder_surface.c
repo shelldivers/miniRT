@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:21:01 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:21:11 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,16 @@
 
 static t_bool	is_collided_surface(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root);
+static t_bool	is_point_within_cylinder_bounds(\
+	t_cylinder *cy, t_ray const *ray, float root);
 
 float	hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
 	float		root;
-	t_vec3		pointed_at;
-	float		top_dot;
-	float		bottom_dot;
 
 	if (!is_collided_surface(cy, ray, t, &root))
 		return (FLOAT_MAX);
-	pointed_at = point_at(ray, root);
-	top_dot = vec3_dot(cy->normal, vec3_sub(pointed_at, cy->top));
-	bottom_dot = vec3_dot(cy->normal, vec3_sub(pointed_at, cy->bottom));
-	if (top_dot > 0 || bottom_dot < 0)
+	if (!is_point_within_cylinder_bounds(cy, ray, root))
 		return (FLOAT_MAX);
 	return (root);
 }
@@ -38,8 +34,6 @@ t_bool	is_collided_surface(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root)
 {
 	t_quadratic	var;
-	float		discriminant;
-	float		sqrtd;
 
 	var.oc = vec3_sub(ray->origin, cy->center);
 	var.u = vec3_cross(ray->direction, cy->normal);
@@ -49,16 +43,22 @@ t_bool	is_collided_surface(\
 		return (FALSE);
 	var.b = vec3_dot(var.u, var.v);
 	var.c = vec3_length_squared(var.v) - pow(cy->radius, 2.0);
-	discriminant = pow(var.b, 2.0) - var.a * var.c;
-	if (discriminant < 0)
+	if (!quadratic_equation(var, t, root))
 		return (FALSE);
-	sqrtd = sqrtf(discriminant);
-	*root = (-var.b - sqrtd) / var.a;
-	if (*root <= t.min || t.max <= *root)
-	{
-		*root = (-var.b + sqrtd) / var.a;
-		if (*root <= t.min || t.max <= *root)
-			return (FALSE);
-	}
+	return (TRUE);
+}
+
+t_bool	is_point_within_cylinder_bounds(\
+	t_cylinder *cy, t_ray const *ray, float root)
+{
+	t_vec3	pointed_at;
+	float	top_dot;
+	float	bottom_dot;
+
+	pointed_at = point_at(ray, root);
+	top_dot = vec3_dot(vec3_sub(pointed_at, cy->top), cy->normal);
+	bottom_dot = vec3_dot(vec3_sub(pointed_at, cy->bottom), cy->normal);
+	if (top_dot > 0 || bottom_dot < 0)
+		return (FALSE);
 	return (TRUE);
 }

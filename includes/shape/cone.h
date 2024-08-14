@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:04 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:09:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:18:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_cone
 	t_vec3		normal;
 	float		radius;
 	float		height;
-	float		theta;
 	t_color		color;
 }	t_cone;
 

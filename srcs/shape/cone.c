@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:48:11 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/15 00:21:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
 #include "shape/cone.h"
 #include "error.h"
 #include <stdlib.h>
 #include <math.h>
 
-static float	get_theta(t_cone *co);
 static t_bool	is_collided(\
 	t_cone *co, t_ray const *ray, float *root, t_coll t);
+static t_bool	is_point_within_cone_bounds(\
+	t_cone *co, t_ray const *ray, float root);
 
 t_cone	*init_cone(t_cone data)
 {
@@ -34,7 +34,6 @@ t_cone	*init_cone(t_cone data)
 	co->radius = data.radius;
 	co->height = data.height;
 	co->color = data.color;
-	co->theta = get_theta(co);
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
 	return (co);
@@ -79,30 +78,35 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
-	float		discriminant;
-	float		sqrtd;
 	float		m;
 	t_vec3		w;
 
 	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
 	w = vec3_sub(ray->origin, co->top);
-	var.a = vec3_dot(ray->direction, ray->direction) - \
-		(m - 1) * pow(vec3_dot(ray->direction, co->normal), 2.0);
+	var.a = vec3_dot(ray->direction, ray->direction) \
+		- (m + 1) * pow(vec3_dot(ray->direction, co->normal), 2.0);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = vec3_dot(ray->direction, w) - (m - 1) \
+	var.b = vec3_dot(ray->direction, w) - (m + 1) \
 		* vec3_dot(ray->direction, co->normal) * vec3_dot(w, co->normal);
-	var.c = vec3_dot(w, w) - (m - 1) * pow(vec3_dot(w, co->normal), 2.0);
-	discriminant = pow(var.b, 2.0) - var.a * var.c;
-	if (discriminant < 0)
+	var.c = vec3_dot(w, w) - (m + 1) * pow(vec3_dot(w, co->normal), 2.0);
+	if (!quadratic_equation(var, t, root))
 		return (FALSE);
-	sqrtd = sqrtf(discriminant);
-	*root = (-var.b - sqrtd) / var.a;
-	if (*root <= t.min || t.max <= *root)
-	{
-		*root = (-var.b + sqrtd) / var.a;
-		if (*root <= t.min || t.max <= *root)
-			return (FALSE);
-	}
+	if (!is_point_within_cone_bounds(co, ray, *root))
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool	is_point_within_cone_bounds(t_cone *co, t_ray const *ray, float root)
+{
+	t_vec3	pointed_at;
+	float	top_dot;
+	float	bottom_dot;
+
+	pointed_at = point_at(ray, root);
+	top_dot = vec3_dot(vec3_sub(pointed_at, co->top), co->normal);
+	bottom_dot = vec3_dot(vec3_sub(pointed_at, co->bottom), co->normal);
+	if (top_dot > 0 || bottom_dot < 0)
+		return (FALSE);
 	return (TRUE);
 }

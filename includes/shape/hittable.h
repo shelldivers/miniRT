@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:17:03 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:04:48 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ t_bool		hit_shapes( \
 void		set_face_normal( \
 	t_record *rec, t_ray const *r, t_vec3 outward_normal);
 
-t_bool	quadratic_equation(t_quadratic var, t_coll t, float *root);
+t_bool		quadratic_equation(t_quadratic var, t_coll t, float *root);
 
 #endif

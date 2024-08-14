@@ -6,15 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 17:43:31 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:08:10 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
-#include "ft_bool.h"
-#include "shape/hittable.h"
+#include "minirt.h"
 #include "shape/sphere.h"
-#include "vec3.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -80,7 +78,7 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 	var.b = vec3_dot(ray->direction, var.oc);
 	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
 	discriminant = var.b * var.b - var.a * var.c;
-	if (discriminant < 0)
+	if (discriminant < FLOAT_EPSILON)
 		return (FALSE);
 	sqrtd = sqrt(discriminant);
 	*root = (var.b - sqrtd) / var.a;

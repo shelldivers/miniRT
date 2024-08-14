@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:51:29 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:02:38 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,31 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 void	set_record_surface(\
-	t_cone *cy, t_ray const *ray, t_record *rec, float surface_t)
+	t_cone *co, t_ray const *ray, t_record *rec, float surface_t)
 {
+	t_vec3	hc;
+	t_vec3	hp;
+	float	m;
+
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
-	rec->normal = vec3_sub(vec3_sub(cy->top, rec->p), \
-		vec3_mul(cy->normal, vec3_dot(vec3_sub(cy->top, rec->p), cy->normal)));
+	rec->color = co->color;
+
+	hc = vec3_sub(co->top, co->bottom);
+	hp = vec3_sub(rec->p, co->bottom);
+	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
+	rec->normal = vec3_unit(\
+		vec3_sub(hp, vec3_mul(hc, (1 + m) \
+		* vec3_dot(hp, hc) / vec3_length_squared(hc))));
 	set_face_normal(rec, ray, rec->normal);
 }
 
 void	set_record_endcaps(\
-	t_cone *cy, t_ray const *ray, t_record *rec, float endcap_t)
+	t_cone *co, t_ray const *ray, t_record *rec, float endcap_t)
 {
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
-	rec->normal = cy->normal;
-	set_face_normal(rec, ray, cy->normal);
+	rec->color = co->color;
+	rec->normal = co->normal;
+	set_face_normal(rec, ray, co->normal);
 }

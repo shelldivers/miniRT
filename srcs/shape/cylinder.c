@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 03:16:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:01:39 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,14 @@ t_bool	hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 void	set_record_surface(\
 	t_cylinder *cy, t_ray const *ray, t_record *rec, float surface_t)
 {
+	t_vec3	proj;
+
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = cy->color;
-	rec->normal = vec3_sub(vec3_sub(cy->top, rec->p), \
-		vec3_mul(cy->normal, vec3_dot(vec3_sub(cy->top, rec->p), cy->normal)));
+	proj = vec3_mul(cy->normal, \
+		vec3_dot(vec3_sub(rec->p, cy->bottom), cy->normal));
+	rec->normal = vec3_unit(vec3_sub(vec3_sub(rec->p, cy->bottom), proj));
 	set_face_normal(rec, ray, rec->normal);
 }
 

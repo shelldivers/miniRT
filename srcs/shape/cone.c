@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 18:07:59 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:06:16 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,13 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	rec->normal = co->normal;	// TODO: set normal
 	outward_normal = co->normal;	// TODO: set outward_normal
 	set_face_normal(rec, ray, outward_normal);
-	return (FALSE);
+	return (TRUE);
 }
 
+/**
+ * @brief Check if the ray hits the cone
+ * @see http://www.illusioncatalyst.com/notes_files/mathematics/line_cone_intersection.php
+ */
 t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
@@ -70,8 +74,8 @@ t_bool	is_collided(t_cone *co, t_ray const *ray, float *root, t_coll t)
 	w = vec3_sub(ray->origin, co->top);
 	var.a = vec3_dot(ray->direction, ray->direction) - \
 		(m - 1) * pow(vec3_dot(ray->direction, h), 2.0);
-	var.b = 2 * (vec3_dot(ray->direction, w) - \
-		(m - 1) * vec3_dot(ray->direction, h) * vec3_dot(w, h));
+	var.b = vec3_dot(ray->direction, w) - \
+		(m - 1) * vec3_dot(ray->direction, h) * vec3_dot(w, h);
 	var.c = vec3_dot(w, w) - (m - 1) * pow(vec3_dot(w, h), 2.0);
 	discriminant = pow(var.b, 2.0) - var.a * var.c;
 	if (discriminant < FLOAT_EPSILON)

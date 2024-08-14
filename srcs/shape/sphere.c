@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:20:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:29:29 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 /**
- * @brief h ± sqrt(square(h) - a * c) / a 
+ * @brief Check if the ray hits the sphere
  * @param sphere The sphere object
  * @param ray The ray
  * @param root The root of the equation
@@ -70,25 +70,14 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
-	float		sqrtd;
-	float		discriminant;
 
 	var.oc = vec3_sub(sphere->center, ray->origin);
 	var.a = vec3_length_squared(ray->direction);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = vec3_dot(ray->direction, var.oc);
+	var.b = -vec3_dot(ray->direction, var.oc);
 	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
-	discriminant = var.b * var.b - var.a * var.c;
-	if (discriminant < 0)
+	if (!quadratic_equation(var, t, root))
 		return (FALSE);
-	sqrtd = sqrtf(discriminant);
-	*root = (var.b - sqrtd) / var.a;
-	if (*root <= t.min || t.max <= *root)
-	{
-		*root = (var.b + sqrtd) / var.a;
-		if (*root <= t.min || t.max <= *root)
-			return (FALSE);
-	}
 	return (TRUE);
 }

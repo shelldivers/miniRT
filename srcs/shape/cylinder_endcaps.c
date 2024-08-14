@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 19:19:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:32:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t)
 
 float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
-	float	p;
-	float	n;
+	t_vec3	pn;
 	float	length;
 	float	bottom_t;
 	float	denominator;
@@ -78,9 +77,8 @@ float	is_collided_bottom(t_cylinder *cy, t_ray const *ray, t_coll t)
 	denominator = vec3_dot(cy->normal, ray->direction);
 	if (fabs(denominator) < 0)
 		return (FLOAT_MAX);
-	p = vec3_dot(cy->bottom, cy->normal);
-	n = vec3_dot(ray->origin, cy->normal);
-	bottom_t = (p - n) / denominator;
+	pn = vec3_sub(cy->bottom, ray->origin);
+	bottom_t = vec3_dot(pn, cy->normal) / denominator;
 	if (bottom_t <= t.min || t.max <= bottom_t)
 		return (FLOAT_MAX);
 	length = vec3_length_squared(vec3_sub(point_at(ray, bottom_t), cy->bottom));

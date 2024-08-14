@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:13:43 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:08:21 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,16 @@ t_bool	is_collided_surface(\
 {
 	t_quadratic	var;
 
-	var.oc = vec3_sub(ray->origin, cy->center);
-	var.u = vec3_cross(ray->direction, cy->normal);
-	var.v = vec3_cross(var.oc, cy->normal);
-	var.a = vec3_length_squared(var.u);
+	var.v = ray->direction;
+	var.h = cy->normal;
+	var.w = vec3_sub(ray->origin, cy->center);
+	var.a = vec3_dot(var.v, var.v) - pow(vec3_dot(var.v, var.h), 2.0);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = vec3_dot(var.u, var.v);
-	var.c = vec3_length_squared(var.v) - pow(cy->radius, 2.0);
+	var.b = vec3_dot(var.v, var.w) \
+		- vec3_dot(var.v, var.h) * vec3_dot(var.w, var.h);
+	var.c = vec3_dot(var.w, var.w) \
+		- pow(vec3_dot(var.w, var.h), 2.0) - pow(cy->radius, 2.0);
 	if (!quadratic_equation(var, t, root))
 		return (FALSE);
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:19:21 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:08:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,18 @@ t_bool	is_collided_surface(t_cone *co, t_ray const *ray, float *root, t_coll t)
 {
 	t_quadratic	var;
 	float		m;
-	t_vec3		w;
 
+	var.v = ray->direction;
+	var.h = co->normal;
+	var.w = vec3_sub(ray->origin, co->top);
 	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
-	w = vec3_sub(ray->origin, co->top);
-	var.a = vec3_dot(ray->direction, ray->direction) \
-		- (m + 1) * pow(vec3_dot(ray->direction, co->normal), 2.0);
+	var.a = vec3_dot(var.v, var.v) \
+		- (m + 1) * pow(vec3_dot(var.v, var.h), 2.0);
 	if (var.a == 0)
 		return (FALSE);
-	var.b = vec3_dot(ray->direction, w) - (m + 1) \
-		* vec3_dot(ray->direction, co->normal) * vec3_dot(w, co->normal);
-	var.c = vec3_dot(w, w) - (m + 1) * pow(vec3_dot(w, co->normal), 2.0);
+	var.b = vec3_dot(var.v, var.w) - (m + 1) \
+		* vec3_dot(var.v, var.h) * vec3_dot(var.w, var.h);
+	var.c = vec3_dot(var.w, var.w) - (m + 1) * pow(vec3_dot(var.w, var.h), 2.0);
 	if (!quadratic_equation(var, t, root))
 		return (FALSE);
 	return (TRUE);

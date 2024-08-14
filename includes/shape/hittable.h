@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:05:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:05:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ enum e_shape
 typedef struct s_quadratic
 {
 	t_vec3	oc;
-	t_vec3	u;
 	t_vec3	v;
+	t_vec3	w;
+	t_vec3	h;
 	float	a;
 	float	b;
 	float	c;

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 00:19:29 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:43:31 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,22 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
  */
 t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
+	t_quadratic	var;
 	float		sqrtd;
-	t_vec3		oc;
-	float		a;
-	float		h;
 	float		discriminant;
 
-	oc = vec3_sub(sphere->center, ray->origin);
-	a = vec3_length_squared(ray->direction);
-	h = vec3_dot(ray->direction, oc);
-	discriminant = h * h - a * \
-		(vec3_length_squared(oc) - sphere->radius * sphere->radius);
+	var.oc = vec3_sub(sphere->center, ray->origin);
+	var.a = vec3_length_squared(ray->direction);
+	var.b = vec3_dot(ray->direction, var.oc);
+	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
+	discriminant = var.b * var.b - var.a * var.c;
 	if (discriminant < 0)
 		return (FALSE);
 	sqrtd = sqrt(discriminant);
-	*root = (h - sqrtd) / a;
+	*root = (var.b - sqrtd) / var.a;
 	if (*root <= t.min || t.max <= *root)
 	{
-		*root = (h + sqrtd) / a;
+		*root = (var.b + sqrtd) / var.a;
 		if (*root <= t.min || t.max <= *root)
 			return (FALSE);
 	}

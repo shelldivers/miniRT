@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:39:29 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:32:40 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:48:13 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ t_bool	is_collided_endcaps(\
 
 float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t)
 {
-	float	p;
-	float	n;
+	t_vec3	pn;
 	float	top_t;
 	float	length;
 	float	denominator;
@@ -56,9 +55,8 @@ float	is_collided_top(t_cylinder *cy, t_ray const *ray, t_coll t)
 	denominator = vec3_dot(ray->direction, cy->normal);
 	if (fabs(denominator) < 0)
 		return (FLOAT_MAX);
-	p = vec3_dot(cy->top, cy->normal);
-	n = vec3_dot(ray->origin, cy->normal);
-	top_t = (p - n) / denominator;
+	pn = vec3_sub(cy->top, ray->origin);
+	top_t = vec3_dot(pn, cy->normal) / denominator;
 	if (top_t <= t.min || t.max <= top_t)
 		return (FLOAT_MAX);
 	length = vec3_length_squared(vec3_sub(point_at(ray, top_t), cy->top));

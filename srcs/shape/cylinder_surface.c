@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:21:11 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:39:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ float	hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t)
 	return (root);
 }
 
+/**
+ * @brief Check if the ray hits the cylinder
+ * @see http://www.illusioncatalyst.com/notes.php
+ * @param cy	pointer to the cylinder
+ * @param ray	pointer to the ray
+ * @param t		t_coll
+ * @param rec	pointer to the record
+ * @return t_bool
+ */
 t_bool	is_collided_surface(\
 	t_cylinder *cy, t_ray const *ray, t_coll t, float *root)
 {

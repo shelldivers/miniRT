@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:33:13 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:39:46 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 /**
- * @brief n · (p - c) / n · d
+ * @brief Check if the ray hits the plane
+ * @see http://www.illusioncatalyst.com/notes.php
  * @param plane The plane object
  * @param ray The ray
  * @param root The pointer to the root

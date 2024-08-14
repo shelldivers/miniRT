@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 00:29:29 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 00:39:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 
 /**
  * @brief Check if the ray hits the sphere
+ * @see http://www.illusioncatalyst.com/notes.php
  * @param sphere The sphere object
  * @param ray The ray
  * @param root The root of the equation

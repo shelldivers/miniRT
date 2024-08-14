@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 18:08:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:16:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 	discriminant = var.b * var.b - var.a * var.c;
 	if (discriminant < FLOAT_EPSILON)
 		return (FALSE);
-	sqrtd = sqrt(discriminant);
+	sqrtd = sqrtf(discriminant);
 	*root = (var.b - sqrtd) / var.a;
 	if (*root <= t.min || t.max <= *root)
 	{

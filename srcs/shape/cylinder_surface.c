@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 00:38:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 02:49:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:16:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_bool	is_collided_surface(\
 	discriminant = pow(var.b, 2.0) - var.a * var.c;
 	if (discriminant < FLOAT_EPSILON)
 		return (FALSE);
-	sqrtd = sqrt(discriminant);
+	sqrtd = sqrtf(discriminant);
 	*root = (-var.b - sqrtd) / var.a;
 	if (*root <= t.min || t.max <= *root)
 	{

@@ -6,12 +6,14 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/13 19:35:11 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/15 10:56:00 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC3_H
 # define VEC3_H
+
+# define SEED 42
 
 typedef struct s_vec3
 {

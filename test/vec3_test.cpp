@@ -11,10 +11,27 @@ TEST(vec3_test, vec3_unit) {
     ASSERT_FLOAT_EQ(unit.z, 0.80178373);
 }
 
+TEST(vec3_test, vec3_unit_when_zero) {
+    t_vec3 vec = {0, 0, 0};
+    t_vec3 unit = vec3_unit(vec);
+    ASSERT_FLOAT_EQ(unit.x, 0);
+    ASSERT_FLOAT_EQ(unit.y, 0);
+    ASSERT_FLOAT_EQ(unit.z, 0);
+}
+
 TEST(vec3_test, vec3_length) {
     t_vec3 vec = {1, 2, 3};
     float length = vec3_length(vec);
     ASSERT_FLOAT_EQ(length, 3.7416574);
+}
+
+TEST(vec3_test, vec3_length_when_zero) {
+    t_vec3 vec = {0, 0, 0};
+    float length = vec3_length(vec);
+    ASSERT_FLOAT_EQ(length, 0);
+    ASSERT_FLOAT_EQ(vec.x, 0);
+    ASSERT_FLOAT_EQ(vec.y, 0);
+    ASSERT_FLOAT_EQ(vec.z, 0);
 }
 
 TEST(vec3_test, vec3_length_squared) {

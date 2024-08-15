@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/16 02:54:34 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/16 03:08:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "shape/sphere.h"
 #include "shape/cylinder.h"
 #include "shape/cone.h"
+
+static void	validate_positive_and_move_next(char const **line, float data);
 
 /**
  * @brief parse plane line: <identifier> <center> <normal> <color>
@@ -64,9 +66,7 @@ void	parse_sphere(char const *line, t_rt *rt)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2;
-	must_be_positive(data.radius);
-	must_have_no_remain(line);
-	move_to_next_param(&line);
+	validate_positive_and_move_next(&line, data.radius);
 	data.color = parse_vec3(line);
 	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
@@ -97,13 +97,9 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2.0;
-	must_be_positive(data.radius);
-	must_have_no_remain(line);
-	move_to_next_param(&line);
+	validate_positive_and_move_next(&line, data.radius);
 	data.height = ft_strtof(line, (char **)&line);
-	must_be_positive(data.height);
-	must_have_no_remain(line);
-	move_to_next_param(&line);
+	validate_positive_and_move_next(&line, data.height);
 	data.color = parse_vec3(line);
 	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
@@ -135,13 +131,9 @@ void	parse_cone(char const *line, t_rt *rt)
 	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2.0;
-	must_be_positive(data.radius);
-	must_have_no_remain(line);
-	move_to_next_param(&line);
+	validate_positive_and_move_next(&line, data.radius);
 	data.height = ft_strtof(line, (char **)&line);
-	must_be_positive(data.height);
-	must_have_no_remain(line);
-	move_to_next_param(&line);
+	validate_positive_and_move_next(&line, data.height);
 	data.color = parse_vec3(line);
 	normalize_color_value(&data.color);
 	must_be_last_vec3(line);
@@ -149,4 +141,11 @@ void	parse_cone(char const *line, t_rt *rt)
 	if (!new_obj)
 		error_exit(ERROR_MALLOC);
 	add_hittable_list(rt->world, new_obj);
+}
+
+void	validate_positive_and_move_next(char const **line, float data)
+{
+	must_be_positive(data);
+	must_have_no_remain(*line);
+	move_to_next_param(line);
 }

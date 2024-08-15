@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:26:22 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/16 02:54:34 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	parse_sphere(char const *line, t_rt *rt)
 	data.center = parse_vec3(line);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2;
+	must_be_positive(data.radius);
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
@@ -96,9 +97,11 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2.0;
+	must_be_positive(data.radius);
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.height = ft_strtof(line, (char **)&line);
+	must_be_positive(data.height);
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);
@@ -132,9 +135,11 @@ void	parse_cone(char const *line, t_rt *rt)
 	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2.0;
+	must_be_positive(data.radius);
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.height = ft_strtof(line, (char **)&line);
+	must_be_positive(data.height);
 	must_have_no_remain(line);
 	move_to_next_param(&line);
 	data.color = parse_vec3(line);

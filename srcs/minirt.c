@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 14:52:21 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:06:12 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,57 +17,85 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-static void		put_color(t_img *img, int x, int y, unsigned int color);
-static t_color	ray_color(t_ray const *ray, t_hit_lst *world);
-static void		render_width(t_rt *rt, t_ray *ray, int hei);
+t_color		ray_color(\
+					t_ray const *ray, \
+					t_hit_lst *world, \
+					t_ambient ambient, \
+					t_light_lst *lights);
+static void	set_color(\
+						t_ray const *ray, \
+						t_record *rec, \
+						t_ambient ambient, \
+						t_light_lst *lights);
+static void	put_color(t_img *img, int x, int y, unsigned int color);
 
 void	ray_tracing(t_rt *rt)
 {
 	t_ray	ray;
 	int		hei;
+	int		wid;
+	t_color	color;
 
 	hei = 0;
 	ray.origin = rt->cam.view_point;
 	while (hei < rt->img.height)
-		render_width(rt, &ray, hei++);
-}
-
-void	render_width(t_rt *rt, t_ray *ray, int hei)
-{
-	int		wid;
-	t_color	color;
-
-	wid = 0;
-	printf("amb light: %f, %f, %f\n", rt->ambient.light.x, rt->ambient.light.y, rt->ambient.light.z);
-	while (wid < rt->img.width)
 	{
-		ray->direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
-		color = ray_color(ray, rt->world);
-		color = embient_lighting(color, rt->ambient.light);
-		put_color(&(rt->img), wid, hei, color_to_int(color));
-		wid++;
+		wid = 0;
+		while (wid < rt->img.width)
+		{
+			ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+			color = ray_color(&ray, rt->world, rt->ambient, rt->lights);
+			put_color(&(rt->img), wid, hei, color_to_int(color));
+			wid++;
+		}
+		hei++;
 	}
 }
 
-t_color	ray_color(t_ray const *ray, t_hit_lst *world)
+t_color	ray_color(\
+					t_ray const *ray, \
+					t_hit_lst *world, \
+					t_ambient ambient, \
+					t_light_lst *lights)
 {
-	// t_ray		scattered;
-	// t_vec3		direction;
 	t_vec3		unit_direction;
 	float		a;
 	t_record	rec;
 
 	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 	{
-		// direction = random_on_hemisphere(rec.normal);
-		// scattered = (t_ray){rec.p, direction};
-		// return (vec3_mul(ray_color(&scattered, world), 0.5));
-		return (vec3_mul(rec.color, 0.5));
+		set_color(ray, &rec, ambient, lights);
+		return (rec.color);
 	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);
 	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \
 		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
+}
+
+// ㅇㅕ기서 ambient 적용하고
+// diffuse도 적용해야함
+// specular도 적용해야함
+static void	set_color(\
+						t_ray const *ray, \
+						t_record *rec, \
+						t_ambient ambient, \
+						t_light_lst *lights)
+{
+	int		i;
+	t_color	ambient_color;
+	t_color	diffused_color;
+	// t_color	specular_color;
+	if (!ray)
+		i = 0;
+	i = 0;
+	ambient_color = vec3_mul_vec(rec->color, ambient.light);
+	while (i < lights->size)
+	{
+		diffused_color = get_diffused(rec, lights->objects[i]);
+		rec->color = mix_color(rec->color, diffused_color);
+		i++;
+	}
 }
 
 void	put_color(t_img *img, int x, int y, unsigned int color)

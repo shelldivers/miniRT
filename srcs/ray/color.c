@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:59:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/13 18:22:36 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/16 17:53:51 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ t_color	rgb_to_color(unsigned int r, unsigned int g, unsigned int b)
 	ret.y = (float)g / 255.0;
 	ret.z = (float)b / 255.0;
 	return (ret);
+}
+
+/**
+ * @brief color a와 b를 섞어서 밝기를 중간값으로 만듬
+ * @param a
+ * @param b
+ * @return t_color
+ */
+t_color	mix_color(t_color a, t_color b)
+{
+	return ((t_color){\
+		(a.x + b.x) * 0.5, \
+		(a.y + b.y) * 0.5, \
+		(a.z + b.z) * 0.5});
 }

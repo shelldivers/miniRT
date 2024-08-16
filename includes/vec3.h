@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 10:56:00 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:36:10 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,13 @@ t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
 // vec3_utils.c
 t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
+t_vec3	vec3_add_val(t_vec3 a, float val);
+t_vec3	vec3_sub_val(t_vec3 a, float val);
+
 t_vec3	vec3_mul(t_vec3 a, float t);
 t_vec3	vec3_div(t_vec3 a, float t);
+t_vec3	vec3_mul_vec(t_vec3 v1, t_vec3 v2);
+t_vec3	vec3_div_vec(t_vec3 v1, t_vec3 v2);
 
 // vec3_random.c
 t_vec3	vec3_random(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:57:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 01:43:00 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:35:08 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ t_vec3	vec3_sub(t_vec3 a, t_vec3 b)
 }
 
 /**
- * @brief 벡터와 스칼라의 곱을 반환
- * @param a
- * @param t
+ * @brief calculate the add of vector and scalar
+ * @param t_vec3 a
+ * @param float val
  * @return t_vec3
  */
-t_vec3	vec3_mul(t_vec3 a, float t)
+t_vec3	vec3_add_val(t_vec3 a, float val)
 {
-	return ((t_vec3){a.x * t, a.y * t, a.z * t});
+	return ((t_vec3){a.x + val, a.y + val, a.z + val});
 }
 
 /**
- * @brief 벡터와 스칼라의 나눗셈을 반환
- * @param a
- * @param t
+ * @brief calculate the sub of vector and scalar
+ * @param t_vec a
+ * @param float val
  * @return t_vec3
  */
-t_vec3	vec3_div(t_vec3 a, float t)
+t_vec3	vec3_sub_val(t_vec3 a, float val)
 {
-	return ((t_vec3){a.x / t, a.y / t, a.z / t});
+	return ((t_vec3){a.x - val, a.y - val, a.z - val});
 }

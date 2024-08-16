@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:48:01 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/15 10:56:32 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:31:36 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 static float	random_float(void);
 
-/*
-*@brief return random vec3 format number from -1 to 1
-*/
+/**
+ * @brief return random vec3 number from 0 to 1
+ * @return t_vec3
+ */
 t_vec3	vec3_random(void)
 {
 	return ((t_vec3){random_float(), \
@@ -27,7 +28,10 @@ t_vec3	vec3_random(void)
 }
 
 /*
-*@brief return random vec3 number from min to max
+* @brief return random vec3 number from min to max
+* @param min
+* @param max
+* @return t_vec3
 */
 t_vec3	vec3_random_range(float min, float max)
 {
@@ -37,7 +41,8 @@ t_vec3	vec3_random_range(float min, float max)
 }
 
 /*
-*@brief return random float number from 0 to 1
+* @brief return random float number from 0 to 1
+* @return float
 */
 static float	random_float(void)
 {

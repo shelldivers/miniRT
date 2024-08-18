@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 21:19:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:17:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_camera
 {
 	t_vec3	view_point;
 	t_vec3	normal;
-	int		fov;
+	float	fov;
 }	t_camera;
 
 typedef struct s_viewport

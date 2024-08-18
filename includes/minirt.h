@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 02:05:51 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/16 02:52:34 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	parse_light(char const *line, t_rt *rt);
 void	parse_plane(char const *line, t_rt *rt);
 void	parse_sphere(char const *line, t_rt *rt);
 void	parse_cylinder(char const *line, t_rt *rt);
+void	parse_cone(char const *line, t_rt *rt);
 
 // minirt_parse_utils.c
 void	must_numuric_and_comma(char const *line);
@@ -95,8 +96,12 @@ void	must_be_last_number(char const *line);
 // minirt_parse_utils2.c
 void	normalize_color_value(t_color *color);
 void	must_be_valid_normal(t_vec3 normal);
+void	normalize_vec3(t_vec3 *vec);
 void	must_be_valid_ratio(float ratio);
 void	must_have_no_remain(char const *line);
+
+// minirt_parse_utils3.c
+void	must_be_positive(float value);
 
 // minirt_parse_vec3.c
 t_vec3	parse_vec3(char const *line);

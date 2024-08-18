@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:56:21 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 01:43:31 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:08:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@
  */
 t_vec3	vec3_unit(t_vec3 vec)
 {
-	return (vec3_div(vec, vec3_length(vec)));
+	float	length;
+
+	length = vec3_length(vec);
+	if (length == 0)
+		return (vec);
+	return (vec3_div(vec, length));
 }
 
 /**
@@ -30,7 +35,7 @@ t_vec3	vec3_unit(t_vec3 vec)
  */
 float	vec3_length(t_vec3 vec)
 {
-	return (sqrtf(vec3_length_squred(vec)));
+	return (sqrtf(vec3_length_squared(vec)));
 }
 
 /**
@@ -38,7 +43,7 @@ float	vec3_length(t_vec3 vec)
  * @param vec
  * @return float
  */
-float	vec3_length_squred(t_vec3 vec)
+float	vec3_length_squared(t_vec3 vec)
 {
 	return ((float) vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }

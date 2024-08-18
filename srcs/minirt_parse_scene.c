@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/10 01:52:51 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:36:37 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "libft.h"
 #include "error.h"
 
+/**
+ * @brief parse ambient line: <identifier> <ratio> <color>
+ * @param line	"A	0.5	255,255,255"
+ * @param rt	pointer to the raytracer
+ * @return	void
+ */
 void	parse_ambient(char const *line, t_rt *rt)
 {
 	line++;
@@ -30,8 +36,7 @@ void	parse_ambient(char const *line, t_rt *rt)
 /**
  * @brief parse camera line: <identifier> <view_point> <normal_vector> <FOV>
  * @param line	"C	-50.0,0,20	0,0,1	70"
- * @param cam	pointer to the camera
- * @param world	pointer to the world
+ * @param rt	pointer to the raytracer
  * @return	void
  */
 void	parse_camera(char const *line, t_rt *rt)
@@ -41,7 +46,7 @@ void	parse_camera(char const *line, t_rt *rt)
 	rt->cam.view_point = parse_vec3(line);
 	move_to_next_param(&line);
 	rt->cam.normal = parse_vec3(line);
-	must_be_valid_normal(rt->cam.normal);
+	normalize_vec3(&rt->cam.normal);
 	move_to_next_param(&line);
 	rt->cam.fov = ft_strtoi(line, (char **)&line);
 	must_be_last_number(line);
@@ -49,6 +54,12 @@ void	parse_camera(char const *line, t_rt *rt)
 		error_exit(ERROR_INVALID_FOV);
 }
 
+/**
+ * @brief parse light line: <identifier> <center> <ratio> <color>
+ * @param line	"L	0,0,20	0.5	255,255,255"
+ * @param rt	pointer to the raytracer
+ * @return	void
+ */
 void	parse_light(char const *line, t_rt *rt)
 {
 	t_light	*new_light;

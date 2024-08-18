@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:33:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/03 00:38:55 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:48:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 #include "ray.h"
 #include "vec3.h"
 #include <stdlib.h>
-
-void	set_face_normal(t_record *rec, t_ray const *ray, t_vec3 outward_normal)
-{
-	rec->front_face = vec3_dot(ray->direction, outward_normal) < 0;
-	if (rec->front_face)
-		rec->normal = outward_normal;
-	else
-		rec->normal = vec3_mul(outward_normal, -1);
-}
 
 t_hit_lst	*init_hittable_list(int capacity)
 {

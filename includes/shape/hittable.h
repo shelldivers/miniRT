@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 00:54:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/16 02:46:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,20 @@ enum e_shape
 {
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	CONE
 };
+
+typedef struct s_quadratic
+{
+	t_vec3	oc;
+	t_vec3	v;
+	t_vec3	w;
+	t_vec3	h;
+	float	a;
+	float	b;
+	float	c;
+}	t_quadratic;
 
 typedef struct s_record
 {
@@ -54,12 +66,15 @@ typedef struct s_hit_lst
 	int		capacity;
 }	t_hit_lst;
 
-void		set_face_normal( \
-	t_record *rec, t_ray const *r, t_vec3 outward_normal);
 t_hit_lst	*init_hittable_list(int capacity);
 void		add_hittable_list(t_hit_lst *list, t_hit *object);
 void		clear_hittable_list(t_hit_lst *list);
 t_bool		hit_shapes( \
 	t_hit_lst *list, t_ray const *ray, t_coll t, t_record *rec);
+
+void		set_face_normal( \
+	t_record *rec, t_ray const *r, t_vec3 outward_normal);
+
+t_bool		quadratic_equation(t_quadratic var, t_coll t, float *root);
 
 #endif

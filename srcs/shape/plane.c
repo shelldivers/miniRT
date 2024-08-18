@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 11:19:53 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:21:35 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,24 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 /**
- * @brief n · (p - c) / n · d
+ * @brief collision detection between the plane and the ray
  * @param plane The plane object
  * @param ray The ray
  * @param root The pointer to the root
  * @param t The collision range
  * @return t_bool TRUE if the ray hits the plane, FALSE otherwise
+ * @see http://www.illusioncatalyst.com/notes.php
  */
 t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 {
-	float	p;
-	float	n;
+	t_vec3	pn;
 	float	denominator;
 
 	denominator = vec3_dot(plane->normal, ray->direction);
 	if (denominator == 0)
 		return (FALSE);
-	p = vec3_dot(plane->normal, plane->center);
-	n = vec3_dot(plane->normal, ray->origin);
-	*root = (p - n) / denominator;
+	pn = vec3_sub(plane->center, ray->origin);
+	*root = vec3_dot(pn, plane->normal) / denominator;
 	if (*root <= t.min || t.max <= *root)
 		return (FALSE);
 	return (TRUE);

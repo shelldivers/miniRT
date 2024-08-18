@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder.h                                         :+:      :+:    :+:   */
+/*   cone.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/01 17:19:54 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 01:44:17 by jeongwpa         ###   ########.fr       */
+/*   Created: 2024/08/01 17:20:04 by jeongwpa          #+#    #+#             */
+/*   Updated: 2024/08/15 00:50:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CYLINDER_H
-# define CYLINDER_H
+#ifndef CONE_H
+# define CONE_H
 
 # include "vec3.h"
 # include "ft_bool.h"
 # include "hittable.h"
 
-typedef struct s_cylinder
+typedef struct s_cone
 {
 	t_hit		parent;
 	t_point3	center;
@@ -27,12 +27,11 @@ typedef struct s_cylinder
 	float		radius;
 	float		height;
 	t_color		color;
-}	t_cylinder;
+}	t_cone;
 
-t_cylinder	*init_cylinder(t_cylinder data);
-t_bool		hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
-
-float		hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t);
-float		hit_cylinder_endcaps(t_cylinder *cy, t_ray const *ray, t_coll t);
+t_cone	*init_cone(t_cone data);
+t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
+float	hit_cone_surface(t_cone *co, t_ray const *ray, t_coll t);
+float	hit_cone_endcaps(t_cone *co, t_ray const *ray, t_coll t);
 
 #endif

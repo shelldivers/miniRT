@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/19 17:45:15 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:59:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_mlx(t_rt *rt, t_img *img)
 
 /**
  * @brief Initialize the viewport
- * @see https://raytracing.github.io/books/RayTracingInOneWeekend.html#positionablecamera
+ * @see https://ko.fm/7L7
  * @param rt
  * @return void
  */

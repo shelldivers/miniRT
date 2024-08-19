@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/18 22:15:18 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/19 10:39:33 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <math.h>
 
 static float	degree_to_radian(float degree);
+static t_vec3	get_upper_left_corner(\
+	t_rt *rt, t_vec3 w, t_vec3 viewport_u, t_vec3 viewport_v);
+static t_vec3	get_pixel00_loc(t_rt *rt, t_vec3 upper_left_corner);
 
 void	init_mlx(t_rt *rt, t_img *img)
 {
@@ -41,9 +44,8 @@ void	init_mlx(t_rt *rt, t_img *img)
 		error_exit("mlx_new_window() failed");
 }
 
-void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport)
+void	init_viewport(t_rt *rt)
 {
-	t_vec3		look_from;
 	t_vec3		look_at;
 	t_vec3		view_up;
 	t_vec3		w;
@@ -54,32 +56,49 @@ void	init_viewport(t_img *img, t_camera *camera, t_viewport *viewport)
 	t_vec3		viewport_u;
 	t_vec3		viewport_v;
 
-	look_from = camera->view_point;
-	look_at = vec3_add(look_from, camera->normal);
+	look_at = vec3_add(rt->cam.view_point, rt->cam.normal);
 	view_up = (t_vec3){0, 1, 0};
-	viewport->focal_length = vec3_length(vec3_sub(look_from, look_at));
-	viewport_height = 2.0 * tan(degree_to_radian(camera->fov) / 2.0);
-	viewport_width = viewport_height * ((float)img->width / img->height);
-	w = vec3_unit(vec3_sub(look_from, look_at));
+	rt->vw.focal_length = vec3_length(vec3_sub(rt->cam.view_point, look_at));
+	viewport_height = 2.0 * tan(degree_to_radian(rt->cam.fov) / 2.0);
+	viewport_width = viewport_height * ((float)rt->img.width / rt->img.height);
+	w = vec3_unit(vec3_sub(rt->cam.view_point, look_at));
 	u = vec3_unit(vec3_cross(view_up, w));
 	v = vec3_cross(w, u);
 	viewport_u = vec3_mul(u, viewport_width);
 	viewport_v = vec3_mul(v, -viewport_height);
-	viewport->pixel_delta_u = vec3_div(viewport_u, img->width);
-	viewport->pixel_delta_v = vec3_div(viewport_v, img->height);
-	viewport->upper_left_corner = vec3_sub(camera->view_point, \
-		vec3_mul(w, viewport->focal_length));
-	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
-		vec3_div(viewport_u, 2));
-	viewport->upper_left_corner = vec3_sub(viewport->upper_left_corner, \
-		vec3_div(viewport_v, 2));
-	viewport->pixel00_loc = vec3_add(viewport->upper_left_corner, \
-		vec3_mul(viewport->pixel_delta_u, 0.5));
-	viewport->pixel00_loc = vec3_add(viewport->pixel00_loc, \
-		vec3_mul(viewport->pixel_delta_v, 0.5));
+	rt->vw.pixel_delta_u = vec3_div(viewport_u, rt->img.width);
+	rt->vw.pixel_delta_v = vec3_div(viewport_v, rt->img.height);
+	rt->vw.upper_left_corner = get_upper_left_corner(\
+		rt, w, viewport_u, viewport_v);
+	rt->vw.pixel00_loc = get_pixel00_loc(rt, rt->vw.upper_left_corner);
 }
 
 float	degree_to_radian(float degree)
 {
 	return (degree * M_PI / 180.0);
+}
+
+t_vec3	get_upper_left_corner(\
+	t_rt *rt, t_vec3 w, t_vec3 viewport_u, t_vec3 viewport_v)
+{
+	t_vec3	upper_left_corner;
+
+	upper_left_corner = vec3_sub(rt->cam.view_point, \
+		vec3_mul(w, rt->vw.focal_length));
+	upper_left_corner = vec3_sub(upper_left_corner, \
+		vec3_div(viewport_u, 2));
+	upper_left_corner = vec3_sub(upper_left_corner, \
+		vec3_div(viewport_v, 2));
+	return (upper_left_corner);
+}
+
+t_vec3	get_pixel00_loc(t_rt *rt, t_vec3 upper_left_corner)
+{
+	t_vec3	pixel00_loc;
+
+	pixel00_loc = vec3_add(upper_left_corner, \
+		vec3_mul(rt->vw.pixel_delta_u, 0.5));
+	pixel00_loc = vec3_add(pixel00_loc, \
+		vec3_mul(rt->vw.pixel_delta_v, 0.5));
+	return (pixel00_loc);
 }

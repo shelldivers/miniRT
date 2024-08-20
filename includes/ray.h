@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:36:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/16 17:50:46 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:42:36 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_vec3			get_direction(t_camera *cam, t_viewport *vw, int i, int j);
 unsigned int	color_to_int(t_color color);
 t_color			int_to_color(unsigned int color);
 t_color			rgb_to_color(unsigned int r, unsigned int g, unsigned int b);
-t_color			mix_color(t_color a, t_color b);
+t_color			color_mix(t_color a, t_color b);
+t_color			color_add(t_color a, t_color b);
 
 #endif

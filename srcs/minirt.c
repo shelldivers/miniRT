@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/16 18:06:12 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:18:48 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-t_color		ray_color(\
-					t_ray const *ray, \
-					t_hit_lst *world, \
-					t_ambient ambient, \
-					t_light_lst *lights);
+t_color		ray_color(t_rt *rt, t_ray *ray);
 static void	set_color(\
-						t_ray const *ray, \
+						t_camera *cam, \
 						t_record *rec, \
-						t_ambient ambient, \
+						t_ambient *ambient, \
 						t_light_lst *lights);
 static void	put_color(t_img *img, int x, int y, unsigned int color);
 
@@ -44,7 +40,7 @@ void	ray_tracing(t_rt *rt)
 		while (wid < rt->img.width)
 		{
 			ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
-			color = ray_color(&ray, rt->world, rt->ambient, rt->lights);
+			color = ray_color(rt, &ray);
 			put_color(&(rt->img), wid, hei, color_to_int(color));
 			wid++;
 		}
@@ -52,19 +48,15 @@ void	ray_tracing(t_rt *rt)
 	}
 }
 
-t_color	ray_color(\
-					t_ray const *ray, \
-					t_hit_lst *world, \
-					t_ambient ambient, \
-					t_light_lst *lights)
+t_color	ray_color(t_rt *rt, t_ray *ray)
 {
 	t_vec3		unit_direction;
 	float		a;
 	t_record	rec;
 
-	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
+	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 	{
-		set_color(ray, &rec, ambient, lights);
+		set_color(&(rt->cam), &rec, &(rt->ambient), rt->lights);
 		return (rec.color);
 	}
 	unit_direction = vec3_unit(ray->direction);
@@ -73,29 +65,34 @@ t_color	ray_color(\
 		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
 }
 
-// ㅇㅕ기서 ambient 적용하고
-// diffuse도 적용해야함
-// specular도 적용해야함
+/*
+* @brief every reflection is calculating here
+* @param ray
+* @param rec
+* @param ambient
+* @param lights
+* @return void
+*/
 static void	set_color(\
-						t_ray const *ray, \
+						t_camera *cam, \
 						t_record *rec, \
-						t_ambient ambient, \
+						t_ambient *ambient, \
 						t_light_lst *lights)
 {
 	int		i;
-	t_color	ambient_color;
-	t_color	diffused_color;
-	// t_color	specular_color;
-	if (!ray)
-		i = 0;
+	t_color	light_color;
+
 	i = 0;
-	ambient_color = vec3_mul_vec(rec->color, ambient.light);
+	light_color = ambient->light;
 	while (i < lights->size)
 	{
-		diffused_color = get_diffused(rec, lights->objects[i]);
-		rec->color = mix_color(rec->color, diffused_color);
+		light_color = color_add(\
+			get_diffused_luminance(rec, lights->objects[i]), light_color);
+		light_color = color_add(\
+			get_specular_luminance(rec, lights->objects[i], cam), light_color);
 		i++;
 	}
+	rec->color = color_mix(light_color, rec->color);
 }
 
 void	put_color(t_img *img, int x, int y, unsigned int color)

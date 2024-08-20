@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:59:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/16 17:53:51 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:41:51 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,25 @@ t_color	rgb_to_color(unsigned int r, unsigned int g, unsigned int b)
  * @param b
  * @return t_color
  */
-t_color	mix_color(t_color a, t_color b)
+t_color	color_mix(t_color a, t_color b)
 {
-	return ((t_color){\
-		(a.x + b.x) * 0.5, \
-		(a.y + b.y) * 0.5, \
-		(a.z + b.z) * 0.5});
+	return ((t_color){a.x * b.x, a.y * b.y, a.z * b.z});
+}
+
+t_color	color_add(t_color a, t_color b)
+{
+	float	x;
+	float	y;
+	float	z;
+
+	x = a.x + b.x;
+	if (x > 1.0)
+		x = 1.0;
+	y = a.y + b.y;
+	if (y > 1.0)
+		y = 1.0;
+	z = a.z + b.z;
+	if (z > 1.0)
+		z = 1.0;
+	return ((t_color){x, y, z});
 }

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:09:37 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 18:42:23 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:52:30 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_bool	is_shadowed(t_light *light, t_record *rec, t_hit_lst *world)
 	t_ray		ray;
 
 	to_light_dir = vec3_sub(light->center, rec->p);
-	ray_origin = vec3_add(rec->p, vec3_mul(to_light_dir, 0.01));
+	ray_origin = vec3_add(rec->p, vec3_mul(to_light_dir, 0.0001));
 	ray = (t_ray){ray_origin, to_light_dir};
 	if (hit_shapes(world, &ray, (t_coll){0.0, FLOAT_MAX}, NULL))
 		return (TRUE);

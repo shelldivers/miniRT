@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:22:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:25:50 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
 	rec->color = sphere->color;
-	rec->normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	outward_normal = vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius);
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);

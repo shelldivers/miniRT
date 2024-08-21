@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 10:56:45 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:03:01 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_parser
 
 // minirt.c
 void	ray_tracing(t_rt *rt);
+t_color	get_phong_reflection_color(t_rt *rt, t_record *rec);
 
 // minirt_utils.c
 void	init_mlx(t_rt *rt, t_img *img);

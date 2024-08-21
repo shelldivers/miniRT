@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:35:44 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 14:25:39 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:54:13 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 			allowing it to reflect based on its own reflection ratio(RGB)
  * @return t_color ray_color
  */
-t_color	illuminate_object(t_color object_color, t_color light_color)
+t_color	set_light_color(t_color object_color, t_color light_color)
 {
 	return ((t_color){\
 					object_color.x * light_color.x, \

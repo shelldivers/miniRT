@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:40:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 14:27:00 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:00:11 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_color		get_specular_luminance(\
 t_bool		is_shadowed(t_light *light, t_record *rec, t_hit_lst *world);
 
 // reflection_utils.c
-t_color		illuminate_object(t_color object_color, t_color light_color);
+t_color		set_light_color(t_color object_color, t_color light_color);
 t_color		light_add(t_color l1, t_color l2);
 
 #endif

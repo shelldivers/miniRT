@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 10:58:08 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:11:08 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_exit(ERROR_USAGE);
-	// srand(SEED);
 	init_mlx(&rt, &rt.img);
 	init_world(&rt, argv[1]);
 	init_viewport(&rt);

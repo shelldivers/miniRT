@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:35:44 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/20 19:38:31 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:24:12 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,41 @@
 #include "vec3.h"
 #include "reflection.h"
 
-t_bool	near_zero(const t_vec3 v)
+/**
+ * @brief illuminate the object with light, 
+ * 			allowing it to reflect based on its own reflection ratio(RGB)
+ * @param t_color object_color
+ * @param t_color light_color
+ * @return t_color ray_color
+ */
+t_color	illuminate_object(t_color object_color, t_color light_color)
 {
-	const double	s = 1e-8;
+	return ((t_color){\
+					object_color.x * light_color.x, \
+					object_color.y * light_color.y, \
+					object_color.z * light_color.z});
+}
 
-	return (fabs(v.x) < s && fabs(v.y) < s && fabs(v.z) < s);
+/**
+ * @brief combine two light brightnesses
+ * @param t_color l1
+ * @param t_color l2
+ * @return t_color l1 + l2
+ */
+t_color	light_add(t_color l1, t_color l2)
+{
+	float	r;
+	float	g;
+	float	b;
+
+	r = l1.x + l2.x;
+	if (r > 1)
+		r = 1;
+	g = l1.y + l2.y;
+	if (g > 1)
+		g = 1;
+	b = l1.z + l2.z;
+	if (b > 1)
+		b = 1;
+	return ((t_color){r, g, b});
 }

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/20 20:18:48 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:46:53 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@
 #include <stdlib.h>
 
 t_color		ray_color(t_rt *rt, t_ray *ray);
-static void	set_color(\
-						t_camera *cam, \
-						t_record *rec, \
-						t_ambient *ambient, \
-						t_light_lst *lights);
+static void	set_color(t_rt *rt, t_record *rec);
 static void	put_color(t_img *img, int x, int y, unsigned int color);
 
 void	ray_tracing(t_rt *rt)
@@ -56,7 +52,7 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 
 	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 	{
-		set_color(&(rt->cam), &rec, &(rt->ambient), rt->lights);
+		set_color(rt, &rec);
 		return (rec.color);
 	}
 	unit_direction = vec3_unit(ray->direction);
@@ -73,26 +69,27 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 * @param lights
 * @return void
 */
-static void	set_color(\
-						t_camera *cam, \
-						t_record *rec, \
-						t_ambient *ambient, \
-						t_light_lst *lights)
+static void	set_color(t_rt *rt, t_record *rec)
 {
 	int		i;
 	t_color	light_color;
 
 	i = 0;
-	light_color = ambient->light;
-	while (i < lights->size)
+	light_color = rt->ambient.light;
+	while (i < rt->lights->size)
 	{
-		light_color = color_add(\
-			get_diffused_luminance(rec, lights->objects[i]), light_color);
-		light_color = color_add(\
-			get_specular_luminance(rec, lights->objects[i], cam), light_color);
+		if (!is_shadowed(rt->lights->objects[i], rec, rt->world))
+		{
+			light_color = light_add(\
+				get_diffused_luminance(\
+				rec, rt->lights->objects[i]), light_color);
+			light_color = light_add(\
+				get_specular_luminance(\
+				rec, rt->lights->objects[i], &(rt->cam)), light_color);
+		}
 		i++;
 	}
-	rec->color = color_mix(light_color, rec->color);
+	rec->color = illuminate_object(light_color, rec->color);
 }
 
 void	put_color(t_img *img, int x, int y, unsigned int color)

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:35:44 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 13:24:12 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:25:39 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 /**
  * @brief illuminate the object with light, 
  * 			allowing it to reflect based on its own reflection ratio(RGB)
- * @param t_color object_color
- * @param t_color light_color
  * @return t_color ray_color
  */
 t_color	illuminate_object(t_color object_color, t_color light_color)
@@ -31,8 +29,6 @@ t_color	illuminate_object(t_color object_color, t_color light_color)
 
 /**
  * @brief combine two light brightnesses
- * @param t_color l1
- * @param t_color l2
  * @return t_color l1 + l2
  */
 t_color	light_add(t_color l1, t_color l2)

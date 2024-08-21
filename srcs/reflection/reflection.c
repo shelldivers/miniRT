@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:09:37 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 14:20:57 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:26:13 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_color	get_specular_luminance(t_record *rec, t_light *light, t_camera *cam)
  * @brief get specular reflection's luminance
  * @param lights 	light info
  * @param rec 		shape info
- * @param world 	for check blocking light
+ * @param world 	for check blocking light by other shapes
  * @return t_color
  */
 t_bool	is_shadowed(t_light *light, t_record *rec, t_hit_lst *world)

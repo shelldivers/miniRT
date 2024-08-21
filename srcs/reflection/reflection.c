@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:09:37 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 19:18:10 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:12:35 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ t_color	get_diffused_luminance(t_record *rec, t_light *light)
 	float	cos_alpha;
 
 	light_color = vec3_mul(light->color, light->ratio);
-	to_light_dir = vec3_sub(light->center, rec->p);
-	cos_alpha = vec3_dot(rec->normal, vec3_unit(to_light_dir));
+	to_light_dir = vec3_unit(vec3_sub(light->center, rec->p));
+	cos_alpha = vec3_dot(rec->normal, to_light_dir);
 	if (cos_alpha < 0)
 		cos_alpha = 0;
 	luminance = vec3_mul(light_color, cos_alpha);
-	return (luminance);
+	return (vec3_mul(luminance, 0.5));
 }
 
 /**
@@ -48,22 +48,22 @@ t_color	get_diffused_luminance(t_record *rec, t_light *light)
  */
 t_color	get_specular_luminance(t_record *rec, t_light *light, t_camera *cam)
 {
-	t_color	light_color;
 	t_vec3	ray_reflect;
 	t_vec3	view_dir;
 	t_vec3	from_light_dir;
-	float	spec;
+	float	cos_alpha;
+	t_color	luminance;
 
-	light_color = vec3_mul(light->color, light->ratio);
-	from_light_dir = vec3_sub(rec->p, light->center);
+	from_light_dir = vec3_unit(vec3_sub(rec->p, light->center));
 	ray_reflect = vec3_sub(from_light_dir, \
 		vec3_mul(rec->normal, 2 * vec3_dot(from_light_dir, rec->normal)));
-	view_dir = vec3_sub(cam->view_point, rec->p);
-	spec = vec3_dot(vec3_unit(ray_reflect), vec3_unit(view_dir));
-	if (spec < 0)
-		spec = 0;
-	spec = pow(spec, 20);
-	return (vec3_mul(vec3_mul(light_color, spec), 0.5));
+	view_dir = vec3_unit(vec3_sub(cam->view_point, rec->p));
+	cos_alpha = vec3_dot(ray_reflect, view_dir);
+	if (cos_alpha < 0)
+		cos_alpha = 0;
+	cos_alpha = pow(cos_alpha, 20);
+	luminance = vec3_mul(light->color, cos_alpha);
+	return (vec3_mul(luminance, 0.5));
 }
 
 /**

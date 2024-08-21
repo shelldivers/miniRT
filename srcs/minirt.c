@@ -6,11 +6,10 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:39:51 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:56:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "minirt.h"
 #include "key_hook.h"
 #include "mlx.h"

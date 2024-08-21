@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:40:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:43:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,21 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 void	set_record_surface(\
 	t_cone *co, t_ray const *ray, t_record *rec, float surface_t)
 {
-	t_point3	c;
 	t_point3	p;
 	t_vec3		v;
 	t_vec3		cp;
 	t_vec3		cc;
+	t_vec3		outward_normal;
 
-	c = co->top;
-	p = point_at(ray, surface_t);
-	v = vec3_unit(vec3_sub(co->bottom, co->top));
-	cp = vec3_sub(p, c);
 	rec->t = surface_t;
 	rec->p = p;
 	rec->color = co->color;
+	p = point_at(ray, surface_t);
+	v = vec3_unit(vec3_sub(co->bottom, co->top));
+	cp = vec3_sub(p, co->top);
 	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
-	rec->normal = vec3_sub(cp, cc);
-	set_face_normal(rec, ray, rec->normal);
+	outward_normal = vec3_sub(cp, cc);
+	set_face_normal(rec, ray, outward_normal);
 }
 
 void	set_record_endcaps(\

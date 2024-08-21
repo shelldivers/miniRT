@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hittable.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:33:57 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 17:48:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:20:17 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ t_bool	hit_shapes(t_hit_lst *list, t_ray const *ray, t_coll t, t_record *rec)
 		{
 			hit_anything = TRUE;
 			closest_so_far = tmp.t;
-			*rec = tmp;
+			if (rec)
+				*rec = tmp;
 		}
 		i++;
 	}

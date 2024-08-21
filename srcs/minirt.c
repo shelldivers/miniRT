@@ -3,57 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 02:13:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:02:50 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 #include "minirt.h"
 #include "key_hook.h"
 #include "mlx.h"
+#include "reflection.h"
 #include <stdlib.h>
 
+t_color			ray_color(t_rt *rt, t_ray *ray);
 static void		put_color(t_img *img, int x, int y, unsigned int color);
-static t_color	ray_color(t_ray const *ray, t_hit_lst *world);
 
 void	ray_tracing(t_rt *rt)
 {
 	t_ray	ray;
-	int		i;
-	int		j;
+	int		hei;
+	int		wid;
 	t_color	color;
 
-	i = 0;
-	j = 0;
+	hei = 0;
 	ray.origin = rt->cam.view_point;
-	while (j < rt->img.height)
+	while (hei < rt->img.height)
 	{
-		i = 0;
-		while (i < rt->img.width)
+		wid = 0;
+		while (wid < rt->img.width)
 		{
-			ray.direction = get_direction(&(rt->cam), &(rt->vw), i, j);
-			color = ray_color(&ray, rt->world);
-			put_color(&(rt->img), i, j, color_to_int(color));
-			i++;
+			ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+			color = ray_color(rt, &ray);
+			put_color(&(rt->img), wid, hei, color_to_int(color));
+			wid++;
 		}
-		j++;
+		hei++;
 	}
 }
 
-t_color	ray_color(t_ray const *ray, t_hit_lst *world)
+t_color	ray_color(t_rt *rt, t_ray *ray)
 {
 	t_vec3		unit_direction;
 	float		a;
 	t_record	rec;
+	t_color		light_color;
 
-	if (hit_shapes(world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
-		return (rec.color);
+	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
+	{
+		light_color = get_phong_reflection_color(rt, &rec);
+		return (set_light_color(rec.color, light_color));
+	}
 	unit_direction = vec3_unit(ray->direction);
 	a = 0.5 * (unit_direction.y + 1.0);
 	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \
 		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
+}
+
+t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)
+{
+	t_color	light_color;
+	int		i;
+
+	light_color = rt->ambient.light;
+	i = 0;
+	while (i < rt->lights->size)
+	{
+		if (is_shadowed(rt->lights->objects[i], rec, rt->world))
+		{
+			i++;
+			continue ;
+		}
+		light_color = light_add(\
+			get_diffused_luminance(\
+			rec, rt->lights->objects[i]), light_color);
+		light_color = light_add(\
+			get_specular_luminance(\
+			rec, rt->lights->objects[i], &(rt->cam)), light_color);
+		i++;
+	}
+	return (light_color);
 }
 
 void	put_color(t_img *img, int x, int y, unsigned int color)

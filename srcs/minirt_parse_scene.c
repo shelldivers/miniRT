@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parse_scene.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/18 22:06:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:13:43 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	parse_ambient(char const *line, t_rt *rt)
 	rt->ambient.color = parse_vec3(line);
 	normalize_color_value(&rt->ambient.color);
 	must_be_last_vec3(line);
+	rt->ambient.light = vec3_mul(rt->ambient.color, rt->ambient.ratio);
 }
 
 /**

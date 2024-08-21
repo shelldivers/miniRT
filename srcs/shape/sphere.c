@@ -6,15 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/11 14:30:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/15 01:22:23 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
-#include "ft_bool.h"
-#include "shape/hittable.h"
+#include "minirt.h"
 #include "shape/sphere.h"
-#include "vec3.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -62,7 +60,8 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 }
 
 /**
- * @brief h ± sqrt(square(h) - a * c) / a 
+ * @brief Check if the ray hits the sphere
+ * @see http://www.illusioncatalyst.com/notes.php
  * @param sphere The sphere object
  * @param ray The ray
  * @param root The root of the equation
@@ -71,26 +70,15 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
  */
 t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 {
-	float		sqrtd;
-	t_vec3		oc;
-	float		a;
-	float		h;
-	float		discriminant;
+	t_quadratic	var;
 
-	oc = vec3_sub(sphere->center, ray->origin);
-	a = vec3_length_squred(ray->direction);
-	h = vec3_dot(ray->direction, oc);
-	discriminant = h * h - a * \
-		(vec3_length_squred(oc) - sphere->radius * sphere->radius);
-	if (discriminant < 0)
+	var.oc = vec3_sub(ray->origin, sphere->center);
+	var.a = vec3_length_squared(ray->direction);
+	if (var.a == 0)
 		return (FALSE);
-	sqrtd = sqrt(discriminant);
-	*root = (h - sqrtd) / a;
-	if (*root <= t.min || t.max <= *root)
-	{
-		*root = (h + sqrtd) / a;
-		if (*root <= t.min || t.max <= *root)
-			return (FALSE);
-	}
+	var.b = vec3_dot(ray->direction, var.oc);
+	var.c = vec3_length_squared(var.oc) - sphere->radius * sphere->radius;
+	if (!quadratic_equation(var, t, root))
+		return (FALSE);
 	return (TRUE);
 }

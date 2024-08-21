@@ -17,15 +17,6 @@
 #include "vec3.h"
 #include <stdlib.h>
 
-void	set_face_normal(t_record *rec, t_ray const *ray, t_vec3 outward_normal)
-{
-	rec->front_face = vec3_dot(ray->direction, outward_normal) < 0;
-	if (rec->front_face)
-		rec->normal = outward_normal;
-	else
-		rec->normal = vec3_mul(outward_normal, -1);
-}
-
 t_hit_lst	*init_hittable_list(int capacity)
 {
 	t_hit_lst	*list;

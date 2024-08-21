@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	// srand(SEED);
 	init_mlx(&rt, &rt.img);
 	init_world(&rt, argv[1]);
-	init_viewport(&rt.img, &rt.cam, &rt.vw);
+	init_viewport(&rt);
 	ray_tracing(&rt);
 	mlx_put_image_to_window(rt.mlx, rt.win, rt.img.ptr, 0, 0);
 	mlx_hook(rt.win, X_EVENT_KEY_PRESS, 1L << 0, key_press, &rt);

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:59:25 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 13:19:01 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:05:44 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,5 @@ t_color	int_to_color(unsigned int color)
 	ret.x = (float)((color & 0x00FF0000) >> 16) / 255.0;
 	ret.y = (float)((color & 0x0000FF00) >> 8) / 255.0;
 	ret.z = (float)(color & 0x000000FF) / 255.0;
-	return (ret);
-}
-
-/**
- * @brief 0~255 사이의 값을 받아서 0~1 사이의 값으로 정규화
- * @param r
- * @param g
- * @param b
- * @return t_color
- */
-t_color	rgb_to_color(unsigned int r, unsigned int g, unsigned int b)
-{
-	t_color	ret;
-
-	ret.x = (float)r / 255.0;
-	ret.y = (float)g / 255.0;
-	ret.z = (float)b / 255.0;
 	return (ret);
 }

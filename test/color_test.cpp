@@ -13,16 +13,6 @@ TEST(color_test, color_to_int) {
     EXPECT_FLOAT_EQ(int_color, 0xFFA500);
 }
 
-TEST(color_test, rgb_to_color) {
-    unsigned int r = 0;
-    unsigned int g = 255;
-    unsigned int b = 255;
-    t_color color = rgb_to_color(r, g, b);
-    EXPECT_FLOAT_EQ(color.x, 0);
-    EXPECT_FLOAT_EQ(color.y, 1);
-    EXPECT_FLOAT_EQ(color.z, 1);
-}
-
 TEST(color_test, 성공) {
     t_color color = {181, 129, 112};
     normalize_color_value(&color);

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-
 #include "minirt.h"
 #include "key_hook.h"
 #include "mlx.h"

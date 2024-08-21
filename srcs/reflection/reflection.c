@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:09:37 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/21 17:00:41 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:52:30 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@
 t_color	get_diffused_luminance(t_record *rec, t_light *light)
 {
 	t_color	luminance;
+	t_color	light_color;
 	t_vec3	to_light_dir;
 	float	cos_alpha;
 
+	light_color = vec3_mul(light->color, light->ratio);
 	to_light_dir = vec3_sub(light->center, rec->p);
 	cos_alpha = vec3_dot(vec3_unit(rec->normal), vec3_unit(to_light_dir));
 	if (cos_alpha < 0)
 		cos_alpha = 0;
-	luminance = vec3_mul(light->color, cos_alpha);
+	luminance = vec3_mul(light_color, cos_alpha);
 	return (luminance);
 }
 
@@ -58,7 +60,7 @@ t_color	get_specular_luminance(t_record *rec, t_light *light, t_camera *cam)
 	spec = vec3_dot(vec3_unit(ray_reflect), vec3_unit(view_dir));
 	if (spec < 0)
 		spec = 0;
-	spec = pow(spec, 128);
+	spec = pow(spec, 20);
 	return (vec3_mul(vec3_mul(light->color, spec), 0.5));
 }
 
@@ -76,7 +78,7 @@ t_bool	is_shadowed(t_light *light, t_record *rec, t_hit_lst *world)
 	t_ray		ray;
 
 	to_light_dir = vec3_sub(light->center, rec->p);
-	ray_origin = vec3_add(rec->p, vec3_mul(to_light_dir, 0.001));
+	ray_origin = vec3_add(rec->p, vec3_mul(to_light_dir, 0.0001));
 	ray = (t_ray){ray_origin, to_light_dir};
 	if (hit_shapes(world, &ray, (t_coll){0.0, FLOAT_MAX}, NULL))
 		return (TRUE);

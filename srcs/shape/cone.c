@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:26:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:40:48 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,21 @@ t_bool	hit_cone(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 void	set_record_surface(\
 	t_cone *co, t_ray const *ray, t_record *rec, float surface_t)
 {
-	t_vec3	hc;
-	t_vec3	hp;
-	float	m;
+	t_point3	c;
+	t_point3	p;
+	t_vec3		v;
+	t_vec3		cp;
+	t_vec3		cc;
 
+	c = co->top;
+	p = point_at(ray, surface_t);
+	v = vec3_unit(vec3_sub(co->bottom, co->top));
+	cp = vec3_sub(p, c);
 	rec->t = surface_t;
-	rec->p = point_at(ray, rec->t);
+	rec->p = p;
 	rec->color = co->color;
-	hc = vec3_sub(co->top, co->bottom);
-	hp = vec3_sub(rec->p, co->bottom);
-	m = pow(co->radius, 2.0) / pow(co->height, 2.0);
-	rec->normal = vec3_unit(\
-		vec3_sub(hp, vec3_mul(hc, (1 + m) \
-		* vec3_dot(hp, hc) / vec3_length_squared(hc))));
+	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
+	rec->normal = vec3_sub(cp, cc);
 	set_face_normal(rec, ray, rec->normal);
 }
 

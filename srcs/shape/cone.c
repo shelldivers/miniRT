@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:44:51 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:49:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,11 @@ void	set_record_surface(\
 void	set_record_endcaps(\
 	t_cone *co, t_ray const *ray, t_record *rec, float endcap_t)
 {
+	t_vec3	outward_normal;
+
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = co->color;
-	rec->normal = co->normal;
-	set_face_normal(rec, ray, co->normal);
+	outward_normal = co->normal;
+	set_face_normal(rec, ray, outward_normal);
 }

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:21:35 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:44:36 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 {
 	t_plane	*plane;
 	float	root;
+	t_vec3	outward_normal;
 
 	plane = (t_plane *)obj;
 	if (!is_collided(plane, ray, &root, t))
@@ -50,8 +51,8 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
 	rec->color = plane->color;
-	rec->normal = plane->normal;
-	set_face_normal(rec, ray, plane->normal);
+	outward_normal = plane->normal;
+	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/20 17:04:46 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:13:43 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	parse_ambient(char const *line, t_rt *rt)
 	move_to_next_param(&line);
 	rt->ambient.color = parse_vec3(line);
 	normalize_color_value(&rt->ambient.color);
-	normalize_color_value(&rt->ambient.light);
 	must_be_last_vec3(line);
 	rt->ambient.light = vec3_mul(rt->ambient.color, rt->ambient.ratio);
 }

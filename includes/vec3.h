@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:27:36 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/20 15:25:49 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:10:08 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,5 @@ t_vec3	vec3_add(t_vec3 a, t_vec3 b);
 t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
 t_vec3	vec3_mul(t_vec3 a, float t);
 t_vec3	vec3_div(t_vec3 a, float t);
-
-// vec3_random.c
-t_vec3	vec3_random(void);
-t_vec3	vec3_random_range(float min, float max);
 
 #endif

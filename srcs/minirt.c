@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 17:02:50 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:30:07 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	ray_tracing(t_rt *rt)
 t_color	ray_color(t_rt *rt, t_ray *ray)
 {
 	t_vec3		unit_direction;
-	float		a;
 	t_record	rec;
 	t_color		light_color;
 
@@ -57,9 +56,7 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 		return (set_light_color(rec.color, light_color));
 	}
 	unit_direction = vec3_unit(ray->direction);
-	a = 0.5 * (unit_direction.y + 1.0);
-	return (vec3_add(vec3_mul((t_color){1.0, 1.0, 1.0}, 1.0 - a), \
-		vec3_mul((t_color){0.5, 0.7, 1.0}, a)));
+	return ((t_color){0, 0, 0});
 }
 
 t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)

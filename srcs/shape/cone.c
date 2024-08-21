@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:49:51 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:08:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	set_record_surface(\
 	v = vec3_unit(vec3_sub(co->bottom, co->top));
 	cp = vec3_sub(rec->p, co->top);
 	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
-	outward_normal = vec3_sub(cp, cc);
+	outward_normal = vec3_unit(vec3_sub(cp, cc));
 	set_face_normal(rec, ray, outward_normal);
 }
 

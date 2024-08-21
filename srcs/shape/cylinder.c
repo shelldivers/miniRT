@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:50:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:09:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	set_record_surface(\
 	rec->color = cy->color;
 	cp = vec3_sub(rec->p, cy->center);
 	v = vec3_unit(vec3_sub(cy->bottom, cy->top));
-	outward_normal = vec3_sub(cp, vec3_mul(v, vec3_dot(cp, v)));
+	outward_normal = vec3_unit(vec3_sub(cp, vec3_mul(v, vec3_dot(cp, v))));
 	set_face_normal(rec, ray, outward_normal);
 }
 

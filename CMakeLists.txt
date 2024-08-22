@@ -54,7 +54,7 @@ find_library(AppKit_LIBRARY AppKit)
 # build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
 add_library(${LIB_NAME} STATIC ${SRC_FILES})
-target_link_libraries(${LIB_NAME} libft ${AppKit_LIBRARY} ${OpenGL_LIBRARY})
+target_link_libraries(${LIB_NAME} libft ${AppKit_LIBRARY} ${OpenGL_LIBRARY} ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # build minirt executable

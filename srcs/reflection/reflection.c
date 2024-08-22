@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:09:37 by jiwojung          #+#    #+#             */
-/*   Updated: 2024/08/22 15:31:49 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:47:56 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_color	get_diffused_luminance(t_record *rec, t_light *light)
 	if (cos_alpha < 0)
 		cos_alpha = 0;
 	luminance = vec3_mul(light_color, cos_alpha);
-	return (vec3_mul(luminance, REFLECTION_CONST));
+	return (vec3_mul(luminance, DIFFUSE_CONST));
 }
 
 /**
@@ -49,7 +49,7 @@ t_color	get_diffused_luminance(t_record *rec, t_light *light)
 t_color	get_specular_luminance(t_record *rec, t_light *light, t_camera *cam)
 {
 	t_vec3	ray_reflect;
-	t_vec3	view_d_u;
+	t_vec3	view_u;
 	t_vec3	from_light_u;
 	float	cos_alpha;
 	t_color	luminance;
@@ -57,13 +57,13 @@ t_color	get_specular_luminance(t_record *rec, t_light *light, t_camera *cam)
 	from_light_u = vec3_unit(vec3_sub(rec->p, light->center));
 	ray_reflect = vec3_sub(from_light_u, \
 		vec3_mul(rec->normal, 2 * vec3_dot(from_light_u, rec->normal)));
-	view_d_u = vec3_unit(vec3_sub(cam->view_point, rec->p));
-	cos_alpha = vec3_dot(ray_reflect, view_d_u);
+	view_u = vec3_unit(vec3_sub(cam->view_point, rec->p));
+	cos_alpha = vec3_dot(ray_reflect, view_u);
 	if (cos_alpha < 0)
 		cos_alpha = 0;
 	cos_alpha = pow(cos_alpha, SHININESS_CONST);
 	luminance = vec3_mul(light->color, cos_alpha);
-	return (vec3_mul(luminance, REFLECTION_CONST));
+	return (vec3_mul(luminance, SPECULAR_CONST));
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 14:53:46 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:47:40 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)
 	t_color	light_color;
 	int		i;
 
-	light_color = vec3_mul(rt->ambient.light, REFLECTION_CONST);
+	light_color = vec3_mul(rt->ambient.light, AMBIENT_CONST);
 	i = 0;
 	while (i < rt->lights->size)
 	{

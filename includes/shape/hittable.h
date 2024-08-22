@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:17:27 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:20:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_texture
 	t_bool		enable;
 	t_vec2		uv;
 	t_color		color;
+	void		*image;
 }	t_texture;
 
 typedef t_vec2	(*t_uv_map)(t_texture *texture, t_record *rec);

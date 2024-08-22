@@ -62,6 +62,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/
 
 add_custom_target(mlx
 	COMMAND cp ${CMAKE_SOURCE_DIR}/example.rt ${CMAKE_BINARY_DIR}
+	COMMAND cp -r ${CMAKE_SOURCE_DIR}/resources ${CMAKE_BINARY_DIR}
     COMMAND ${CMAKE_BINARY_DIR}/${EXEC_NAME} example.rt
     DEPENDS ${EXEC_NAME}
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}

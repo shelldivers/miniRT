@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 03:12:28 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:07:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	must_be_valid_ratio(float ratio)
 
 void	must_have_no_remain(char const *line)
 {
-	if (!ft_isspace(*line))
+	if (*line && !ft_isspace(*line))
 		error_exit(ERROR_INVALID_PARAM);
 }

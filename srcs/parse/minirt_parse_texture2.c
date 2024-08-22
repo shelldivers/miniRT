@@ -6,15 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:12:32 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 20:04:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:38:52 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "libft.h"
-#include "mlx.h"
 #include "error.h"
-#include <stdlib.h>
+#include <mlx.h>
 
 void	parse_checkerboard(t_rt *rt, t_hit *data, char const **ptr)
 {

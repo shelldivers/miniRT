@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:16:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:19:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_color_map	uv_color_map_adapter(t_texture texture)
 	return (NULL);
 }
 
-t_bool	has_texture_map(t_texture texture)
+t_bool	is_texture_enabled(t_texture texture)
 {
 	if (texture.enable & (CHECKER_BOARD | TEXTURE_MAP))
 		return (TRUE);

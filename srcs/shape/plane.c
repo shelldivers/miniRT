@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:17:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:19:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_plane	*init_plane(t_plane data)
 	plane->normal = data.normal;
 	plane->parent.color = data.parent.color;
 	plane->parent.texture = data.parent.texture;
-	if (has_texture_map(data.parent.texture))
+	if (is_texture_enabled(data.parent.texture))
 	{
 		plane->parent.uv_map = get_uv_map_plane;
 		plane->parent.uv_color = uv_color_map_adapter(data.parent.texture);

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:40:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 17:00:11 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:00:46 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "vec3.h"
 # include "shape/hittable.h"
+
+# define REFLECTION_CONST 0.5
+# define SHININESS_CONST 20
 
 typedef struct s_light
 {

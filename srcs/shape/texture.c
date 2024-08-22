@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 01:37:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:15:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "shape/texture.h"
 #include "error.h"
 #include <stdlib.h>
+#include <math.h>
 
 t_color	uv_pattern_map(t_hit *obj, t_record *rec)
 {
@@ -40,11 +41,11 @@ t_color	uv_texture_map(t_hit *obj, t_record *rec)
 
 t_color_map	uv_color_map_adapter(t_texture texture)
 {
-	if (texture.enable >= (CHECKER_BOARD | TEXTURE_MAP))
+	if ((texture.enable & 0b00000011) == (CHECKER_BOARD | TEXTURE_MAP))
 		error_exit(ERROR_DUPLICATE_TEXTURE);
-	if (texture.enable == CHECKER_BOARD)
+	if (texture.enable & CHECKER_BOARD)
 		return (uv_pattern_map);
-	if (texture.enable == TEXTURE_MAP)
+	if (texture.enable & TEXTURE_MAP)
 		return (uv_texture_map);
 	error_exit(ERROR_TEXTURE_NOT_FOUND);
 	return (NULL);

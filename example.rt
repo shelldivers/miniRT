@@ -1,8 +1,6 @@
-A   0.1 255,255,255
+A   1 255,255,255
 C   0,0,10       0,0,-1     100
-L  	25,25,25	1 255,0,0
-L  	-25,25,25	1 0,0,255
-L  	0,25,12.5	1 0,255,0
+L  	25,25,25    0.5 255,255,255
 sp  4.5,6.5,-32  8.5 147,255,216 -c 0,0,0 2	2 -b ./resources/earth_bump.xpm
 sp  -5,4,-33 14 121,0,255 -b ./resources/mars_texture.xpm -t ./resources/mars_bump.xpm
 cy  -9.5,7.5,-5 1,1,-1 5 5 100,100,255  -b ./resources/earth_texture.xpm

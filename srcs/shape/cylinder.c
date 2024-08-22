@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 01:24:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:08:21 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ t_cylinder	*init_cylinder(t_cylinder data)
 	cy->parent.color = data.parent.color;
 	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
-	if (data.parent.texture.enable == FALSE)
+	cy->parent.texture = data.parent.texture;
+	if (data.parent.texture.enable & (CHECKER_BOARD | TEXTURE_MAP))
 	{
-		cy->parent.texture = data.parent.texture;
 		cy->parent.uv_map = get_uv_map_cylinder;
 		cy->parent.uv_color = uv_color_map_adapter(data.parent.texture);
 	}

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 19:57:08 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:56:47 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	parse_plane(char const *line, t_rt *rt)
 	move_to_next_param(&line);
 	data.parent.color = parse_vec3(line);
 	normalize_color_value(&data.parent.color);
+	data.parent.texture.enable = FALSE;
 	if (has_texture(line))
 		parse_texture(rt, &data.parent, &line);
 	else
@@ -70,6 +71,7 @@ void	parse_sphere(char const *line, t_rt *rt)
 	validate_positive_and_move_next(&line, data.radius);
 	data.parent.color = parse_vec3(line);
 	normalize_color_value(&data.parent.color);
+	data.parent.texture.enable = FALSE;
 	if (has_texture(line))
 		parse_texture(rt, &data.parent, &line);
 	else
@@ -105,6 +107,7 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	validate_positive_and_move_next(&line, data.height);
 	data.parent.color = parse_vec3(line);
 	normalize_color_value(&data.parent.color);
+	data.parent.texture.enable = FALSE;
 	if (has_texture(line))
 		parse_texture(rt, &data.parent, &line);
 	else
@@ -141,6 +144,7 @@ void	parse_cone(char const *line, t_rt *rt)
 	validate_positive_and_move_next(&line, data.height);
 	data.parent.color = parse_vec3(line);
 	normalize_color_value(&data.parent.color);
+	data.parent.texture.enable = FALSE;
 	if (has_texture(line))
 		parse_texture(rt, &data.parent, &line);
 	else

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:04 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 22:40:21 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:03:07 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_plane
 	t_hit		parent;
 	t_point3	center;
 	t_vec3		normal;
-	t_color		color;
 }	t_plane;
 
 t_plane	*init_plane(t_plane data);

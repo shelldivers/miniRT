@@ -23,9 +23,9 @@ TEST(parse_cylinder_test, basic_case)
     ASSERT_EQ(cylinder->normal.z, 1);
     ASSERT_EQ(cylinder->radius, 5);
     ASSERT_EQ(cylinder->height, 5);
-    ASSERT_EQ(cylinder->color.x, 1);
-    ASSERT_EQ(cylinder->color.y, 1);
-    ASSERT_EQ(cylinder->color.z, 1);
+    ASSERT_EQ(cylinder->parent.color.x, 1);
+    ASSERT_EQ(cylinder->parent.color.y, 1);
+    ASSERT_EQ(cylinder->parent.color.z, 1);
 }
 
 TEST(parse_cylinder_test, success_with_last_space)
@@ -46,9 +46,9 @@ TEST(parse_cylinder_test, success_with_last_space)
     ASSERT_EQ(cylinder->normal.z, 1);
     ASSERT_EQ(cylinder->radius, 5);
     ASSERT_EQ(cylinder->height, 5);
-    ASSERT_EQ(cylinder->color.x, 1);
-    ASSERT_EQ(cylinder->color.y, 1);
-    ASSERT_EQ(cylinder->color.z, 1);
+    ASSERT_EQ(cylinder->parent.color.x, 1);
+    ASSERT_EQ(cylinder->parent.color.y, 1);
+    ASSERT_EQ(cylinder->parent.color.z, 1);
 }
 
 TEST(parse_cylinder_test, invalid)

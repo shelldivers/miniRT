@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:09:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:34:20 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	must_numuric_and_comma(char const *line)
 
 	while (*line)
 	{
+		if (ft_isspace(*line))
+			break ;
 		if (!ft_strchr(list, *line) && !ft_isspace(*line))
 			error_exit(ERROR_INVALID_PARAM);
 		line++;

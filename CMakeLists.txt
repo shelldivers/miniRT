@@ -45,13 +45,15 @@ FetchContent_MakeAvailable(minilibx)
 add_custom_target(build_minilibx ALL
 	COMMAND make -C ${minilibx_SOURCE_DIR} -j1
 	COMMAND cp ${minilibx_SOURCE_DIR}/libmlx.dylib ${CMAKE_BINARY_DIR}
+	COMMAND cp ${minilibx_SOURCE_DIR}/libmlx.dylib ${CMAKE_SOURCE_DIR}
 )
 set(MINILIBX_LIBRARY ${minilibx_SOURCE_DIR}/libmlx.dylib)
 
 # build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
 add_library(${LIB_NAME} STATIC ${SRC_FILES})
-target_link_libraries(${LIB_NAME} libft)
+add_dependencies(${LIB_NAME} build_minilibx)
+target_link_libraries(${LIB_NAME} libft ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # build minirt executable
@@ -62,6 +64,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/
 
 add_custom_target(mlx
 	COMMAND cp ${CMAKE_SOURCE_DIR}/example.rt ${CMAKE_BINARY_DIR}
+	COMMAND cp -r ${CMAKE_SOURCE_DIR}/resources ${CMAKE_BINARY_DIR}
     COMMAND ${CMAKE_BINARY_DIR}/${EXEC_NAME} example.rt
     DEPENDS ${EXEC_NAME}
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -70,7 +73,8 @@ add_custom_target(mlx
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
-target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest)
+add_dependencies(${TEST_NAME} build_minilibx)
+target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest ${MINILIBX_LIBRARY})
 
 # add tests
 add_test(

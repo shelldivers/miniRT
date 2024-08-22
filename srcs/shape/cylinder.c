@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 19:09:08 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:11:50 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cylinder	*init_cylinder(t_cylinder data)
 	cy->normal = data.normal;
 	cy->radius = data.radius;
 	cy->height = data.height;
-	cy->color = data.color;
+	cy->parent.color = data.parent.color;
 	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	return (cy);
@@ -70,7 +70,7 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
+	rec->color = cy->parent.color;
 	cp = vec3_sub(rec->p, cy->center);
 	v = vec3_unit(vec3_sub(cy->bottom, cy->top));
 	outward_normal = vec3_unit(vec3_sub(cp, vec3_mul(v, vec3_dot(cp, v))));
@@ -84,7 +84,7 @@ void	set_record_endcaps(\
 
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->color;
+	rec->color = cy->parent.color;
 	outward_normal = cy->normal;
 	set_face_normal(rec, ray, outward_normal);
 }

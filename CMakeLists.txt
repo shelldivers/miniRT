@@ -48,20 +48,17 @@ add_custom_target(build_minilibx ALL
 )
 set(MINILIBX_LIBRARY ${minilibx_SOURCE_DIR}/libmlx.dylib)
 
-find_library(OpenGL_LIBRARY OpenGL)
-find_library(AppKit_LIBRARY AppKit)
-
 # build minirt library
 file(GLOB_RECURSE SRC_FILES "srcs/*.c")
 add_library(${LIB_NAME} STATIC ${SRC_FILES})
 add_dependencies(${LIB_NAME} build_minilibx)
-target_link_libraries(${LIB_NAME} libft ${AppKit_LIBRARY} ${OpenGL_LIBRARY} ${MINILIBX_LIBRARY})
+target_link_libraries(${LIB_NAME} libft ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes)
 
 # build minirt executable
 add_executable(${EXEC_NAME} "main.c")
 add_dependencies(${EXEC_NAME} build_minilibx)
-target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${AppKit_LIBRARY} ${OpenGL_LIBRARY} ${MINILIBX_LIBRARY})
+target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes ${minilibx_SOURCE_DIR})
 
 add_custom_target(mlx
@@ -76,7 +73,7 @@ add_custom_target(mlx
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
 add_dependencies(${LIB_NAME} build_minilibx)
-target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest ${AppKit_LIBRARY} ${OpenGL_LIBRARY} ${MINILIBX_LIBRARY})
+target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest ${MINILIBX_LIBRARY})
 
 # add tests
 add_test(

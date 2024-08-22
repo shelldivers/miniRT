@@ -60,7 +60,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/
 # build minirt executable
 add_executable(${EXEC_NAME} "main.c")
 add_dependencies(${EXEC_NAME} build_minilibx)
-target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${MINILIBX_LIBRARY})
+target_link_libraries(${EXEC_NAME} ${LIB_NAME} libft ${AppKit_LIBRARY} ${OpenGL_LIBRARY} ${MINILIBX_LIBRARY})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/includes ${CMAKE_LIBFT_SRC_DIR}/includes ${minilibx_SOURCE_DIR})
 
 add_custom_target(mlx

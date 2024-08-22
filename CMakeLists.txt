@@ -72,7 +72,7 @@ add_custom_target(mlx
 # build minirt test executable
 file(GLOB_RECURSE TEST_SRC_FILES "test/*.cpp")
 add_executable(${TEST_NAME} ${TEST_SRC_FILES})
-add_dependencies(${LIB_NAME} build_minilibx)
+add_dependencies(${TEST_NAME} build_minilibx)
 target_link_libraries(${TEST_NAME} ${LIB_NAME} libft gtest ${MINILIBX_LIBRARY})
 
 # add tests

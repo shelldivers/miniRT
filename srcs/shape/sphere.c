@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 15:19:05 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:12:18 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_sphere	*init_sphere(t_sphere data)
 	sphere->parent.hit = hit_sphere;
 	sphere->center = data.center;
 	sphere->radius = data.radius;
-	sphere->color = data.color;
+	sphere->parent.color = data.parent.color;
 	return (sphere);
 }
 
@@ -52,7 +52,7 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
-	rec->color = sphere->color;
+	rec->color = sphere->parent.color;
 	outward_normal = vec3_unit(\
 		vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius));
 	set_face_normal(rec, ray, outward_normal);

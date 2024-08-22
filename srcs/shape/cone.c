@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 19:08:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:11:31 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cone	*init_cone(t_cone data)
 	co->normal = data.normal;
 	co->radius = data.radius;
 	co->height = data.height;
-	co->color = data.color;
+	co->parent.color = data.parent.color;
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
 	return (co);
@@ -71,7 +71,7 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, surface_t);
-	rec->color = co->color;
+	rec->color = co->parent.color;
 	v = vec3_unit(vec3_sub(co->bottom, co->top));
 	cp = vec3_sub(rec->p, co->top);
 	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
@@ -86,7 +86,7 @@ void	set_record_endcaps(\
 
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = co->color;
+	rec->color = co->parent.color;
 	outward_normal = co->normal;
 	set_face_normal(rec, ray, outward_normal);
 }

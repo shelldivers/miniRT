@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:19:54 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/14 01:44:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:03:09 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_cylinder
 	t_vec3		normal;
 	float		radius;
 	float		height;
-	t_color		color;
 }	t_cylinder;
 
 t_cylinder	*init_cylinder(t_cylinder data);

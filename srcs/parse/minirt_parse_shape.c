@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:01:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/16 03:08:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:13:29 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	parse_plane(char const *line, t_rt *rt)
 	data.normal = parse_vec3(line);
 	normalize_vec3(&data.normal);
 	move_to_next_param(&line);
-	data.color = parse_vec3(line);
-	normalize_color_value(&data.color);
+	data.parent.color = parse_vec3(line);
+	normalize_color_value(&data.parent.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_plane(data);
 	if (!new_obj)
@@ -67,8 +67,8 @@ void	parse_sphere(char const *line, t_rt *rt)
 	move_to_next_param(&line);
 	data.radius = ft_strtof(line, (char **)&line) / 2;
 	validate_positive_and_move_next(&line, data.radius);
-	data.color = parse_vec3(line);
-	normalize_color_value(&data.color);
+	data.parent.color = parse_vec3(line);
+	normalize_color_value(&data.parent.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_sphere(data);
 	if (!new_obj)
@@ -100,8 +100,8 @@ void	parse_cylinder(char const *line, t_rt *rt)
 	validate_positive_and_move_next(&line, data.radius);
 	data.height = ft_strtof(line, (char **)&line);
 	validate_positive_and_move_next(&line, data.height);
-	data.color = parse_vec3(line);
-	normalize_color_value(&data.color);
+	data.parent.color = parse_vec3(line);
+	normalize_color_value(&data.parent.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_cylinder(data);
 	if (!new_obj)
@@ -134,8 +134,8 @@ void	parse_cone(char const *line, t_rt *rt)
 	validate_positive_and_move_next(&line, data.radius);
 	data.height = ft_strtof(line, (char **)&line);
 	validate_positive_and_move_next(&line, data.height);
-	data.color = parse_vec3(line);
-	normalize_color_value(&data.color);
+	data.parent.color = parse_vec3(line);
+	normalize_color_value(&data.parent.color);
 	must_be_last_vec3(line);
 	new_obj = (t_hit *)init_cone(data);
 	if (!new_obj)

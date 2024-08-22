@@ -20,9 +20,9 @@ TEST(parse_plane_test, basic_case)
 	ASSERT_EQ(plane->normal.x, 0);
 	ASSERT_EQ(plane->normal.y, 0);
 	ASSERT_EQ(plane->normal.z, 1);
-	ASSERT_EQ(plane->color.x, 1);
-	ASSERT_EQ(plane->color.y, 1);
-	ASSERT_EQ(plane->color.z, 1);
+	ASSERT_EQ(plane->parent.color.x, 1);
+	ASSERT_EQ(plane->parent.color.y, 1);
+	ASSERT_EQ(plane->parent.color.z, 1);
 }
 
 TEST(parse_plane_test, success_with_last_space)
@@ -40,9 +40,9 @@ TEST(parse_plane_test, success_with_last_space)
 	ASSERT_EQ(plane->normal.x, 0);
 	ASSERT_EQ(plane->normal.y, 0);
 	ASSERT_EQ(plane->normal.z, 1);
-	ASSERT_EQ(plane->color.x, 1);
-	ASSERT_EQ(plane->color.y, 1);
-	ASSERT_EQ(plane->color.z, 1);
+	ASSERT_EQ(plane->parent.color.x, 1);
+	ASSERT_EQ(plane->parent.color.y, 1);
+	ASSERT_EQ(plane->parent.color.z, 1);
 
 }
 

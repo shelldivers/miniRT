@@ -22,9 +22,9 @@ TEST(parse_cone_test, 성공)
     ASSERT_FLOAT_EQ(cone->normal.z, 1);
     ASSERT_FLOAT_EQ(cone->radius, 5);
     ASSERT_FLOAT_EQ(cone->height, 5);
-    ASSERT_FLOAT_EQ(cone->color.x, 1);
-    ASSERT_FLOAT_EQ(cone->color.y, 1);
-    ASSERT_FLOAT_EQ(cone->color.z, 1);
+    ASSERT_FLOAT_EQ(cone->parent.color.x, 1);
+    ASSERT_FLOAT_EQ(cone->parent.color.y, 1);
+    ASSERT_FLOAT_EQ(cone->parent.color.z, 1);
 }
 
 

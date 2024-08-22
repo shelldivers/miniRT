@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 18:44:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:12:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_plane	*init_plane(t_plane data)
 	plane->parent.hit = hit_plane;
 	plane->center = data.center;
 	plane->normal = data.normal;
-	plane->color = data.color;
+	plane->parent.color = data.parent.color;
 	return (plane);
 }
 
 /**
- * @brief Check if the ray hits the plane
+ * @brief Check if the ray hits the plane\
  * @param obj The plane object
  * @param ray The ray
  * @param t The collision range
@@ -50,7 +50,7 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
-	rec->color = plane->color;
+	rec->color = plane->parent.color;
 	outward_normal = plane->normal;
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);

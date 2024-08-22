@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:19:19 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:19:52 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_cone	*init_cone(t_cone data)
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
 	co->parent.texture = data.parent.texture;
-	if (is_texture_enabled(data.parent.texture))
+	if (is_texture_map_enabled(data.parent.texture))
 	{
 		co->parent.uv_map = get_uv_map_cone;
 		co->parent.uv_color = uv_color_map_adapter(data.parent.texture);

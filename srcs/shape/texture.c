@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 01:26:26 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:37:06 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,18 @@
 
 t_color	uv_pattern_map(t_hit *obj, t_record *rec)
 {
-	(void)obj;
-	(void)rec;
-	return (rec->color);
+	t_uv_map	uv_map;
+	t_vec2		uv;
+	int			u2;
+	int			v2;
+
+	uv_map = obj->uv_map;
+	uv = uv_map(obj, rec);
+	u2 = (int)floor(uv.u);
+	v2 = (int)floor(uv.v);
+	if ((u2 + v2) % 2 == 0)
+		return (rec->color);
+	return (obj->texture.color);
 }
 
 t_color	uv_texture_map(t_hit *obj, t_record *rec)

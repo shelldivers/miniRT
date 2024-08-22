@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 18:57:08 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:13:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_world(t_rt *rt, char const *filename)
 
 void	must_be_rt_extension(char const *filename)
 {
-	must_have_valid_extension(filename, ".rt");
+	must_have_valid_extension(filename, RT_EXTENSION);
 }
 
 void	parse_rtfile(int fd, t_rt *rt)

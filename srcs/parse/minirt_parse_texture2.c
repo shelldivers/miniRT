@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:12:32 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 20:38:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:13:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	parse_bump_map(t_rt *rt, t_hit *data, char const **ptr)
 	line += 2;
 	skip_spaces(&line);
 	filename = substr_filename(line);
-	must_have_valid_extension(filename, ".xpm");
+	must_have_valid_extension(filename, XPM_EXTENSION);
 	data->texture.bump_map = mlx_xpm_file_to_image(rt->mlx, filename, \
 		&data->texture.bump_width, \
 		&data->texture.bump_height);

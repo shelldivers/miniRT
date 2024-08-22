@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 18:53:07 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:25:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_coll
 	float	min;
 	float	max;
 }	t_coll;
-
 
 typedef struct s_texture
 {

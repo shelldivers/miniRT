@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 19:06:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:25:42 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void				must_have_no_remain(char const *line);
 // minirt_parse_utils3.c
 void				must_be_positive(float value);
 void				must_have_valid_extension(char const *f, char const *e);
-char 				*substr_filename(char const *line);
+char				*substr_filename(char const *line);
+
 // minirt_parse_vec3.c
 t_vec3				parse_vec3(char const *line);
 

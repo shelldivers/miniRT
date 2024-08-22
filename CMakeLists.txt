@@ -45,6 +45,7 @@ FetchContent_MakeAvailable(minilibx)
 add_custom_target(build_minilibx ALL
 	COMMAND make -C ${minilibx_SOURCE_DIR} -j1
 	COMMAND cp ${minilibx_SOURCE_DIR}/libmlx.dylib ${CMAKE_BINARY_DIR}
+	COMMAND cp ${minilibx_SOURCE_DIR}/libmlx.dylib ${CMAKE_SOURCE_DIR}
 )
 set(MINILIBX_LIBRARY ${minilibx_SOURCE_DIR}/libmlx.dylib)
 

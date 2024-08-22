@@ -6,11 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:12:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:24:53 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape/plane.h"
+#include "shape/texture.h"
+#include "vec2.h"
 #include "error.h"
 #include <stdlib.h>
 
@@ -28,6 +30,12 @@ t_plane	*init_plane(t_plane data)
 	plane->center = data.center;
 	plane->normal = data.normal;
 	plane->parent.color = data.parent.color;
+	if (data.parent.texture.enable == FALSE)
+	{
+		plane->parent.texture = data.parent.texture;
+		plane->parent.uv_map = get_uv_map_plane;
+		plane->parent.uv_color = uv_color_map_adapter(data.parent.texture);
+	}
 	return (plane);
 }
 
@@ -78,4 +86,11 @@ t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 	if (*root <= t.min || t.max <= *root)
 		return (FALSE);
 	return (TRUE);
+}
+
+t_vec2	get_uv_map_plane(t_hit *obj, t_record *rec)
+{
+	(void)obj;
+	(void)rec;
+	return ((t_vec2){0, 0});
 }

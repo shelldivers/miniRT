@@ -6,13 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:12:18 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:24:42 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
+#include "vec2.h"
 #include "minirt.h"
 #include "shape/sphere.h"
+#include "shape/texture.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -30,6 +32,12 @@ t_sphere	*init_sphere(t_sphere data)
 	sphere->center = data.center;
 	sphere->radius = data.radius;
 	sphere->parent.color = data.parent.color;
+	if (data.parent.texture.enable == FALSE)
+	{
+		sphere->parent.texture = data.parent.texture;
+		sphere->parent.uv_map = get_uv_map_sphere;
+		sphere->parent.uv_color = uv_color_map_adapter(data.parent.texture);
+	}
 	return (sphere);
 }
 
@@ -81,4 +89,21 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 	if (!quadratic_equation(var, t, root))
 		return (FALSE);
 	return (TRUE);
+}
+
+t_vec2	get_uv_map_sphere(t_hit *obj, t_record *rec)
+{
+	t_vec3		p;
+	t_vec2		uv;
+	float		theta;
+	float		phi;
+	float		raw_u;
+
+	p = vec3_unit(rec->p);
+	theta = atan2(p.z, p.x);
+	phi = acos(p.y / ((t_sphere *)obj)->radius);
+	raw_u = theta / (2 * M_PI);
+	uv.u = 1 - (raw_u + 0.5);
+	uv.v = 1 - phi / M_PI;
+	return (uv);
 }

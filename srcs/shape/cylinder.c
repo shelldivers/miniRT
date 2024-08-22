@@ -6,13 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:11:50 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:24:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "vec2.h"
 #include "error.h"
 #include "shape/cylinder.h"
+#include "shape/texture.h"
 #include <stdlib.h>
 #include <math.h>
 
@@ -37,6 +39,12 @@ t_cylinder	*init_cylinder(t_cylinder data)
 	cy->parent.color = data.parent.color;
 	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
+	if (data.parent.texture.enable == FALSE)
+	{
+		cy->parent.texture = data.parent.texture;
+		cy->parent.uv_map = get_uv_map_cylinder;
+		cy->parent.uv_color = uv_color_map_adapter(data.parent.texture);
+	}
 	return (cy);
 }
 
@@ -87,4 +95,11 @@ void	set_record_endcaps(\
 	rec->color = cy->parent.color;
 	outward_normal = cy->normal;
 	set_face_normal(rec, ray, outward_normal);
+}
+
+t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec)
+{
+	(void)obj;
+	(void)rec;
+	return ((t_vec2){0, 0});
 }

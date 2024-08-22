@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 20:29:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:09:57 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,6 @@ typedef struct s_texture
 	int			bump_height;
 }	t_texture;
 
-typedef t_vec2	(*t_uv_map)(t_texture *texture, t_record *rec);
-typedef t_color	(*t_color_map)(t_texture *texture, t_record *rec);
-
 typedef struct s_hit
 {
 	void			*hit;
@@ -85,6 +82,8 @@ typedef struct s_hit
 }	t_hit;
 
 typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_record *);
+typedef t_vec2	(*t_uv_map)(t_hit *obj, t_record *rec);
+typedef t_color	(*t_color_map)(t_hit *obj, t_record *rec);
 
 typedef struct s_hit_lst
 {

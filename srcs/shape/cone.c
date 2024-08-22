@@ -6,12 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:11:31 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:25:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shape/cone.h"
+#include "shape/texture.h"
 #include "error.h"
 #include <stdlib.h>
 #include <math.h>
@@ -37,6 +38,12 @@ t_cone	*init_cone(t_cone data)
 	co->parent.color = data.parent.color;
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
+	if (data.parent.texture.enable == FALSE)
+	{
+		co->parent.texture = data.parent.texture;
+		co->parent.uv_map = get_uv_map_cone;
+		co->parent.uv_color = uv_color_map_adapter(data.parent.texture);
+	}
 	return (co);
 }
 
@@ -89,4 +96,11 @@ void	set_record_endcaps(\
 	rec->color = co->parent.color;
 	outward_normal = co->normal;
 	set_face_normal(rec, ray, outward_normal);
+}
+
+t_vec2	get_uv_map_cone(t_hit *obj, t_record *rec)
+{
+	(void)obj;
+	(void)rec;
+	return ((t_vec2){0, 0});
 }

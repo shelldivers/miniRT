@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:19:54 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:03:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 01:25:44 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_cylinder
 
 t_cylinder	*init_cylinder(t_cylinder data);
 t_bool		hit_cylinder(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec);
+t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec);
 
 float		hit_cylinder_surface(t_cylinder *cy, t_ray const *ray, t_coll t);
 float		hit_cylinder_endcaps(t_cylinder *cy, t_ray const *ray, t_coll t);

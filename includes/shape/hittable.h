@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 20:25:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:29:06 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include "vec3.h"
 # include "ray.h"
 
-# define CHECKER_BOARD 0b00000001;
-# define TEXTURE_MAP 0b00000010;
-# define BUMP_MAP 0b00000100;
+# define CHECKER_BOARD 0b00000001
+# define TEXTURE_MAP 0b00000010
+# define BUMP_MAP 0b00000100
 
 enum e_shape
 {

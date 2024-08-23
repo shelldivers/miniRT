@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:03:20 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:14:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_vec2	get_uv_map_plane(t_hit *obj, t_record *rec)
 	t_vec2	uv;
 
 	(void)obj;
-	uv.u = fmod(rec->p.x, 1);
-	uv.v = fmod(rec->p.z, 1);
+	uv.u = 1 - fmod(rec->p.x, 1);
+	uv.v = 1 - fmod(rec->p.z, 1);
 	return (uv);
 }

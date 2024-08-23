@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 10:55:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:03:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_vec2	get_uv_map_sphere(t_hit *obj, t_record *rec)
 	sp = (t_sphere *)obj;
 	p = vec3_div(vec3_sub(rec->p, sp->center), sp->radius);
 	theta = atan2(p.x, p.z);
-	phi = acos(p.y / sp->radius);
+	phi = acos(p.y / vec3_length(p));
 	uv.u = 1 - (theta / (2 * M_PI) + 0.5);
 	uv.v = 1 - phi / M_PI;
 	return (uv);

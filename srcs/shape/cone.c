@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 19:36:21 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:40:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,15 @@ void	set_record_endcaps(\
 
 t_vec2	get_uv_map_cone(t_hit *obj, t_record *rec)
 {
-	(void)obj;
-	(void)rec;
-	return ((t_vec2){0, 0});
+	t_cone	*co;
+	t_vec3	p;
+	float	theta;
+	t_vec2	uv;
+
+	co = (t_cone *)obj;
+	p = vec3_div(vec3_sub(rec->p, co->center), co->radius);
+	theta = atan2(p.x, p.z);
+	uv.u = 1 - (theta / (2 * M_PI)) + 0.5;
+	uv.v = 1 - fmod(p.y, 1);
+	return (uv);
 }

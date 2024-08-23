@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:35:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:38:00 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->parent.color;
+	if (is_texture_map_enabled(cy->parent.texture))
+		rec->color = ((t_color_map)cy->parent.uv_color)(\
+			(t_hit *)cy, rec, get_uv_map_cylinder);
+	else
+		rec->color = cy->parent.color;
 	cp = vec3_sub(rec->p, cy->center);
 	v = vec3_unit(vec3_sub(cy->bottom, cy->top));
 	outward_normal = vec3_unit(vec3_sub(cp, vec3_mul(v, vec3_dot(cp, v))));
@@ -92,7 +96,7 @@ void	set_record_endcaps(\
 	rec->p = point_at(ray, rec->t);
 	if (is_texture_map_enabled(cy->parent.texture))
 		rec->color = ((t_color_map)cy->parent.uv_color)(\
-			(t_hit *)cy, rec, get_uv_map_plane);
+			(t_hit *)cy, rec, get_uv_map_cylinder);
 	else
 		rec->color = cy->parent.color;
 	outward_normal = cy->normal;
@@ -101,7 +105,15 @@ void	set_record_endcaps(\
 
 t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec)
 {
-	(void)obj;
-	(void)rec;
-	return ((t_vec2){0, 0});
+	t_cylinder	*cy;
+	t_vec3		p;
+	float		theta;
+	t_vec2		uv;
+
+	cy = (t_cylinder *)obj;
+	p = vec3_div(vec3_sub(rec->p, cy->center), cy->radius);
+	theta = atan2(p.x, p.z);
+	uv.u = 1 - (theta / (2 * M_PI)) + 0.5;
+	uv.v = 1 - fmod(p.y, 1);
+	return (uv);
 }

@@ -6,10 +6,11 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 17:40:19 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:03:20 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "shape/plane.h"
 #include "shape/texture.h"
 #include "vec2.h"
@@ -82,8 +83,8 @@ t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 	t_vec3	pn;
 	float	denominator;
 
-	denominator = vec3_dot(plane->normal, ray->direction);
-	if (denominator == 0)
+	denominator = vec3_dot(ray->direction, plane->normal);
+	if (fabs(denominator) < EPSILON)
 		return (FALSE);
 	pn = vec3_sub(plane->center, ray->origin);
 	*root = vec3_dot(pn, plane->normal) / denominator;

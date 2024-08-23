@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 00:26:24 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:03:17 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define KEY_ESC 53
 # define FLOAT_MAX 3.402823466e+38F
 # define FLOAT_MIN 1.175494351e-38F
+# define EPSILON 1e-6
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
 

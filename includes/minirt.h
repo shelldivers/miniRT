@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:03:17 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:33:44 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,10 @@
 # define RT_EXTENSION ".rt"
 
 # include "vec3.h"
+# include "image.h"
 # include "camera.h"
 # include "reflection.h"
 # include "shape/hittable.h"
-
-typedef struct s_data
-{
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}	t_data;
-
-typedef struct s_img
-{
-	void	*ptr;
-	char	*addr;
-	t_data	data;
-	int		width;
-	int		height;
-}	t_img;
 
 typedef struct s_rt
 {

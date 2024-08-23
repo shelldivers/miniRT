@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 15:47:40 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:33:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "image.h"
 #include "key_hook.h"
 #include "mlx.h"
 #include "reflection.h"
 #include <stdlib.h>
 
 t_color			ray_color(t_rt *rt, t_ray *ray);
-static void		put_color(t_img *img, int x, int y, unsigned int color);
 
 void	ray_tracing(t_rt *rt)
 {
@@ -78,13 +78,4 @@ t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)
 		i++;
 	}
 	return (light_color);
-}
-
-void	put_color(t_img *img, int x, int y, unsigned int color)
-{
-	const int	bytes_per_pixel = img->data.bits_per_pixel / 8;
-	int			pos;
-
-	pos = y * (img->data.size_line) + x * bytes_per_pixel;
-	*(unsigned int *)(img->addr + pos) = color;
 }

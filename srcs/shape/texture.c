@@ -6,13 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 23:20:15 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:41:22 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape/hittable.h"
 #include "shape/texture.h"
 #include "error.h"
+#include "image.h"
 #include <stdlib.h>
 #include <math.h>
 

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 19:40:04 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 20:06:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, surface_t);
-	if (is_texture_map_enabled(co->parent.texture))
-		rec->color = ((t_color_map)co->parent.uv_color)(\
-			(t_hit *)co, rec, get_uv_map_cone);
-	else
-		rec->color = co->parent.color;
 	v = vec3_unit(vec3_sub(co->bottom, co->top));
 	cp = vec3_sub(rec->p, co->top);
 	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
 	outward_normal = vec3_unit(vec3_sub(cp, cc));
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(co->parent.texture))
+		rec->color = ((t_color_map)co->parent.uv_color)(\
+			(t_hit *)co, rec, get_uv_map_cone);
+	else
+		rec->color = co->parent.color;
 }
 
 void	set_record_endcaps(\
@@ -96,13 +96,13 @@ void	set_record_endcaps(\
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = co->parent.color;
+	outward_normal = co->normal;
+	set_face_normal(rec, ray, outward_normal);
 	if (is_texture_map_enabled(co->parent.texture))
 		rec->color = ((t_color_map)co->parent.uv_color)(\
 			(t_hit *)co, rec, get_uv_map_cone);
 	else
 		rec->color = co->parent.color;
-	outward_normal = co->normal;
-	set_face_normal(rec, ray, outward_normal);
 }
 
 t_vec2	get_uv_map_cone(t_hit *obj, t_record *rec)

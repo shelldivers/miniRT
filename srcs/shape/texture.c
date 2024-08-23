@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 11:23:48 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:35:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-t_color	uv_pattern_map(t_hit *obj, t_record *rec)
+t_color	uv_pattern_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 {
-	t_uv_map	uv_map;
 	t_vec2		uv;
 	int			u2;
 	int			v2;
 
-	uv_map = obj->uv_map;
 	uv = uv_map(obj, rec);
 	u2 = uv.u * obj->texture.width_count;
 	v2 = uv.v * obj->texture.height_count;
@@ -32,10 +30,11 @@ t_color	uv_pattern_map(t_hit *obj, t_record *rec)
 	return (obj->texture.color);
 }
 
-t_color	uv_texture_map(t_hit *obj, t_record *rec)
+t_color	uv_texture_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 {
 	(void)obj;
 	(void)rec;
+	(void)uv_map;
 	return (rec->color);
 }
 

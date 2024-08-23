@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 01:09:57 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:31:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ typedef struct s_texture
 typedef struct s_hit
 {
 	void			*hit;
-	void			*uv_map;
 	void			*uv_color;
 	t_color			color;
 	enum e_shape	shape;
@@ -83,7 +82,7 @@ typedef struct s_hit
 
 typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_record *);
 typedef t_vec2	(*t_uv_map)(t_hit *obj, t_record *rec);
-typedef t_color	(*t_color_map)(t_hit *obj, t_record *rec);
+typedef t_color	(*t_color_map)(t_hit *obj, t_record *rec, t_uv_map);
 
 typedef struct s_hit_lst
 {

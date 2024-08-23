@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:19:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:35:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "vec2.h"
 #include "error.h"
 #include "shape/cylinder.h"
+#include "shape/plane.h"
 #include "shape/texture.h"
 #include <stdlib.h>
 #include <math.h>
@@ -41,10 +42,7 @@ t_cylinder	*init_cylinder(t_cylinder data)
 	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	cy->parent.texture = data.parent.texture;
 	if (is_texture_map_enabled(data.parent.texture))
-	{
-		cy->parent.uv_map = get_uv_map_cylinder;
 		cy->parent.uv_color = uv_color_map_adapter(data.parent.texture);
-	}
 	return (cy);
 }
 
@@ -92,7 +90,11 @@ void	set_record_endcaps(\
 
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->parent.color;
+	if (is_texture_map_enabled(cy->parent.texture))
+		rec->color = ((t_color_map)cy->parent.uv_color)(\
+			(t_hit *)cy, rec, get_uv_map_plane);
+	else
+		rec->color = cy->parent.color;
 	outward_normal = cy->normal;
 	set_face_normal(rec, ray, outward_normal);
 }

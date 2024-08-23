@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:14:03 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:33:09 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ t_plane	*init_plane(t_plane data)
 	plane->parent.color = data.parent.color;
 	plane->parent.texture = data.parent.texture;
 	if (is_texture_map_enabled(data.parent.texture))
-	{
-		plane->parent.uv_map = get_uv_map_plane;
 		plane->parent.uv_color = uv_color_map_adapter(data.parent.texture);
-	}
 	return (plane);
 }
 
@@ -61,7 +58,7 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
 	if (is_texture_map_enabled(plane->parent.texture))
-		rec->color = ((t_color_map)obj->uv_color)(obj, rec);
+		rec->color = ((t_color_map)obj->uv_color)(obj, rec, get_uv_map_plane);
 	else
 		rec->color = plane->parent.color;
 	outward_normal = plane->normal;

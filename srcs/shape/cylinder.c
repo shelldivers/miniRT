@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 00:45:28 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:58:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec)
 	t_vec2		uv;
 
 	cy = (t_cylinder *)obj;
-	p  = vec3_sub(rec->p, cy->center);
+	p = vec3_sub(rec->p, cy->center);
 	p.x = p.x / cy->radius;
 	p.z = p.z / cy->radius;
 	p.y = p.y / cy->height;

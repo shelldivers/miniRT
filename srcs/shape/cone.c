@@ -6,13 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:33:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:44:23 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shape/cone.h"
 #include "shape/texture.h"
+#include "shape/plane.h"
 #include "error.h"
 #include <stdlib.h>
 #include <math.h>
@@ -91,6 +92,12 @@ void	set_record_endcaps(\
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
 	rec->color = co->parent.color;
+
+	if (is_texture_map_enabled(co->parent.texture))
+		rec->color = ((t_color_map)co->parent.uv_color)(\
+			(t_hit *)co, rec, get_uv_map_plane);
+	else
+		rec->color = co->parent.color;
 	outward_normal = co->normal;
 	set_face_normal(rec, ray, outward_normal);
 }

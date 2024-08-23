@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:19:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:40:19 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "vec2.h"
 #include "error.h"
 #include <stdlib.h>
+#include <math.h>
 
 static t_bool	is_collided(t_plane *p, t_ray const *ray, float *r, t_coll t);
 
@@ -58,7 +59,10 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
-	rec->color = plane->parent.color;
+	if (is_texture_map_enabled(plane->parent.texture))
+		rec->color = ((t_color_map)obj->uv_color)(obj, rec);
+	else
+		rec->color = plane->parent.color;
 	outward_normal = plane->normal;
 	set_face_normal(rec, ray, outward_normal);
 	return (TRUE);
@@ -90,7 +94,10 @@ t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 
 t_vec2	get_uv_map_plane(t_hit *obj, t_record *rec)
 {
+	t_vec2	uv;
+
 	(void)obj;
-	(void)rec;
-	return ((t_vec2){0, 0});
+	uv.u = fmod(rec->p.x, 1);
+	uv.v = fmod(rec->p.z, 1);
+	return (uv);
 }

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:19:52 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:55:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,17 @@ t_bool	is_collided(t_sphere *sphere, t_ray const *ray, float *root, t_coll t)
 
 t_vec2	get_uv_map_sphere(t_hit *obj, t_record *rec)
 {
+	t_sphere	*sp;
 	t_vec3		p;
 	t_vec2		uv;
 	float		theta;
 	float		phi;
-	float		raw_u;
 
-	p = vec3_unit(rec->p);
-	theta = atan2(p.z, p.x);
-	phi = acos(p.y / ((t_sphere *)obj)->radius);
-	raw_u = theta / (2 * M_PI);
-	uv.u = 1 - (raw_u + 0.5);
+	sp = (t_sphere *)obj;
+	p = vec3_div(vec3_sub(rec->p, sp->center), sp->radius);
+	theta = atan2(p.x, p.z);
+	phi = acos(p.y / sp->radius);
+	uv.u = 1 - (theta / (2 * M_PI) + 0.5);
 	uv.v = 1 - phi / M_PI;
 	return (uv);
 }

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 18:12:32 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 21:13:04 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:56:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	parse_checkerboard(t_rt *rt, t_hit *data, char const **ptr)
 	move_to_next_param(&line);
 	data->texture.height_count = ft_strtoi(line, (char **)&line);
 	must_have_no_remain(line);
-	must_be_positive(data->texture.width_count);
+	must_be_positive(data->texture.height_count);
 	*ptr = line;
 }
 

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 20:06:00 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:22:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec)
 	p = vec3_div(vec3_sub(rec->p, cy->center), cy->radius);
 	theta = atan2(p.x, p.z);
 	uv.u = 1 - (theta / (2 * M_PI)) + 0.5;
-	uv.v = 1 - fmod(p.y, 1);
+	uv.v = fmod(p.y, 1);
+	if (uv.v < 0)
+		uv.v += 1;
 	return (uv);
 }

@@ -6,13 +6,17 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:12:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:11:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minirt.h"
 #include "shape/plane.h"
+#include "shape/texture.h"
+#include "vec2.h"
 #include "error.h"
 #include <stdlib.h>
+#include <math.h>
 
 static t_bool	is_collided(t_plane *p, t_ray const *ray, float *r, t_coll t);
 
@@ -28,6 +32,9 @@ t_plane	*init_plane(t_plane data)
 	plane->center = data.center;
 	plane->normal = data.normal;
 	plane->parent.color = data.parent.color;
+	plane->parent.texture = data.parent.texture;
+	if (is_texture_map_enabled(data.parent.texture))
+		plane->parent.uv_color = uv_color_map_adapter(data.parent.texture);
 	return (plane);
 }
 
@@ -50,9 +57,12 @@ t_bool	hit_plane(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 		return (FALSE);
 	rec->t = root;
 	rec->p = point_at(ray, rec->t);
-	rec->color = plane->parent.color;
 	outward_normal = plane->normal;
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(plane->parent.texture))
+		rec->color = ((t_color_map)obj->uv_color)(obj, rec, get_uv_map_plane);
+	else
+		rec->color = plane->parent.color;
 	return (TRUE);
 }
 
@@ -70,12 +80,26 @@ t_bool	is_collided(t_plane *plane, t_ray const *ray, float *root, t_coll t)
 	t_vec3	pn;
 	float	denominator;
 
-	denominator = vec3_dot(plane->normal, ray->direction);
-	if (denominator == 0)
+	denominator = vec3_dot(ray->direction, plane->normal);
+	if (fabs(denominator) < EPSILON)
 		return (FALSE);
 	pn = vec3_sub(plane->center, ray->origin);
 	*root = vec3_dot(pn, plane->normal) / denominator;
 	if (*root <= t.min || t.max <= *root)
 		return (FALSE);
 	return (TRUE);
+}
+
+t_vec2	get_uv_map_plane(t_hit *obj, t_record *rec)
+{
+	t_vec2	uv;
+
+	(void)obj;
+	uv.u = fmod(rec->p.x, 1);
+	if (uv.u < 0)
+		uv.u += 1;
+	uv.v = fmod(rec->p.z, 1);
+	if (uv.v < 0)
+		uv.v += 1;
+	return (uv);
 }

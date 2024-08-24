@@ -6,13 +6,16 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 21:28:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:11:50 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:58:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "vec2.h"
 #include "error.h"
 #include "shape/cylinder.h"
+#include "shape/plane.h"
+#include "shape/texture.h"
 #include <stdlib.h>
 #include <math.h>
 
@@ -37,6 +40,9 @@ t_cylinder	*init_cylinder(t_cylinder data)
 	cy->parent.color = data.parent.color;
 	cy->top = vec3_add(cy->center, vec3_mul(cy->normal, cy->height / 2));
 	cy->bottom = vec3_sub(cy->center, vec3_mul(cy->normal, cy->height / 2));
+	cy->parent.texture = data.parent.texture;
+	if (is_texture_map_enabled(data.parent.texture))
+		cy->parent.uv_color = uv_color_map_adapter(data.parent.texture);
 	return (cy);
 }
 
@@ -70,11 +76,15 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->parent.color;
 	cp = vec3_sub(rec->p, cy->center);
 	v = vec3_unit(vec3_sub(cy->bottom, cy->top));
 	outward_normal = vec3_unit(vec3_sub(cp, vec3_mul(v, vec3_dot(cp, v))));
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(cy->parent.texture))
+		rec->color = ((t_color_map)cy->parent.uv_color)(\
+			(t_hit *)cy, rec, get_uv_map_cylinder);
+	else
+		rec->color = cy->parent.color;
 }
 
 void	set_record_endcaps(\
@@ -84,7 +94,31 @@ void	set_record_endcaps(\
 
 	rec->t = endcap_t;
 	rec->p = point_at(ray, rec->t);
-	rec->color = cy->parent.color;
 	outward_normal = cy->normal;
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(cy->parent.texture))
+		rec->color = ((t_color_map)cy->parent.uv_color)(\
+			(t_hit *)cy, rec, get_uv_map_cylinder);
+	else
+		rec->color = cy->parent.color;
+}
+
+t_vec2	get_uv_map_cylinder(t_hit *obj, t_record *rec)
+{
+	t_cylinder	*cy;
+	t_vec3		p;
+	float		theta;
+	t_vec2		uv;
+
+	cy = (t_cylinder *)obj;
+	p = vec3_sub(rec->p, cy->center);
+	p.x = p.x / cy->radius;
+	p.z = p.z / cy->radius;
+	p.y = p.y / cy->height;
+	theta = atan2(p.x, p.z);
+	uv.u = 1 - (theta / (2 * M_PI)) + 0.5;
+	uv.v = fmod(p.y, 1);
+	if (uv.v < 0)
+		uv.v += 1;
+	return (uv);
 }

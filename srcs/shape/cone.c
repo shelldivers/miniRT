@@ -6,12 +6,14 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 17:11:31 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:45:27 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shape/cone.h"
+#include "shape/texture.h"
+#include "shape/plane.h"
 #include "error.h"
 #include <stdlib.h>
 #include <math.h>
@@ -37,6 +39,9 @@ t_cone	*init_cone(t_cone data)
 	co->parent.color = data.parent.color;
 	co->top = vec3_add(co->center, vec3_mul(co->normal, co->height / 2));
 	co->bottom = vec3_sub(co->center, vec3_mul(co->normal, co->height / 2));
+	co->parent.texture = data.parent.texture;
+	if (is_texture_map_enabled(data.parent.texture))
+		co->parent.uv_color = uv_color_map_adapter(data.parent.texture);
 	return (co);
 }
 
@@ -71,12 +76,16 @@ void	set_record_surface(\
 
 	rec->t = surface_t;
 	rec->p = point_at(ray, surface_t);
-	rec->color = co->parent.color;
 	v = vec3_unit(vec3_sub(co->bottom, co->top));
 	cp = vec3_sub(rec->p, co->top);
 	cc = vec3_mul(v, vec3_length_squared(cp) / vec3_dot(cp, v));
 	outward_normal = vec3_unit(vec3_sub(cp, cc));
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(co->parent.texture))
+		rec->color = ((t_color_map)co->parent.uv_color)(\
+			(t_hit *)co, rec, get_uv_map_cone);
+	else
+		rec->color = co->parent.color;
 }
 
 void	set_record_endcaps(\
@@ -89,4 +98,29 @@ void	set_record_endcaps(\
 	rec->color = co->parent.color;
 	outward_normal = co->normal;
 	set_face_normal(rec, ray, outward_normal);
+	if (is_texture_map_enabled(co->parent.texture))
+		rec->color = ((t_color_map)co->parent.uv_color)(\
+			(t_hit *)co, rec, get_uv_map_cone);
+	else
+		rec->color = co->parent.color;
+}
+
+t_vec2	get_uv_map_cone(t_hit *obj, t_record *rec)
+{
+	t_cone	*co;
+	t_vec3	p;
+	float	theta;
+	t_vec2	uv;
+	float	radius;
+
+	co = (t_cone *)obj;
+	p = vec3_sub(rec->p, co->center);
+	radius = co->radius * (1.0 - (p.y / co->height));
+	p.x = p.x / radius;
+	p.z = p.z / radius;
+	p.y = p.y / co->height;
+	theta = atan2(p.x, p.z);
+	uv.u = 1 - (theta / (2 * M_PI)) + 0.5;
+	uv.v = 1 - fmod(p.y, 1);
+	return (uv);
 }

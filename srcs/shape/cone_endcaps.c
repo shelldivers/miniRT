@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 00:42:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 01:18:18 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:03:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	hit_cone_endcaps(t_cone *co, t_ray const *ray, t_coll t)
 	float	denominator;
 
 	denominator = vec3_dot(ray->direction, co->normal);
-	if (fabs(denominator) < 0)
+	if (fabs(denominator) < EPSILON)
 		return (FLOAT_MAX);
 	pn = vec3_sub(co->bottom, ray->origin);
 	bottom_t = vec3_dot(pn, co->normal) / denominator;

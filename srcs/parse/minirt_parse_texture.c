@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:18:26 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 18:52:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/23 02:36:06 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	parse_texture(t_rt *rt, t_hit *data, char const **ptr)
 	while (*line)
 	{
 		skip_spaces(&line);
+		if (!*line)
+			break ;
 		texture_parser = parse_texture_adapter(data, line);
 		texture_parser(rt, data, &line);
 	}

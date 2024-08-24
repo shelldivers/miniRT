@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 02:46:56 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:49:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define EPSILON 1e-6
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
-# define SAMPLE_PER_PIXEL 4
+# define SAMPLE_PER_PIXEL 100
 # define THREAD_COUNT 16
 
 # include "vec3.h"

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:33:27 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:30:38 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,28 @@ void	ray_tracing(t_rt *rt)
 		wid = 0;
 		while (wid < rt->img.width)
 		{
-			ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
-			color = ray_color(rt, &ray);
+			color = get_anti_aliased_color(rt, ray, wid, hei);
 			put_color(&(rt->img), wid, hei, color_to_int(color));
 			wid++;
 		}
 		hei++;
 	}
+}
+
+t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
+{
+	t_color	color;
+	int		sample_count;
+
+	color = (t_color){0, 0, 0};
+	sample_count = 0;
+	while (sample_count < SAMPLE_PER_PIXEL)
+	{
+		ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+		color = vec3_add(color, ray_color(rt, &ray));
+		sample_count++;
+	}
+	return (vec3_div(color, SAMPLE_PER_PIXEL));
 }
 
 t_color	ray_color(t_rt *rt, t_ray *ray)

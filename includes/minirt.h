@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:33:44 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:30:09 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define EPSILON 1e-6
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
+# define SAMPLE_PER_PIXEL 4
 
 # include "vec3.h"
 # include "image.h"
@@ -53,6 +54,8 @@ typedef struct s_parser
 // minirt.c
 void				ray_tracing(t_rt *rt);
 t_color				get_phong_reflection_color(t_rt *rt, t_record *rec);
+t_color				get_anti_aliased_color(\
+	t_rt *rt, t_ray ray, int wid, int hei);
 
 // minirt_parse.c
 void				init_mlx(t_rt *rt, t_img *img);

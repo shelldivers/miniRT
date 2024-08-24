@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/22 20:07:03 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/24 23:29:44 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	must_be_valid_normal(t_vec3 normal)
 		error_exit(ERROR_INVALID_NORMAL);
 	if (normal.z < -1 || normal.z > 1)
 		error_exit(ERROR_INVALID_NORMAL);
+	if (normal.x == 0 && normal.y == 0 && normal.z == 0)
+		error_exit(ERROR_ZERO_NORMAL);
 }
 
 void	normalize_vec3(t_vec3 *vec)
@@ -44,12 +46,7 @@ void	normalize_vec3(t_vec3 *vec)
 	must_be_valid_normal(*vec);
 	magnitude = vec3_length(*vec);
 	if (magnitude == 0)
-	{
-		vec->x = 0;
-		vec->y = 0;
-		vec->z = 0;
-		return ;
-	}
+		error_exit(ERROR_ZERO_NORMAL);
 	vec->x /= magnitude;
 	vec->y /= magnitude;
 	vec->z /= magnitude;

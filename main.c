@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 17:11:08 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:34:20 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "minirt.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include <time.h>
 
 int	main(int argc, char **argv)
 {
@@ -22,6 +23,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_exit(ERROR_USAGE);
+	srand(time(NULL));
 	init_mlx(&rt, &rt.img);
 	init_world(&rt, argv[1]);
 	init_viewport(&rt);

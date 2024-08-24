@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 02:30:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 02:46:56 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
 # define SAMPLE_PER_PIXEL 4
+# define THREAD_COUNT 16
 
 # include "vec3.h"
 # include "image.h"
 # include "camera.h"
 # include "reflection.h"
 # include "shape/hittable.h"
+# include <pthread.h>
 
 typedef struct s_rt
 {
@@ -42,6 +44,13 @@ typedef struct s_rt
 	t_hit_lst		*world;
 }	t_rt;
 
+typedef struct s_thread_rt
+{
+	pthread_t	thread;
+	t_rt		*rt;
+	int			thread_id;
+}	t_thread_rt;
+
 // minirt_parser_world.c
 typedef void	(*t_parse_func)(char const *line, t_rt *rt);
 
@@ -53,6 +62,13 @@ typedef struct s_parser
 
 // minirt.c
 void				ray_tracing(t_rt *rt);
+
+// minirt_async.c
+void				ray_tracing_thread_controller(t_rt *rt);
+void				ray_tracing_async(t_thread_rt *thread_rt);
+
+// minirt_color.c
+t_color				ray_color(t_rt *rt, t_ray *ray);
 t_color				get_phong_reflection_color(t_rt *rt, t_record *rec);
 t_color				get_anti_aliased_color(\
 	t_rt *rt, t_ray ray, int wid, int hei);

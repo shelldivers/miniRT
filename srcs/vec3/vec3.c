@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:56:21 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/15 02:08:24 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:09:08 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ t_vec3	vec3_unit(t_vec3 vec)
  */
 float	vec3_length(t_vec3 vec)
 {
-	return (sqrtf(vec3_length_squared(vec)));
+	float	length_squared;
+
+	length_squared = vec3_length_squared(vec);
+	return (sqrtf(length_squared));
 }
 
 /**
@@ -45,7 +48,7 @@ float	vec3_length(t_vec3 vec)
  */
 float	vec3_length_squared(t_vec3 vec)
 {
-	return ((float) vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
 /**
@@ -67,10 +70,9 @@ float	vec3_dot(t_vec3 a, t_vec3 b)
  */
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	t_vec3	cross;
-
-	cross.x = a.y * b.z - a.z * b.y;
-	cross.y = a.z * b.x - a.x * b.z;
-	cross.z = a.x * b.y - a.y * b.x;
-	return (cross);
+	return ((t_vec3){
+		.x = a.y * b.z - a.z * b.y,
+		.y = a.z * b.x - a.x * b.z,
+		.z = a.x * b.y - a.y * b.x
+	});
 }

@@ -6,15 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 16:23:45 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:42:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-# define WIDTH 1280
-# define HEIGHT 800
+# define WIDTH 1024
+# define HEIGHT 576
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_RELEASE 3
 # define X_EVENT_DESTROY 17
@@ -68,6 +68,7 @@ void				ray_tracing(t_rt *rt);
 
 // minirt_async.c
 t_thread_rt			*ray_tracing_thread_controller(t_rt *rt);
+t_thread_rt			*ray_tracing_thread_create(t_rt *rt);
 void				ray_tracing_thread_destroy(t_thread_rt *thread_rt);
 void				ray_tracing_async(t_thread_rt *thread_rt);
 

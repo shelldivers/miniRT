@@ -6,11 +6,12 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 21:35:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:51:12 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "shape/texture.h"
 #include <math.h>
 
 t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
@@ -46,6 +47,11 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 
 	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 	{
+		if (is_texture_map_enabled(rec.obj->texture))
+			rec.color = ((t_color_map)rec.obj->uv_color)(\
+				rec.obj, &rec, (t_uv_map)rec.obj->uv_map);
+		else
+			rec.color = rec.obj->color;
 		light_color = get_phong_reflection_color(rt, &rec);
 		return (set_light_color(rec.color, light_color));
 	}

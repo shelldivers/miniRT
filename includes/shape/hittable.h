@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:26:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:52:52 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,6 @@ typedef struct s_quadratic
 	float	c;
 }	t_quadratic;
 
-typedef struct s_record
-{
-	t_point3	p;
-	t_vec3		normal;
-	float		t;
-	t_bool		front_face;
-	t_color		color;
-}	t_record;
-
 typedef struct s_coll
 {
 	float	min;
@@ -72,10 +63,21 @@ typedef struct s_hit
 {
 	void			*hit;
 	void			*uv_color;
+	void			*uv_map;
 	t_color			color;
 	enum e_shape	shape;
 	t_texture		texture;
 }	t_hit;
+
+typedef struct s_record
+{
+	t_point3	p;
+	t_vec3		normal;
+	float		t;
+	t_bool		front_face;
+	t_color		color;
+	t_hit		*obj;
+}	t_record;
 
 typedef t_bool	(*t_hit_func)(t_hit *, t_ray const *, t_coll, t_record *);
 typedef t_vec2	(*t_uv_map)(t_hit *obj, t_record *rec);

@@ -6,26 +6,31 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 10:48:49 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 12:48:29 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include <math.h>
 
 t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
 {
 	t_color	color;
+	t_color	accumulate;
 	int		sample_count;
 
-	color = (t_color){0, 0, 0};
+	accumulate = (t_color){0, 0, 0};
 	sample_count = 0;
 	while (sample_count < SAMPLE_PER_PIXEL)
 	{
 		ray.direction = get_pixel_random(&(rt->cam), &(rt->vw), wid, hei);
-		color = vec3_add(color, ray_color(rt, &ray));
+		color = ray_color(rt, &ray);
+		if (is_tolerable(color, accumulate, sample_count))
+			return (vec3_mul(accumulate, 1.0 / sample_count));
+		accumulate = vec3_add(accumulate, color);
 		sample_count++;
 	}
-	return (vec3_div(color, SAMPLE_PER_PIXEL));
+	return (vec3_mul(accumulate, 1.0 / sample_count));
 }
 
 t_color	ray_color(t_rt *rt, t_ray *ray)
@@ -39,6 +44,19 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 		return (set_light_color(rec.color, light_color));
 	}
 	return ((t_color){0, 0, 0});
+}
+
+t_bool	is_tolerable(t_color current, t_color accumulate, int sample_count)
+{
+	t_color		average;
+	const int	tolerance = SAMPLE_PER_PIXEL / 4;
+
+	if (sample_count < tolerance)
+		return (FALSE);
+	average = vec3_mul(accumulate, 1.0 / sample_count);
+	return (fabs(average.x - current.x) < EPSILON && \
+			fabs(average.y - current.y) < EPSILON && \
+			fabs(average.z - current.z) < EPSILON);
 }
 
 t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)

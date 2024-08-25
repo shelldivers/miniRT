@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 11:31:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 12:45:24 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_color				ray_color(t_rt *rt, t_ray *ray);
 t_color				get_phong_reflection_color(t_rt *rt, t_record *rec);
 t_color				get_anti_aliased_color(\
 	t_rt *rt, t_ray ray, int wid, int hei);
+t_bool				is_tolerable(t_color c, t_color a, int s);
 
 // minirt_parse.c
 void				init_mlx(t_rt *rt, t_img *img);

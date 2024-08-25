@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:44:58 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 11:30:55 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:39:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,24 @@
 #include <stdlib.h>
 #include <pthread.h>
 
+#ifdef PREPROCESSING
+
 t_thread_rt	*ray_tracing_thread_controller(t_rt *rt)
+{
+	ray_tracing(rt);
+	return (ray_tracing_thread_create(rt));
+}
+
+#else
+
+t_thread_rt	*ray_tracing_thread_controller(t_rt *rt)
+{
+	return (ray_tracing_thread_create(rt));
+}
+
+#endif
+
+t_thread_rt	*ray_tracing_thread_create(t_rt *rt)
 {
 	t_thread_rt	*thread_rt;
 	int			i;

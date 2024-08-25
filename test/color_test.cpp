@@ -1,6 +1,7 @@
 extern "C" {
 #include "ray.h"
 #include "minirt.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 

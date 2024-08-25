@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "get_next_line.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 #include <fstream>

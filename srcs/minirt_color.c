@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 21:51:12 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:33:56 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
 	t_color	accumulate;
 	int		sample_count;
 
-	accumulate = (t_color){0, 0, 0};
-	sample_count = 0;
 	if (SAMPLE_PER_PIXEL <= 1)
 	{
 		ray.direction = get_pixel_center(&(rt->cam), &(rt->vw), wid, hei);
 		return (ray_color(rt, &ray));
 	}
+	sample_count = 0;
+	accumulate = (t_color){0, 0, 0};
 	while (sample_count < SAMPLE_PER_PIXEL)
 	{
 		ray.direction = get_pixel_random(&(rt->cam), &(rt->vw), wid, hei);

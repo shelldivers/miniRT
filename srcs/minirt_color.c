@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 12:48:29 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:18:34 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
 
 	accumulate = (t_color){0, 0, 0};
 	sample_count = 0;
+	if (SAMPLE_PER_PIXEL <= 1)
+	{
+		ray.direction = get_pixel_center(&(rt->cam), &(rt->vw), wid, hei);
+		return (ray_color(rt, &ray));
+	}
 	while (sample_count < SAMPLE_PER_PIXEL)
 	{
 		ray.direction = get_pixel_random(&(rt->cam), &(rt->vw), wid, hei);
@@ -49,9 +54,9 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 t_bool	is_tolerable(t_color current, t_color accumulate, int sample_count)
 {
 	t_color		average;
-	const int	tolerance = SAMPLE_PER_PIXEL / 4;
+	const int	tolerance = SAMPLE_PER_PIXEL * 0.25;
 
-	if (sample_count < tolerance)
+	if (tolerance <= 0 || sample_count < tolerance)
 		return (FALSE);
 	average = vec3_mul(accumulate, 1.0 / sample_count);
 	return (fabs(average.x - current.x) < EPSILON && \

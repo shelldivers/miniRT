@@ -6,13 +6,13 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 16:18:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:42:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "error.h"
-#include <mlx.h>
+#include "mlx.h"
 #include <math.h>
 
 static t_vw_var	init_viewport_variable(t_rt *rt);

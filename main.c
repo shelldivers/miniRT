@@ -6,14 +6,15 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:02:33 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 17:38:32 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:42:28 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
 #include "minirt.h"
+#include "parse.h"
 #include "mlx_hook.h"
 #include "mlx.h"
+#include "error.h"
 #include <stdlib.h>
 
 int	main(int argc, char **argv)

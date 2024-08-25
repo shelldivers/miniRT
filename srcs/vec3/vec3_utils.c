@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:57:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 12:53:07 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:13:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_vec3	vec3_div(t_vec3 a, float t)
 {
 	float	inv_t;
 
-	if (t == 0)
+	if (t == 0.0f)
 		error_exit(ERROR_DIV_BY_ZERO);
-	inv_t = 1 / t;
+	inv_t = 1.0f / t;
 	return ((t_vec3){a.x * inv_t, a.y * inv_t, a.z * inv_t});
 }

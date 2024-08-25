@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 02:47:24 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 10:48:49 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
 	sample_count = 0;
 	while (sample_count < SAMPLE_PER_PIXEL)
 	{
-		ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+		ray.direction = get_pixel_random(&(rt->cam), &(rt->vw), wid, hei);
 		color = vec3_add(color, ray_color(rt, &ray));
 		sample_count++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 02:49:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 11:07:25 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ typedef struct s_parser
 void				ray_tracing(t_rt *rt);
 
 // minirt_async.c
-void				ray_tracing_thread_controller(t_rt *rt);
+t_thread_rt			*ray_tracing_thread_controller(t_rt *rt);
+void				ray_tracing_thread_destroy(t_thread_rt *thread_rt);
 void				ray_tracing_async(t_thread_rt *thread_rt);
 
 // minirt_color.c

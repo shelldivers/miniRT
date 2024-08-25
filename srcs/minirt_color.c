@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 21:31:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:35:54 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ t_bool	is_tolerable(t_color current, t_color accumulate, int sample_count)
 	if (tolerance <= 0 || sample_count < tolerance)
 		return (FALSE);
 	average = vec3_mul(accumulate, 1.0 / sample_count);
-	return (fabs(average.x - current.x) < TOLELARENCE && \
-			fabs(average.y - current.y) < TOLELARENCE && \
-			fabs(average.z - current.z) < TOLELARENCE);
+	return (fabs(average.x - current.x) < COLOR_THRESHOLD && \
+			fabs(average.y - current.y) < COLOR_THRESHOLD && \
+			fabs(average.z - current.z) < COLOR_THRESHOLD);
 }
 
 t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)

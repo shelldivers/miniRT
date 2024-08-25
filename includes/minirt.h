@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 17:42:14 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:35:59 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define FLOAT_MAX 3.402823466e+38F
 # define FLOAT_MIN 1.175494351e-38F
 # define EPSILON 1e-6
-# define TOLELARENCE 1e-2
+# define COLOR_THRESHOLD 1e-2
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
 # define SAMPLE_PER_PIXEL 100

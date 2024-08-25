@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 11:07:25 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 11:31:05 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
 # define SAMPLE_PER_PIXEL 100
-# define THREAD_COUNT 16
+# define THREAD 32
 
 # include "vec3.h"
 # include "image.h"

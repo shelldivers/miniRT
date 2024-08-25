@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:44:58 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 11:10:09 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 11:30:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ t_thread_rt	*ray_tracing_thread_controller(t_rt *rt)
 	t_thread_rt	*thread_rt;
 	int			i;
 
-	thread_rt = (t_thread_rt *)malloc(sizeof(t_thread_rt) * THREAD_COUNT);
+	thread_rt = (t_thread_rt *)malloc(sizeof(t_thread_rt) * THREAD);
 	if (!thread_rt)
 		error_exit(ERROR_MALLOC);
 	i = 0;
-	while (i < THREAD_COUNT)
+	while (i < THREAD)
 	{
 		thread_rt[i].rt = rt;
 		thread_rt[i].thread_id = i;
@@ -40,13 +40,13 @@ void	ray_tracing_thread_destroy(t_thread_rt *thread_rt)
 	int	i;
 
 	i = 0;
-	while (i < THREAD_COUNT)
+	while (i < THREAD)
 	{
 		pthread_cancel(thread_rt[i].thread);
 		i++;
 	}
 	i = 0;
-	while (i < THREAD_COUNT)
+	while (i < THREAD)
 	{
 		pthread_join(thread_rt[i].thread, NULL);
 		i++;
@@ -64,7 +64,7 @@ void	ray_tracing_async(t_thread_rt *thread_rt)
 	ray.origin = thread_rt->rt->cam.view_point;
 	while (h < thread_rt->rt->img.height)
 	{
-		if (h % THREAD_COUNT != thread_rt->thread_id)
+		if (h % THREAD != thread_rt->thread_id)
 		{
 			h++;
 			continue ;

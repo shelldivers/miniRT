@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 18:19:47 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:18:05 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_mlx(t_rt *rt, t_img *img)
 	rt->mlx = mlx_init();
 	if (!rt->mlx)
 		error_exit("mlx_init() failed");
-	aspect_ratio = 16.0 / 9.0;
-	img->width = 1024;
+	aspect_ratio = (double)WIDTH / HEIGHT;
+	img->width = WIDTH;
 	img->height = (int)((double)img->width / aspect_ratio);
 	if (img->height < 1)
 		img->height = 1;

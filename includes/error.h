@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 12:52:58 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 09:59:15 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # define ERROR_INVALID_RATIO "Ratio must be between 0 and 1"
 # define ERROR_INVALID_TEXTURE_OPTION "Invalid texture option"
 # define ERROR_OPEN_XPM_FILE "Failed to open the xpm file"
-# define ERROR_DUPLICATE_TEXTURE "Checker_board and Texture_map \
-    cannot be used together"
+# define ERROR_TEXTURE_DUPLICATE "Texture can not be duplicated"
 # define ERROR_TEXTURE_NOT_FOUND "Texture not found"
 
 void	error_exit(char *message);

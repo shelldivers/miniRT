@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:41:22 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 09:58:55 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_color	uv_texture_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 t_color_map	uv_color_map_adapter(t_texture texture)
 {
 	if ((texture.enable & 0b00000011) == (CHECKER_BOARD | TEXTURE_MAP))
-		error_exit(ERROR_DUPLICATE_TEXTURE);
+		error_exit(ERROR_TEXTURE_DUPLICATE);
 	if (texture.enable & CHECKER_BOARD)
 		return (uv_pattern_map);
 	if (texture.enable & TEXTURE_MAP)

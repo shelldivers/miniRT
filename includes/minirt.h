@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 01:43:05 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:25:07 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define XPM_EXTENSION ".xpm"
 # define RT_EXTENSION ".rt"
 # define SAMPLE_PER_PIXEL 100
-# define THREAD 32
+# define THREAD 16
 # ifndef PRE_PROCESSING
 #  define PRE_PROCESSING FALSE
 # endif

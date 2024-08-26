@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:41:22 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:01:02 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "shape/texture.h"
 #include "error.h"
 #include "image.h"
+#include "mlx.h"
 #include <stdlib.h>
 #include <math.h>
 
@@ -33,10 +34,18 @@ t_color	uv_pattern_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 
 t_color	uv_texture_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 {
-	(void)obj;
-	(void)rec;
-	(void)uv_map;
-	return (rec->color);
+	t_vec2		uv;
+	int			u2;
+	int			v2;
+	int			pixel_color;
+	t_img		*texture_map;
+
+	uv = uv_map(obj, rec);
+	texture_map = &obj->texture.texture_map;
+	u2 = floor(uv.u * obj->texture.width_count);
+	v2 = floor(uv.v * obj->texture.height_count);
+	pixel_color = texture_map->addr[u2 * v2];
+	return (int_to_color(pixel_color));
 }
 
 t_color_map	uv_color_map_adapter(t_texture texture)

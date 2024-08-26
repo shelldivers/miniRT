@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 11:14:28 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:39:39 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@
 void	ray_tracing(t_rt *rt)
 {
 	t_ray	ray;
-	int		hei;
-	int		wid;
+	int		h;
+	int		w;
 	t_color	color;
 
-	hei = 0;
+	h = 0;
 	ray.origin = rt->cam.view_point;
-	while (hei < rt->img.height)
+	while (h < rt->img.height)
 	{
-		wid = 0;
-		while (wid < rt->img.width)
+		w = 0;
+		while (w < rt->img.width)
 		{
-			ray.direction = get_pixel_center(&(rt->cam), &(rt->vw), wid, hei);
+			ray.direction = get_pixel_center(\
+				&(rt->cam), &(rt->vw), w, h);
 			color = ray_color(rt, &ray);
-			put_color(&(rt->img), wid, hei, color_to_int(color));
-			wid++;
+			put_color(&(rt->img), w, h, color_to_int(color));
+			w++;
 		}
-		hei++;
+		h++;
 	}
 }

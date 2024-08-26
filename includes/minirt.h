@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 10:25:07 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:27:45 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SAMPLE_PER_PIXEL 100
 # define THREAD 16
 # ifndef PRE_PROCESSING
-#  define PRE_PROCESSING FALSE
+#  define PRE_PROCESSING TRUE
 # endif
 
 # include "vec3.h"

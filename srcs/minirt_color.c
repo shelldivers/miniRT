@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 22:33:56 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:36:40 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "shape/texture.h"
 #include <math.h>
 
+/**
+ * @todo Implement Edge Detection Anti-Aliasing
+*/
 t_color	get_anti_aliased_color(t_rt *rt, t_ray ray, int wid, int hei)
 {
 	t_color	color;
@@ -63,7 +66,7 @@ t_bool	is_tolerable(t_color current, t_color accumulate, int sample_count)
 	t_color		average;
 	const int	tolerance = SAMPLE_PER_PIXEL * 0.25;
 
-	if (tolerance <= 0 || sample_count < tolerance)
+	if (tolerance <= 0)
 		return (FALSE);
 	average = vec3_mul(accumulate, 1.0 / sample_count);
 	return (fabs(average.x - current.x) < COLOR_THRESHOLD && \

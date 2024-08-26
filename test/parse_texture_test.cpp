@@ -6,6 +6,38 @@ extern "C" {
 #include <fstream>
 #include "gtest/gtest.h"
 
+TEST(has_texture_test, 성공)
+{
+	char		*line;
+    
+    line = (char *)"255,255,255 -c 0,0,255 2 2";
+    EXPECT_EQ(has_texture(line), true);
+}
+
+TEST(has_texture_test, 파라미터가_없는_경우)
+{
+	char		*line;
+    
+    line = (char *)"255,255,255 -c";
+    EXPECT_EQ(has_texture(line), false);
+}
+
+TEST(has_texture_test, 식별자가_없는_경우)
+{
+	char		*line;
+    
+    line = (char *)"255,255,255 - 0,0,255 2 2";
+    EXPECT_EQ(has_texture(line), false);
+}
+
+TEST(has_texture_test, 없는_식별자인_경우)
+{
+	char		*line;
+    
+    line = (char *)"255,255,255 -a 0,0,255 2 2";
+    EXPECT_EQ(has_texture(line), false);
+}
+
 TEST(parse_texture_test, 성공_체커보드)
 {
     t_rt 	rt;
@@ -266,5 +298,16 @@ TEST(parse_texture_test, 없는_식별자인_경우)
     ASSERT_THROW(parse_texture(&rt, &obj, (char const **)&line), std::runtime_error);
 
     line = (char *)"255,255,255 -a 0,0,255 2 2";
+    ASSERT_THROW(parse_texture(&rt, &obj, (char const **)&line), std::runtime_error);
+}
+
+TEST(parse_texture_test, 식별자가_없는_경우)
+{
+    t_rt 	rt;
+    t_hit   obj;
+	rt.world = init_hittable_list(10);
+	char		*line;
+    
+    line = (char *)"255,255,255 - 0,0,255 2 2";
     ASSERT_THROW(parse_texture(&rt, &obj, (char const **)&line), std::runtime_error);
 }

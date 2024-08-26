@@ -24,6 +24,7 @@
 # define ERROR_INVALID_FOV "FOV must be between 0 and 180"
 # define ERROR_INVALID_COLOR "Color must be between 0 and 255"
 # define ERROR_INVALID_NORMAL "Normal must be between -1 and 1"
+# define ERROR_ZERO_NORMAL "Normal cannot be zero"
 # define ERROR_INVALID_RATIO "Ratio must be between 0 and 1"
 # define ERROR_INVALID_TEXTURE_OPTION "Invalid texture option"
 # define ERROR_OPEN_XPM_FILE "Failed to open the xpm file"

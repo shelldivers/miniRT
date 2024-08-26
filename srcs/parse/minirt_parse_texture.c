@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "minirt.h"
 #include "libft.h"
 #include "error.h"

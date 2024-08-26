@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:36:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 17:05:57 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/25 10:48:10 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ typedef struct s_ray
 
 // ray.c
 t_point3		point_at(t_ray const *ray, float t);
-t_vec3			get_direction(t_camera *cam, t_viewport *vw, int i, int j);
+t_vec3			get_pixel_center(\
+	t_camera *camera, t_viewport *viewport, int i, int j);
+t_vec3			get_pixel_random(\
+	t_camera *cam, t_viewport *vw, int i, int j);
+t_vec3			get_random_offset(void);
 
 // color.ct_viewport
 unsigned int	color_to_int(t_color color);

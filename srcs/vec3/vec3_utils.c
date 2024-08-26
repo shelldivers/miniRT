@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vec3_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 23:57:08 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/20 15:24:07 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:13:51 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vec3.h"
+#include "error.h"
 
 /**
  * @brief 두 벡터의 합을 반환
@@ -53,5 +54,10 @@ t_vec3	vec3_mul(t_vec3 a, float t)
  */
 t_vec3	vec3_div(t_vec3 a, float t)
 {
-	return ((t_vec3){a.x / t, a.y / t, a.z / t});
+	float	inv_t;
+
+	if (t == 0.0f)
+		error_exit(ERROR_DIV_BY_ZERO);
+	inv_t = 1.0f / t;
+	return ((t_vec3){a.x * inv_t, a.y * inv_t, a.z * inv_t});
 }

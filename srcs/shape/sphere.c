@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 20:06:36 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:53:03 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ t_sphere	*init_sphere(t_sphere data)
 	sphere->parent.color = data.parent.color;
 	sphere->parent.texture = data.parent.texture;
 	if (is_texture_map_enabled(data.parent.texture))
+	{
+		sphere->parent.uv_map = get_uv_map_sphere;
 		sphere->parent.uv_color = uv_color_map_adapter(data.parent.texture);
+	}
 	return (sphere);
 }
 
@@ -60,10 +63,7 @@ t_bool	hit_sphere(t_hit *obj, t_ray const *ray, t_coll t, t_record *rec)
 	outward_normal = vec3_unit(\
 		vec3_div(vec3_sub(rec->p, sphere->center), sphere->radius));
 	set_face_normal(rec, ray, outward_normal);
-	if (is_texture_map_enabled(sphere->parent.texture))
-		rec->color = ((t_color_map)obj->uv_color)(obj, rec, get_uv_map_sphere);
-	else
-		rec->color = sphere->parent.color;
+	rec->obj = obj;
 	return (TRUE);
 }
 

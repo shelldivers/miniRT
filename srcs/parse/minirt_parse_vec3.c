@@ -6,11 +6,12 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:11:34 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/08 23:19:42 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:41:14 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "parse.h"
 #include "libft.h"
 #include "error.h"
 

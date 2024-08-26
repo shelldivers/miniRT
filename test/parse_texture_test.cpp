@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "shape/hittable.h"
+#include "parse.h"
 #include "mlx.h"
 }
 #include <fstream>

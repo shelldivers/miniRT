@@ -1,5 +1,6 @@
 extern "C" {
 #include "minirt.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 
@@ -20,8 +21,6 @@ TEST(normalize_vec3_test, 법선_벡터가_범위를_벗어난_경우)
 TEST(normalize_vec3_test, 제로_벡터인_경우)
 {
     t_vec3 vec = {0, 0, 0};
-    normalize_vec3(&vec);
-    ASSERT_FLOAT_EQ(vec.x, 0);
-    ASSERT_FLOAT_EQ(vec.y, 0);
-    ASSERT_FLOAT_EQ(vec.z, 0);
+
+    ASSERT_THROW(normalize_vec3(&vec), std::runtime_error);
 }

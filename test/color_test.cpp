@@ -1,6 +1,7 @@
 extern "C" {
 #include "ray.h"
 #include "minirt.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 
@@ -11,6 +12,19 @@ TEST(color_test, color_to_int) {
     t_color color = {r, g, b};
     unsigned int int_color = color_to_int(color);
     EXPECT_FLOAT_EQ(int_color, 0xFFA500);
+}
+
+TEST(color_test, int_to_color) {
+    int r = 255;
+    int g = 165;
+    int b = 0;
+    unsigned int int_color = r << 16 | g << 8 | b;
+
+    t_color color = int_to_color(int_color);
+
+    EXPECT_FLOAT_EQ(color.x, r / 255.0);
+    EXPECT_FLOAT_EQ(color.y, g / 255.0);
+    EXPECT_FLOAT_EQ(color.z, b / 255.0);
 }
 
 TEST(color_test, 성공) {

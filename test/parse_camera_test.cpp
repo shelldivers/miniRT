@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "camera.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 

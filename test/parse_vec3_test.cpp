@@ -1,5 +1,6 @@
 extern "C" {
 #include "minirt.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 #include <string>

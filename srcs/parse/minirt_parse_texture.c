@@ -6,10 +6,11 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:18:26 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/23 02:36:06 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 10:00:04 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "minirt.h"
 #include "libft.h"
 #include "error.h"
@@ -46,6 +47,7 @@ void	parse_texture(t_rt *rt, t_hit *data, char const **ptr)
 	t_texture_parser	texture_parser;
 
 	line = *ptr;
+	data->texture.enable = FALSE;
 	move_to_next_param(&line);
 	while (*line)
 	{
@@ -61,6 +63,7 @@ void	parse_texture(t_rt *rt, t_hit *data, char const **ptr)
 t_texture_parser	parse_texture_adapter(t_hit *data, char const *line)
 {
 	int						pos;
+	int						option;
 	const char				*options = "ctb";
 	const t_texture_parser	parsers[] = {
 		parse_checkerboard,
@@ -74,7 +77,10 @@ t_texture_parser	parse_texture_adapter(t_hit *data, char const *line)
 		if (*line == *options)
 		{
 			pos = options - "ctb";
-			data->texture.enable |= 1 << pos;
+			option = 1 << pos;
+			if (data->texture.enable & option)
+				error_exit(ERROR_TEXTURE_DUPLICATE);
+			data->texture.enable |= option;
 			return (parsers[pos]);
 		}
 		options++;

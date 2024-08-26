@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "shape/cone.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 
@@ -10,7 +11,7 @@ TEST(parse_cone_test, 성공)
 	rt.world = init_hittable_list(10);
     char		*line = (char *)"co	0,0,20	0,0,1	10	5	255,255,255";
 
-    parse_cylinder(line, &rt);
+    parse_cone(line, &rt);
     t_hit *result = rt.world->objects[0];
     ASSERT_EQ(result->shape, CYLINDER);
     t_cone *cone = (t_cone *)result;

@@ -6,76 +6,33 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:49:38 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 01:33:27 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:39:39 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "image.h"
-#include "key_hook.h"
-#include "mlx.h"
-#include "reflection.h"
-#include <stdlib.h>
-
-t_color			ray_color(t_rt *rt, t_ray *ray);
 
 void	ray_tracing(t_rt *rt)
 {
 	t_ray	ray;
-	int		hei;
-	int		wid;
+	int		h;
+	int		w;
 	t_color	color;
 
-	hei = 0;
+	h = 0;
 	ray.origin = rt->cam.view_point;
-	while (hei < rt->img.height)
+	while (h < rt->img.height)
 	{
-		wid = 0;
-		while (wid < rt->img.width)
+		w = 0;
+		while (w < rt->img.width)
 		{
-			ray.direction = get_direction(&(rt->cam), &(rt->vw), wid, hei);
+			ray.direction = get_pixel_center(\
+				&(rt->cam), &(rt->vw), w, h);
 			color = ray_color(rt, &ray);
-			put_color(&(rt->img), wid, hei, color_to_int(color));
-			wid++;
+			put_color(&(rt->img), w, h, color_to_int(color));
+			w++;
 		}
-		hei++;
+		h++;
 	}
-}
-
-t_color	ray_color(t_rt *rt, t_ray *ray)
-{
-	t_record	rec;
-	t_color		light_color;
-
-	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
-	{
-		light_color = get_phong_reflection_color(rt, &rec);
-		return (set_light_color(rec.color, light_color));
-	}
-	return ((t_color){0, 0, 0});
-}
-
-t_color	get_phong_reflection_color(t_rt *rt, t_record *rec)
-{
-	t_color	light_color;
-	int		i;
-
-	light_color = vec3_mul(rt->ambient.light, AMBIENT_CONST);
-	i = 0;
-	while (i < rt->lights->size)
-	{
-		if (is_shadowed(rt->lights->objects[i], rec, rt->world))
-		{
-			i++;
-			continue ;
-		}
-		light_color = light_add(\
-			get_diffused_luminance(\
-			rec, rt->lights->objects[i]), light_color);
-		light_color = light_add(\
-			get_specular_luminance(\
-			rec, rt->lights->objects[i], &(rt->cam)), light_color);
-		i++;
-	}
-	return (light_color);
 }

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parse_scene.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/21 17:13:43 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:40:49 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parse.h"
 #include "minirt.h"
 #include "libft.h"
 #include "error.h"

@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "shape/plane.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 

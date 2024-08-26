@@ -1,6 +1,7 @@
 extern "C" {
 #include "minirt.h"
 #include "reflection.h"
+#include "parse.h"
 }
 #include "gtest/gtest.h"
 

@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/24 23:29:23 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/25 12:52:58 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define ERROR_OPEN_FILE "Failed to open the file"
 # define ERROR_INVALID_IDENTIFIER "Invalid identifier"
 # define ERROR_MALLOC "Failed to allocate memory"
+# define ERROR_DIV_BY_ZERO "Division by zero"
 # define ERROR_INVALID_EXTENSION "Invalid file extension"
 # define ERROR_INVALID_VEC3 "Invalid vec3 format"
 # define ERROR_INVALID_PARAM "Invalid parameter format"

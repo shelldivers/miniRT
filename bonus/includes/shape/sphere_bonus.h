@@ -6,16 +6,16 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:14 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:33 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:22:13 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SPHERE_BONUS_H
 # define SPHERE_BONUS_H
 
-# include "vec3.h"
+# include "vec3_bonus.h"
 # include "ft_bool.h"
-# include "hittable.h"
+# include "hittable_bonus.h"
 
 typedef struct s_sphere
 {

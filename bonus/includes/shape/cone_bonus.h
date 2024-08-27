@@ -6,16 +6,16 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:20:04 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:02 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:55 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONE_BONUS_H
 # define CONE_BONUS_H
 
-# include "vec3.h"
+# include "vec3_bonus.h"
 # include "ft_bool.h"
-# include "hittable.h"
+# include "hittable_bonus.h"
 
 typedef struct s_cone
 {

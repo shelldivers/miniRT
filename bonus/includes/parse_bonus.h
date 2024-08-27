@@ -6,14 +6,14 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 01:37:53 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:47 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:22 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_BONUS_H
 # define PARSE_BONUS_H
 
-# include "minirt.h"
+# include "minirt_bonus.h"
 
 // minirt_parse.c
 void				init_mlx(t_rt *rt, t_img *img);

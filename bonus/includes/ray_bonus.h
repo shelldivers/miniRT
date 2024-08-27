@@ -6,15 +6,15 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:36:09 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:49 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:44 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_BONUS_H
 # define RAY_BONUS_H
 
-# include "vec3.h"
-# include "camera.h"
+# include "vec3_bonus.h"
+# include "camera_bonus.h"
 
 typedef struct s_ray
 {

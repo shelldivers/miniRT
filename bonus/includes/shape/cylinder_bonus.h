@@ -6,16 +6,16 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:19:54 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:09 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:58 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CYLINDER_BONUS_H
 # define CYLINDER_BONUS_H
 
-# include "vec3.h"
+# include "vec3_bonus.h"
 # include "ft_bool.h"
-# include "hittable.h"
+# include "hittable_bonus.h"
 
 typedef struct s_cylinder
 {

@@ -6,14 +6,14 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:41:02 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:36 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:28 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAMERA_BONUS_H
 # define CAMERA_BONUS_H
 
-# include "vec3.h"
+# include "vec3_bonus.h"
 
 typedef struct s_camera
 {

@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 16:55:52 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:42 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:37 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 #  define PRE_PROCESSING TRUE
 # endif
 
-# include "vec3.h"
-# include "image.h"
-# include "camera.h"
-# include "reflection.h"
-# include "shape/hittable.h"
+# include "vec3_bonus.h"
+# include "image_bonus.h"
+# include "camera_bonus.h"
+# include "reflection_bonus.h"
+# include "shape/hittable_bonus.h"
 # include <pthread.h>
 
 typedef struct s_rt

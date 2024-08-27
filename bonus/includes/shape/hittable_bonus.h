@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 17:18:55 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:27 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:22:06 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define HITTABLE_BONUS_H
 
 # include "ft_bool.h"
-# include "vec2.h"
-# include "vec3.h"
-# include "ray.h"
-# include "image.h"
+# include "vec2_bonus.h"
+# include "vec3_bonus.h"
+# include "ray_bonus.h"
+# include "image_bonus.h"
 
 # define CHECKER_BOARD 0b00000001
 # define TEXTURE_MAP 0b00000010

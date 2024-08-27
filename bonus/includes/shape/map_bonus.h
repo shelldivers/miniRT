@@ -6,14 +6,14 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 01:01:12 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:30 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:22:49 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAP_BONUS_H
-# define MAPBONUS_H
+# define MAP_BONUS_H
 
-# include "shape/hittable.h"
+# include "shape/hittable_bonus.h"
 
 // texture.c
 t_color		uv_pattern_map(t_hit *obj, t_record *rec, t_uv_map uv_map);

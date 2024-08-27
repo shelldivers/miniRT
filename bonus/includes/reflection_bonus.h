@@ -6,15 +6,15 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 15:40:31 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:49:51 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:21:48 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REFLECTION_BONUS_H
 # define REFLECTION_BONUS_H
 
-# include "vec3.h"
-# include "shape/hittable.h"
+# include "vec3_bonus.h"
+# include "shape/hittable_bonus.h"
 
 # define AMBIENT_CONST 0.5
 # define DIFFUSE_CONST 0.5

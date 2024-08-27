@@ -6,7 +6,7 @@
 /*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 02:51:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/28 00:17:04 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:22:42 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	must_have_valid_extension(char const *filename, char const *extension)
 		basename = (char *)filename;
 	if (*basename == '.')
 		error_exit(ERROR_INVALID_EXTENSION);
-	if (!ft_strrchr(filename, '.'))
-		error_exit(ERROR_INVALID_EXTENSION);
 	pos = ft_strrchr(filename, '.');
+	if (!pos)
+		error_exit(ERROR_INVALID_EXTENSION);
 	if (ft_strcmp(pos, (const char *)extension))
 		error_exit(ERROR_INVALID_EXTENSION);
 }

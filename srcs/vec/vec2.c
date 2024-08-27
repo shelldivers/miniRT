@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec2.h                                             :+:      :+:    :+:   */
+/*   vec2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 17:06:56 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 15:26:48 by jiwojung         ###   ########.fr       */
+/*   Created: 2024/08/27 15:24:12 by jiwojung          #+#    #+#             */
+/*   Updated: 2024/08/27 15:25:13 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VEC2_H
-# define VEC2_H
+#include "vec2.h"
 
-typedef struct s_vec2
+t_vec2	vec2_add(t_vec2 a, t_vec2 b)
 {
-	float	u;
-	float	v;
-}	t_vec2;
+	return ((t_vec2){a.u + b.u, a.v + b.v});
+}
 
-// vec2.c
-t_vec2	vec2_add(t_vec2 a, t_vec2 b);
-t_vec2	vec2_sub(t_vec2 a, t_vec2 b);
-
-#endif
+t_vec2	vec2_sub(t_vec2 a, t_vec2 b)
+{
+	return ((t_vec2){a.u - b.u, a.v - b.v});
+}

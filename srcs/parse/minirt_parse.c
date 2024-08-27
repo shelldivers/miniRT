@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:16:07 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 01:42:54 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:28:46 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ t_vw_var	init_viewport_variable(t_rt *rt)
 	t_vw_var	var;
 
 	var.look_from = rt->cam.view_point;
+	if (rt->cam.normal.x == 0 && rt->cam.normal.z == 0)
+		rt->cam.normal.x = EPSILON;
 	var.look_at = vec3_add(var.look_from, rt->cam.normal);
 	var.view_up = (t_vec3){0, 1, 0};
 	var.viewport_height = 2.0 * tan(rt->cam.fov * M_PI / 180.0 / 2.0);

@@ -6,13 +6,13 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 23:37:28 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 13:21:09 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:04:00 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shape/cone.h"
-#include "shape/texture.h"
+#include "shape/map.h"
 #include "shape/plane.h"
 #include "error.h"
 #include <stdlib.h>

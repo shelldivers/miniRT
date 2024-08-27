@@ -6,12 +6,12 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 13:20:40 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:04:00 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shape/hittable.h"
-#include "shape/texture.h"
+#include "shape/map.h"
 #include "error.h"
 #include "image.h"
 #include "mlx.h"

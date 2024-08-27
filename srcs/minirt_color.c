@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 02:47:03 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 15:36:40 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:10:21 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_color	ray_color(t_rt *rt, t_ray *ray)
 
 	if (hit_shapes(rt->world, ray, (t_coll){0.0, FLOAT_MAX}, &rec))
 	{
+		if (rec.obj->texture.enable & BUMP_MAP)
+			normal_mapping(rec.obj, &rec, (t_uv_map)rec.obj->uv_map);
 		if (is_texture_map_enabled(rec.obj->texture))
 			rec.color = ((t_color_map)rec.obj->uv_color)(\
 				rec.obj, &rec, (t_uv_map)rec.obj->uv_map);

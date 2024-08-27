@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 16:02:17 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:21:39 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ t_sphere	*init_sphere(t_sphere data)
 	sphere->radius = data.radius;
 	sphere->parent.color = data.parent.color;
 	sphere->parent.texture = data.parent.texture;
+	sphere->parent.uv_map = get_uv_map_sphere;
 	if (is_texture_map_enabled(data.parent.texture))
-	{
-		sphere->parent.uv_map = get_uv_map_sphere;
 		sphere->parent.uv_color = uv_color_map_adapter(data.parent.texture);
-	}
 	return (sphere);
 }
 

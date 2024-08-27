@@ -6,7 +6,7 @@
 /*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 00:57:47 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/26 16:02:46 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:20:40 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,26 @@ t_color	uv_pattern_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 
 t_color	uv_texture_map(t_hit *obj, t_record *rec, t_uv_map uv_map)
 {
-	t_vec2		uv;
-	int			u2;
-	int			v2;
-	int			pixel_color;
-	t_img		*texture_map;
+	t_vec2			uv;
+	int				u2;
+	int				v2;
+	unsigned int	pixel_color;
+	t_img			*texture_map;
 
 	uv = uv_map(obj, rec);
 	texture_map = &obj->texture.texture_map;
-	u2 = floor(uv.u * obj->texture.width_count);
-	v2 = floor(uv.v * obj->texture.height_count);
-	pixel_color = texture_map->addr[u2 * v2];
+	u2 = floor(uv.u * (texture_map->width - 1));
+	if (u2 < 0)
+		u2 = 0;
+	else if (u2 >= texture_map->width)
+		u2 = texture_map->width - 1;
+	v2 = floor(uv.v * (texture_map->height - 1));
+	if (v2 < 0)
+		v2 = 0;
+	else if (v2 >= texture_map->height)
+		v2 = texture_map->height - 1;
+	pixel_color = texture_map->addr[v2 * texture_map->width + u2];
+	pixel_color = get_color(texture_map, u2, v2);
 	return (int_to_color(pixel_color));
 }
 

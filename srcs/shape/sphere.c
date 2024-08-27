@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 00:36:41 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 21:53:03 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:04:00 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "vec2.h"
 #include "minirt.h"
 #include "shape/sphere.h"
-#include "shape/texture.h"
+#include "shape/map.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -33,11 +33,9 @@ t_sphere	*init_sphere(t_sphere data)
 	sphere->radius = data.radius;
 	sphere->parent.color = data.parent.color;
 	sphere->parent.texture = data.parent.texture;
+	sphere->parent.uv_map = get_uv_map_sphere;
 	if (is_texture_map_enabled(data.parent.texture))
-	{
-		sphere->parent.uv_map = get_uv_map_sphere;
 		sphere->parent.uv_color = uv_color_map_adapter(data.parent.texture);
-	}
 	return (sphere);
 }
 

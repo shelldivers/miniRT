@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:41:59 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/25 21:47:38 by jeongwpa         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:04:00 by jiwojung         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "shape/plane.h"
-#include "shape/texture.h"
+#include "shape/map.h"
 #include "vec2.h"
 #include "error.h"
 #include <stdlib.h>
@@ -33,11 +33,9 @@ t_plane	*init_plane(t_plane data)
 	plane->normal = data.normal;
 	plane->parent.color = data.parent.color;
 	plane->parent.texture = data.parent.texture;
+	plane->parent.uv_map = get_uv_map_plane;
 	if (is_texture_map_enabled(data.parent.texture))
-	{
-		plane->parent.uv_map = get_uv_map_plane;
 		plane->parent.uv_color = uv_color_map_adapter(data.parent.texture);
-	}
 	return (plane);
 }
 

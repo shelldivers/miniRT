@@ -6,7 +6,7 @@
 #    By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/01 18:05:55 by jeongwpa          #+#    #+#              #
-#    Updated: 2024/08/27 19:30:11 by jiwojung         ###   ########.fr        #
+#    Updated: 2024/08/27 20:15:30 by jiwojung         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,12 @@ NAME = minirt
 CC = cc
 FLAG = -Wall -Wextra -Werror
 
+ifdef PRE_PROCESSING
+	FLAG += -DPRE_PROCESSING=0
+else
+	FLAG += -DPRE_PROCESSING=1
+endif
+
 all : $(NAME)
 
 bonus : $(NAME)
@@ -68,5 +74,13 @@ fclean : clean
 	@rm -f libmlx.dylib
 
 re : fclean all
+
+re_preprocessing : $(NAME)
+	@rm -f $(NAME) $(OBJS_MANDATORY) $(OBJS_BONUS)
+	@make
+
+re_realtime : $(NAME)
+	@rm -f $(NAME) $(OBJS_MANDATORY) $(OBJS_BONUS)
+	@make PRE_PROCESSING=1
 
 .PHONY : all clean fclean re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_parse_utils3_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jiwojung <jiwojung@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeongwpa <jeongwpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 02:51:30 by jeongwpa          #+#    #+#             */
-/*   Updated: 2024/08/27 18:51:26 by jiwojung         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:22:42 by jeongwpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	must_have_valid_extension(char const *filename, char const *extension)
 	if (*basename == '.')
 		error_exit(ERROR_INVALID_EXTENSION);
 	pos = ft_strrchr(filename, '.');
+	if (!pos)
+		error_exit(ERROR_INVALID_EXTENSION);
 	if (ft_strcmp(pos, (const char *)extension))
 		error_exit(ERROR_INVALID_EXTENSION);
 }

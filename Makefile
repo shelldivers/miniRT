@@ -56,8 +56,7 @@ bonus : $(NAME)
 $(NAME) : $(OBJS) $(LIBFT) $(MLX)
 	@make -C libft
 	@make -C mlx
-	@cp mlx/libmlx.dylib .
-	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(INCLUDES_MANDATORY) -framework OpenGL -framework AppKit -lmlx -Lmlx
+	$(CC) $(FLAG) -o $(NAME) $(OBJS) $(LIB_FT) $(INCLUDES_MANDATORY) -Lmlx -lmlx -lXext -lX11 -lm
 	@echo "minirt is created"
 
 %.o : %.c
@@ -71,7 +70,6 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 	@make fclean -C libft
-	@rm -f libmlx.dylib
 
 re : fclean all
 

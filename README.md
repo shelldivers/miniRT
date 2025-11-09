@@ -9,3 +9,5 @@
 ![codecov](https://codecov.io/gh/shelldivers/miniRT/graphs/icicle.svg?token=9U67BIL0ER)
 
 > Code coverage report for the miniRT project
+
+<img width="1010" height="553" alt="KakaoTalk_20251109_112511524" src="https://github.com/user-attachments/assets/aa237e44-1590-4db2-914d-9d78e1919c71" />
